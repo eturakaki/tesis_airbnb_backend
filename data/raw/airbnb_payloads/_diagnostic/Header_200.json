@@ -1,0 +1,137 @@
+{
+  "data": {
+    "viewer": null,
+    "presentation": {
+      "__typename": "RootPresentationContainer",
+      "header": {
+        "__typename": "Header",
+        "topLevelItemGroup": {
+          "__typename": "HeaderItemGroup",
+          "items": [
+            {
+              "__typename": "HeaderItem",
+              "itemId": "BECOME_A_HOST",
+              "loggingId": "simpleHeader.loggedOut.becomeAHost",
+              "url": null,
+              "type": "BECOME_A_HOST",
+              "text": "Convertite en anfitrión"
+            },
+            {
+              "__typename": "HeaderItem",
+              "itemId": "LANGUAGE_AND_CURRENCY",
+              "loggingId": "simpleHeader.loggedOut.localeSettingsMenu",
+              "url": null,
+              "type": "LOCALE",
+              "text": null
+            }
+          ]
+        },
+        "menuItemGroups": [
+          {
+            "__typename": "HeaderItemGroup",
+            "groupId": "SECONDARY_MENU",
+            "items": [
+              {
+                "__typename": "HeaderItem",
+                "badgeCount": null,
+                "caption": null,
+                "hasBadge": false,
+                "icon": "COMPACT_HOST_HELP_ALT",
+                "isNew": null,
+                "itemId": "HELP",
+                "loggingId": "simpleHeader.loggedOut.profileMenu.help",
+                "primary": false,
+                "text": "Centro de ayuda",
+                "type": "HELP",
+                "url": "/help"
+              }
+            ]
+          },
+          {
+            "__typename": "HeaderItemGroup",
+            "groupId": "TERTIARY_MENU",
+            "items": [
+              {
+                "__typename": "HeaderItem",
+                "badgeCount": null,
+                "caption": "Dar los primeros pasos como anfitrión y generar un ingreso extra es muy fácil.",
+                "hasBadge": false,
+                "icon": null,
+                "isNew": null,
+                "itemId": "BECOME_A_HOST",
+                "loggingId": "userProfile.BecomeAHostBanner",
+                "primary": false,
+                "text": "Convertite en anfitrión",
+                "type": "BECOME_A_HOST",
+                "url": null
+              }
+            ]
+          },
+          {
+            "__typename": "HeaderItemGroup",
+            "groupId": "QUATERNARY_MENU",
+            "items": [
+              {
+                "__typename": "HeaderItem",
+                "badgeCount": null,
+                "caption": null,
+                "hasBadge": false,
+                "icon": null,
+                "isNew": null,
+                "itemId": "HOST_REFERRALS",
+                "loggingId": "simpleHeader.loggedOut.profileMenu.referAHost",
+                "primary": false,
+                "text": "Invitá a un anfitrión",
+                "type": "LINK",
+                "url": "/refer?r=67"
+              },
+              {
+                "__typename": "HeaderItem",
+                "badgeCount": null,
+                "caption": null,
+                "hasBadge": false,
+                "icon": null,
+                "isNew": null,
+                "itemId": "FIND_A_COHOST",
+                "loggingId": "simpleHeader.loggedOut.profileMenu.findACohost",
+                "primary": false,
+                "text": "Encontrá un coanfitrión",
+                "type": "LINK",
+                "url": "/co-hosts/home"
+              }
+            ]
+          },
+          {
+            "__typename": "HeaderItemGroup",
+            "groupId": "QUINARY_MENU",
+            "items": [
+              {
+                "__typename": "HeaderItem",
+                "badgeCount": null,
+                "caption": null,
+                "hasBadge": false,
+                "icon": null,
+                "isNew": null,
+                "itemId": "LOGIN_OR_SIGNUP",
+                "loggingId": "simpleHeader.loggedOut.profileMenu.logInOrSignUp",
+                "primary": false,
+                "text": "Iniciá sesión o registrate",
+                "type": "LINK",
+                "url": "/signup_login"
+              }
+            ]
+          }
+        ],
+        "avatarImageUrl": null
+      },
+      "supplyTypeSelector": {
+        "__typename": "SupplyTypeSelectorPresentationContainer",
+        "isInPrioritizedExperienceMarket": false,
+        "isInPrioritizedServiceMarket": false
+      }
+    }
+  },
+  "extensions": {
+    "traceId": "HH4GPImCFdDS2eJKQwcGKw=="
+  }
+}

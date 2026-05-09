@@ -1,0 +1,2300 @@
+{
+  "data": {
+    "presentation": {
+      "__typename": "RootPresentationContainer",
+      "stayProductDetailPage": {
+        "__typename": "StayPDPPresentationContainer",
+        "reviews": {
+          "__typename": "PdpReviews",
+          "reviews": [
+            {
+              "__typename": "PdpReviewForP3",
+              "collectionTag": null,
+              "comments": "Fuimos por un solo día pero volvería en caso de necesitar una estadía más extensa. El edificio es nuevo y el departamento es tal cual a las fotos. Tomas mantuvo buena comunicación además de ser muy claro con todas las indicaciones.<br/> La zona del mismo es muy linda, segura y con muchos comercios cerca de interés. El precio me pareció acorde.",
+              "id": "1678417476467086450",
+              "language": "es",
+              "createdAt": "2026-05-04T18:35:54Z",
+              "responder": null,
+              "reviewee": {
+                "__typename": "ReviewUser",
+                "deleted": false,
+                "firstName": "Tomás",
+                "hostName": "Tomás",
+                "id": "395388424",
+                "contextualUserId": "1560302278752735250",
+                "pictureUrl": "https://a0.muscache.com/im/pictures/user/User-395388424/original/cfb9dfff-774b-4cfa-aab6-920d116d1ee6.jpeg",
+                "profilePath": "/users/profile/1560302278752735250",
+                "isSuperhost": false,
+                "userProfilePicture": {
+                  "__typename": "Image",
+                  "baseUrl": "https://a0.muscache.com/im/pictures/user/User-395388424/original/cfb9dfff-774b-4cfa-aab6-920d116d1ee6.jpeg",
+                  "onPressAction": {
+                    "__typename": "NavigateToUserProfile",
+                    "url": "/users/profile/1560302278752735250"
+                  }
+                }
+              },
+              "reviewer": {
+                "__typename": "ReviewUser",
+                "deleted": false,
+                "firstName": "Cristian",
+                "hostName": "Cristian",
+                "id": "493369361",
+                "contextualUserId": "1489592672591946232",
+                "pictureUrl": "https://a0.muscache.com/im/pictures/user/bb449081-ae75-4f04-9cb5-6cde3711d8a3.jpg",
+                "profilePath": "/users/profile/1489592672591946232",
+                "isSuperhost": false,
+                "userProfilePicture": {
+                  "__typename": "Image",
+                  "baseUrl": "https://a0.muscache.com/im/pictures/user/bb449081-ae75-4f04-9cb5-6cde3711d8a3.jpg",
+                  "onPressAction": {
+                    "__typename": "NavigateToUserProfile",
+                    "url": "/users/profile/1489592672591946232"
+                  }
+                }
+              },
+              "reviewHighlight": "Estadía de una noche",
+              "highlightType": "LENGTH_OF_STAY",
+              "localizedDate": "Hace 4 días",
+              "localizedRespondedDate": null,
+              "localizedReviewerLocation": "Hace 3 años que está en Airbnb",
+              "localizedReview": null,
+              "rating": 5,
+              "ratingAccessibilityLabel": "Calificación: 5 estrellas",
+              "recommendedNumberOfLines": null,
+              "response": null,
+              "roomTypeListingTitle": null,
+              "roomTypeListingId": null,
+              "highlightedReviewSentence": [],
+              "highlightReviewMentioned": null,
+              "showMoreButton": {
+                "__typename": "BasicListItem",
+                "title": "Mostrar más",
+                "loggingEventData": {
+                  "__typename": "LoggingEventData",
+                  "loggingId": "pdp.reviews.readMore",
+                  "experiments": [],
+                  "eventData": null,
+                  "eventDataSchemaName": null,
+                  "section": null,
+                  "component": null
+                }
+              },
+              "subtitleItems": [],
+              "channel": null,
+              "reviewMediaItems": [],
+              "isHostHighlightedReview": null,
+              "reviewPhotoUrls": [],
+              "commentV2": "Fuimos por un solo día pero volvería en caso de necesitar una estadía más extensa. El edificio es nuevo y el departamento es tal cual a las fotos. Tomas mantuvo buena comunicación además de ser muy claro con todas las indicaciones.<br/> La zona del mismo es muy linda, segura y con muchos comercios cerca de interés. El precio me pareció acorde.",
+              "localizedCommentV2": {
+                "__typename": "LocalizedReview",
+                "comments": "Fuimos por un solo día pero volvería en caso de necesitar una estadía más extensa. El edificio es nuevo y el departamento es tal cual a las fotos. Tomas mantuvo buena comunicación además de ser muy claro con todas las indicaciones.<br/> La zona del mismo es muy linda, segura y con muchos comercios cerca de interés. El precio me pareció acorde.",
+                "commentsLanguage": "es",
+                "disclaimer": null,
+                "needsTranslation": false,
+                "response": null,
+                "responseDisclaimer": null
+              },
+              "localizedPaidPromotionDisclaimer": null
+            },
+            {
+              "__typename": "PdpReviewForP3",
+              "collectionTag": null,
+              "comments": "Nos quedamos una noche y todo estuvo impecable. El departamento es muy lindo, cómodo y tal cual se ve en las fotos. Tomás fue súper atento y amoroso: como el depto ya estaba desocupado, nos permitió ingresar antes sin costo, lo cual nos alivianó muchísimo porque teníamos un casamiento esa misma noche y necesitábamos acomodarnos. Además, nos dio recomendaciones y estuvo siempre muy pendiente. ¡Súper recomendable!",
+              "id": "1662442933910243246",
+              "language": "es",
+              "createdAt": "2026-04-12T17:37:21Z",
+              "responder": null,
+              "reviewee": {
+                "__typename": "ReviewUser",
+                "deleted": false,
+                "firstName": "Tomás",
+                "hostName": "Tomás",
+                "id": "395388424",
+                "contextualUserId": "1560302278752735250",
+                "pictureUrl": "https://a0.muscache.com/im/pictures/user/User-395388424/original/cfb9dfff-774b-4cfa-aab6-920d116d1ee6.jpeg",
+                "profilePath": "/users/profile/1560302278752735250",
+                "isSuperhost": false,
+                "userProfilePicture": {
+                  "__typename": "Image",
+                  "baseUrl": "https://a0.muscache.com/im/pictures/user/User-395388424/original/cfb9dfff-774b-4cfa-aab6-920d116d1ee6.jpeg",
+                  "onPressAction": {
+                    "__typename": "NavigateToUserProfile",
+                    "url": "/users/profile/1560302278752735250"
+                  }
+                }
+              },
+              "reviewer": {
+                "__typename": "ReviewUser",
+                "deleted": false,
+                "firstName": "Nati",
+                "hostName": "Nati",
+                "id": "543469511",
+                "contextualUserId": "1480556742252013564",
+                "pictureUrl": "https://a0.muscache.com/im/pictures/user/bb3ff728-4c69-4de6-99c0-31e1fc151cbf.jpg",
+                "profilePath": "/users/profile/1480556742252013564",
+                "isSuperhost": false,
+                "userProfilePicture": {
+                  "__typename": "Image",
+                  "baseUrl": "https://a0.muscache.com/im/pictures/user/bb3ff728-4c69-4de6-99c0-31e1fc151cbf.jpg",
+                  "onPressAction": {
+                    "__typename": "NavigateToUserProfile",
+                    "url": "/users/profile/1480556742252013564"
+                  }
+                }
+              },
+              "reviewHighlight": "Estadía de una noche",
+              "highlightType": "LENGTH_OF_STAY",
+              "localizedDate": "Hace 3 semanas",
+              "localizedRespondedDate": null,
+              "localizedReviewerLocation": "Buenos Aires, Argentina",
+              "localizedReview": null,
+              "rating": 5,
+              "ratingAccessibilityLabel": "Calificación: 5 estrellas",
+              "recommendedNumberOfLines": null,
+              "response": null,
+              "roomTypeListingTitle": null,
+              "roomTypeListingId": null,
+              "highlightedReviewSentence": [],
+              "highlightReviewMentioned": null,
+              "showMoreButton": {
+                "__typename": "BasicListItem",
+                "title": "Mostrar más",
+                "loggingEventData": {
+                  "__typename": "LoggingEventData",
+                  "loggingId": "pdp.reviews.readMore",
+                  "experiments": [],
+                  "eventData": null,
+                  "eventDataSchemaName": null,
+                  "section": null,
+                  "component": null
+                }
+              },
+              "subtitleItems": [],
+              "channel": null,
+              "reviewMediaItems": [],
+              "isHostHighlightedReview": null,
+              "reviewPhotoUrls": [],
+              "commentV2": "Nos quedamos una noche y todo estuvo impecable. El departamento es muy lindo, cómodo y tal cual se ve en las fotos. Tomás fue súper atento y amoroso: como el depto ya estaba desocupado, nos permitió ingresar antes sin costo, lo cual nos alivianó muchísimo porque teníamos un casamiento esa misma noche y necesitábamos acomodarnos. Además, nos dio recomendaciones y estuvo siempre muy pendiente. ¡Súper recomendable!",
+              "localizedCommentV2": {
+                "__typename": "LocalizedReview",
+                "comments": "Nos quedamos una noche y todo estuvo impecable. El departamento es muy lindo, cómodo y tal cual se ve en las fotos. Tomás fue súper atento y amoroso: como el depto ya estaba desocupado, nos permitió ingresar antes sin costo, lo cual nos alivianó muchísimo porque teníamos un casamiento esa misma noche y necesitábamos acomodarnos. Además, nos dio recomendaciones y estuvo siempre muy pendiente. ¡Súper recomendable!",
+                "commentsLanguage": "es",
+                "disclaimer": null,
+                "needsTranslation": false,
+                "response": null,
+                "responseDisclaimer": null
+              },
+              "localizedPaidPromotionDisclaimer": null
+            },
+            {
+              "__typename": "PdpReviewForP3",
+              "collectionTag": null,
+              "comments": "El departamento hermoso, cama grande y súper cómoda igual que el sofá cama, tranquilamente se puede descansar en él. La ducha una maravilla<br/>Tomás como host impecable, se portó 10 puntos! Pudimos realizar el check in antes y por un problema de salud que tuve al hacer el check out me permitió extender un par de horas la estadía. Un GENIO!",
+              "id": "1654472194844457400",
+              "language": "es",
+              "createdAt": "2026-04-01T17:40:54Z",
+              "responder": null,
+              "reviewee": {
+                "__typename": "ReviewUser",
+                "deleted": false,
+                "firstName": "Tomás",
+                "hostName": "Tomás",
+                "id": "395388424",
+                "contextualUserId": "1560302278752735250",
+                "pictureUrl": "https://a0.muscache.com/im/pictures/user/User-395388424/original/cfb9dfff-774b-4cfa-aab6-920d116d1ee6.jpeg",
+                "profilePath": "/users/profile/1560302278752735250",
+                "isSuperhost": false,
+                "userProfilePicture": {
+                  "__typename": "Image",
+                  "baseUrl": "https://a0.muscache.com/im/pictures/user/User-395388424/original/cfb9dfff-774b-4cfa-aab6-920d116d1ee6.jpeg",
+                  "onPressAction": {
+                    "__typename": "NavigateToUserProfile",
+                    "url": "/users/profile/1560302278752735250"
+                  }
+                }
+              },
+              "reviewer": {
+                "__typename": "ReviewUser",
+                "deleted": false,
+                "firstName": "Facundo Exequiel",
+                "hostName": "Facundo Exequiel",
+                "id": "558753186",
+                "contextualUserId": "1482367868838961538",
+                "pictureUrl": "https://a0.muscache.com/im/pictures/user/98c722f7-199c-448c-b62f-cb4435523e78.jpg",
+                "profilePath": "/users/profile/1482367868838961538",
+                "isSuperhost": false,
+                "userProfilePicture": {
+                  "__typename": "Image",
+                  "baseUrl": "https://a0.muscache.com/im/pictures/user/98c722f7-199c-448c-b62f-cb4435523e78.jpg",
+                  "onPressAction": {
+                    "__typename": "NavigateToUserProfile",
+                    "url": "/users/profile/1482367868838961538"
+                  }
+                }
+              },
+              "reviewHighlight": "Estadía de una noche",
+              "highlightType": "LENGTH_OF_STAY",
+              "localizedDate": "abril de 2026",
+              "localizedRespondedDate": null,
+              "localizedReviewerLocation": "Córdoba, Argentina",
+              "localizedReview": null,
+              "rating": 5,
+              "ratingAccessibilityLabel": "Calificación: 5 estrellas",
+              "recommendedNumberOfLines": null,
+              "response": null,
+              "roomTypeListingTitle": null,
+              "roomTypeListingId": null,
+              "highlightedReviewSentence": [],
+              "highlightReviewMentioned": null,
+              "showMoreButton": {
+                "__typename": "BasicListItem",
+                "title": "Mostrar más",
+                "loggingEventData": {
+                  "__typename": "LoggingEventData",
+                  "loggingId": "pdp.reviews.readMore",
+                  "experiments": [],
+                  "eventData": null,
+                  "eventDataSchemaName": null,
+                  "section": null,
+                  "component": null
+                }
+              },
+              "subtitleItems": [],
+              "channel": null,
+              "reviewMediaItems": [],
+              "isHostHighlightedReview": null,
+              "reviewPhotoUrls": [],
+              "commentV2": "El departamento hermoso, cama grande y súper cómoda igual que el sofá cama, tranquilamente se puede descansar en él. La ducha una maravilla<br/>Tomás como host impecable, se portó 10 puntos! Pudimos realizar el check in antes y por un problema de salud que tuve al hacer el check out me permitió extender un par de horas la estadía. Un GENIO!",
+              "localizedCommentV2": {
+                "__typename": "LocalizedReview",
+                "comments": "El departamento hermoso, cama grande y súper cómoda igual que el sofá cama, tranquilamente se puede descansar en él. La ducha una maravilla<br/>Tomás como host impecable, se portó 10 puntos! Pudimos realizar el check in antes y por un problema de salud que tuve al hacer el check out me permitió extender un par de horas la estadía. Un GENIO!",
+                "commentsLanguage": "es",
+                "disclaimer": null,
+                "needsTranslation": false,
+                "response": null,
+                "responseDisclaimer": null
+              },
+              "localizedPaidPromotionDisclaimer": null
+            },
+            {
+              "__typename": "PdpReviewForP3",
+              "collectionTag": null,
+              "comments": "La verdad para ser un monoambiente, cumplé con una cocina que anda perfectamente, como también dispone de todos los utensilios. Agua siempre caliente y buena presion, cama muy cómoda, y está muy bien distribuido. Lo recomiendo 100% para dos personas. Ya que a cuatro cuadras está lleno de restaurantes famosos y ricos.",
+              "id": "1632752823550037821",
+              "language": "es",
+              "createdAt": "2026-03-02T18:28:24Z",
+              "responder": null,
+              "reviewee": {
+                "__typename": "ReviewUser",
+                "deleted": false,
+                "firstName": "Tomás",
+                "hostName": "Tomás",
+                "id": "395388424",
+                "contextualUserId": "1560302278752735250",
+                "pictureUrl": "https://a0.muscache.com/im/pictures/user/User-395388424/original/cfb9dfff-774b-4cfa-aab6-920d116d1ee6.jpeg",
+                "profilePath": "/users/profile/1560302278752735250",
+                "isSuperhost": false,
+                "userProfilePicture": {
+                  "__typename": "Image",
+                  "baseUrl": "https://a0.muscache.com/im/pictures/user/User-395388424/original/cfb9dfff-774b-4cfa-aab6-920d116d1ee6.jpeg",
+                  "onPressAction": {
+                    "__typename": "NavigateToUserProfile",
+                    "url": "/users/profile/1560302278752735250"
+                  }
+                }
+              },
+              "reviewer": {
+                "__typename": "ReviewUser",
+                "deleted": false,
+                "firstName": "Victoria",
+                "hostName": "Victoria",
+                "id": "669785640",
+                "contextualUserId": "1488947791758283663",
+                "pictureUrl": "https://a0.muscache.com/im/pictures/user/User/original/0ee1f14f-69f7-4364-867d-c22037b257ef.jpeg",
+                "profilePath": "/users/profile/1488947791758283663",
+                "isSuperhost": false,
+                "userProfilePicture": {
+                  "__typename": "Image",
+                  "baseUrl": "https://a0.muscache.com/im/pictures/user/User/original/0ee1f14f-69f7-4364-867d-c22037b257ef.jpeg",
+                  "onPressAction": {
+                    "__typename": "NavigateToUserProfile",
+                    "url": "/users/profile/1488947791758283663"
+                  }
+                }
+              },
+              "reviewHighlight": "Estadía de algunas noches",
+              "highlightType": "LENGTH_OF_STAY",
+              "localizedDate": "marzo de 2026",
+              "localizedRespondedDate": null,
+              "localizedReviewerLocation": "Victoria, Argentina",
+              "localizedReview": null,
+              "rating": 5,
+              "ratingAccessibilityLabel": "Calificación: 5 estrellas",
+              "recommendedNumberOfLines": null,
+              "response": null,
+              "roomTypeListingTitle": null,
+              "roomTypeListingId": null,
+              "highlightedReviewSentence": [],
+              "highlightReviewMentioned": null,
+              "showMoreButton": {
+                "__typename": "BasicListItem",
+                "title": "Mostrar más",
+                "loggingEventData": {
+                  "__typename": "LoggingEventData",
+                  "loggingId": "pdp.reviews.readMore",
+                  "experiments": [],
+                  "eventData": null,
+                  "eventDataSchemaName": null,
+                  "section": null,
+                  "component": null
+                }
+              },
+              "subtitleItems": [],
+              "channel": null,
+              "reviewMediaItems": [],
+              "isHostHighlightedReview": null,
+              "reviewPhotoUrls": [],
+              "commentV2": "La verdad para ser un monoambiente, cumplé con una cocina que anda perfectamente, como también dispone de todos los utensilios. Agua siempre caliente y buena presion, cama muy cómoda, y está muy bien distribuido. Lo recomiendo 100% para dos personas. Ya que a cuatro cuadras está lleno de restaurantes famosos y ricos.",
+              "localizedCommentV2": {
+                "__typename": "LocalizedReview",
+                "comments": "La verdad para ser un monoambiente, cumplé con una cocina que anda perfectamente, como también dispone de todos los utensilios. Agua siempre caliente y buena presion, cama muy cómoda, y está muy bien distribuido. Lo recomiendo 100% para dos personas. Ya que a cuatro cuadras está lleno de restaurantes famosos y ricos.",
+                "commentsLanguage": "es",
+                "disclaimer": null,
+                "needsTranslation": false,
+                "response": null,
+                "responseDisclaimer": null
+              },
+              "localizedPaidPromotionDisclaimer": null
+            },
+            {
+              "__typename": "PdpReviewForP3",
+              "collectionTag": null,
+              "comments": "Nuestra estadía en el Airbnb de Tomás fue buena! Excelente localización para llegar caminado a diferentes lugares de comer y bares. Tomás fue muy rápido respondiendo y dándonos recomendaciones.",
+              "id": "1634965773324942232",
+              "language": "es",
+              "createdAt": "2026-03-05T19:45:08Z",
+              "responder": null,
+              "reviewee": {
+                "__typename": "ReviewUser",
+                "deleted": false,
+                "firstName": "Tomás",
+                "hostName": "Tomás",
+                "id": "395388424",
+                "contextualUserId": "1560302278752735250",
+                "pictureUrl": "https://a0.muscache.com/im/pictures/user/User-395388424/original/cfb9dfff-774b-4cfa-aab6-920d116d1ee6.jpeg",
+                "profilePath": "/users/profile/1560302278752735250",
+                "isSuperhost": false,
+                "userProfilePicture": {
+                  "__typename": "Image",
+                  "baseUrl": "https://a0.muscache.com/im/pictures/user/User-395388424/original/cfb9dfff-774b-4cfa-aab6-920d116d1ee6.jpeg",
+                  "onPressAction": {
+                    "__typename": "NavigateToUserProfile",
+                    "url": "/users/profile/1560302278752735250"
+                  }
+                }
+              },
+              "reviewer": {
+                "__typename": "ReviewUser",
+                "deleted": false,
+                "firstName": "Amadis",
+                "hostName": "Amadis",
+                "id": "165139654",
+                "contextualUserId": "1473171680388710325",
+                "pictureUrl": "https://a0.muscache.com/im/pictures/user/5687b879-3131-49fe-8c3d-d758f97aafc0.jpg",
+                "profilePath": "/users/profile/1473171680388710325",
+                "isSuperhost": false,
+                "userProfilePicture": {
+                  "__typename": "Image",
+                  "baseUrl": "https://a0.muscache.com/im/pictures/user/5687b879-3131-49fe-8c3d-d758f97aafc0.jpg",
+                  "onPressAction": {
+                    "__typename": "NavigateToUserProfile",
+                    "url": "/users/profile/1473171680388710325"
+                  }
+                }
+              },
+              "reviewHighlight": "Estadía de una noche",
+              "highlightType": "LENGTH_OF_STAY",
+              "localizedDate": "marzo de 2026",
+              "localizedRespondedDate": null,
+              "localizedReviewerLocation": "San Juan, Puerto Rico",
+              "localizedReview": null,
+              "rating": 5,
+              "ratingAccessibilityLabel": "Calificación: 5 estrellas",
+              "recommendedNumberOfLines": null,
+              "response": null,
+              "roomTypeListingTitle": null,
+              "roomTypeListingId": null,
+              "highlightedReviewSentence": [],
+              "highlightReviewMentioned": null,
+              "showMoreButton": {
+                "__typename": "BasicListItem",
+                "title": "Mostrar más",
+                "loggingEventData": {
+                  "__typename": "LoggingEventData",
+                  "loggingId": "pdp.reviews.readMore",
+                  "experiments": [],
+                  "eventData": null,
+                  "eventDataSchemaName": null,
+                  "section": null,
+                  "component": null
+                }
+              },
+              "subtitleItems": [],
+              "channel": null,
+              "reviewMediaItems": [],
+              "isHostHighlightedReview": null,
+              "reviewPhotoUrls": [],
+              "commentV2": "Nuestra estadía en el Airbnb de Tomás fue buena! Excelente localización para llegar caminado a diferentes lugares de comer y bares. Tomás fue muy rápido respondiendo y dándonos recomendaciones.",
+              "localizedCommentV2": {
+                "__typename": "LocalizedReview",
+                "comments": "Nuestra estadía en el Airbnb de Tomás fue buena! Excelente localización para llegar caminado a diferentes lugares de comer y bares. Tomás fue muy rápido respondiendo y dándonos recomendaciones.",
+                "commentsLanguage": "es",
+                "disclaimer": null,
+                "needsTranslation": false,
+                "response": null,
+                "responseDisclaimer": null
+              },
+              "localizedPaidPromotionDisclaimer": null
+            },
+            {
+              "__typename": "PdpReviewForP3",
+              "collectionTag": null,
+              "comments": "El departamento es hermoso, muy moderno y la ubicacion  es perfecta. Tiene supermercado en la misma cuadra, una confitería hermosa en frente para desayunar y muy cerca de la estación de subte  y colectivos. Tomas super atento  , estuvimos solo una noche pero fue muy agradable todo. Sin duda volvería,  recomendable para 2 personas.",
+              "id": "1601610230364219251",
+              "language": "es",
+              "createdAt": "2026-01-18T19:13:37Z",
+              "responder": null,
+              "reviewee": {
+                "__typename": "ReviewUser",
+                "deleted": false,
+                "firstName": "Tomás",
+                "hostName": "Tomás",
+                "id": "395388424",
+                "contextualUserId": "1560302278752735250",
+                "pictureUrl": "https://a0.muscache.com/im/pictures/user/User-395388424/original/cfb9dfff-774b-4cfa-aab6-920d116d1ee6.jpeg",
+                "profilePath": "/users/profile/1560302278752735250",
+                "isSuperhost": false,
+                "userProfilePicture": {
+                  "__typename": "Image",
+                  "baseUrl": "https://a0.muscache.com/im/pictures/user/User-395388424/original/cfb9dfff-774b-4cfa-aab6-920d116d1ee6.jpeg",
+                  "onPressAction": {
+                    "__typename": "NavigateToUserProfile",
+                    "url": "/users/profile/1560302278752735250"
+                  }
+                }
+              },
+              "reviewer": {
+                "__typename": "ReviewUser",
+                "deleted": false,
+                "firstName": "Angeles",
+                "hostName": "Angeles",
+                "id": "5448512",
+                "contextualUserId": "1478615730742221596",
+                "pictureUrl": "https://a0.muscache.com/im/pictures/user/User/original/431d3b98-87de-4ca2-976a-7e2b7339147f.jpeg",
+                "profilePath": "/users/profile/1478615730742221596",
+                "isSuperhost": false,
+                "userProfilePicture": {
+                  "__typename": "Image",
+                  "baseUrl": "https://a0.muscache.com/im/pictures/user/User/original/431d3b98-87de-4ca2-976a-7e2b7339147f.jpeg",
+                  "onPressAction": {
+                    "__typename": "NavigateToUserProfile",
+                    "url": "/users/profile/1478615730742221596"
+                  }
+                }
+              },
+              "reviewHighlight": "Estadía de algunas noches",
+              "highlightType": "LENGTH_OF_STAY",
+              "localizedDate": "enero de 2026",
+              "localizedRespondedDate": null,
+              "localizedReviewerLocation": "Argentina",
+              "localizedReview": null,
+              "rating": 5,
+              "ratingAccessibilityLabel": "Calificación: 5 estrellas",
+              "recommendedNumberOfLines": null,
+              "response": null,
+              "roomTypeListingTitle": null,
+              "roomTypeListingId": null,
+              "highlightedReviewSentence": [],
+              "highlightReviewMentioned": null,
+              "showMoreButton": {
+                "__typename": "BasicListItem",
+                "title": "Mostrar más",
+                "loggingEventData": {
+                  "__typename": "LoggingEventData",
+                  "loggingId": "pdp.reviews.readMore",
+                  "experiments": [],
+                  "eventData": null,
+                  "eventDataSchemaName": null,
+                  "section": null,
+                  "component": null
+                }
+              },
+              "subtitleItems": [],
+              "channel": null,
+              "reviewMediaItems": [],
+              "isHostHighlightedReview": null,
+              "reviewPhotoUrls": [],
+              "commentV2": "El departamento es hermoso, muy moderno y la ubicacion  es perfecta. Tiene supermercado en la misma cuadra, una confitería hermosa en frente para desayunar y muy cerca de la estación de subte  y colectivos. Tomas super atento  , estuvimos solo una noche pero fue muy agradable todo. Sin duda volvería,  recomendable para 2 personas.",
+              "localizedCommentV2": {
+                "__typename": "LocalizedReview",
+                "comments": "El departamento es hermoso, muy moderno y la ubicacion  es perfecta. Tiene supermercado en la misma cuadra, una confitería hermosa en frente para desayunar y muy cerca de la estación de subte  y colectivos. Tomas super atento  , estuvimos solo una noche pero fue muy agradable todo. Sin duda volvería,  recomendable para 2 personas.",
+                "commentsLanguage": "es",
+                "disclaimer": null,
+                "needsTranslation": false,
+                "response": null,
+                "responseDisclaimer": null
+              },
+              "localizedPaidPromotionDisclaimer": null
+            },
+            {
+              "__typename": "PdpReviewForP3",
+              "collectionTag": null,
+              "comments": "El alojamiento es un 10. Es hermoso súper limpio todo huele bien tomas el anfitrión estuvo estupendo en todo sentido. Siempre nos contestó al instante y cumplió con todo lo que le pediamos. El check in es súper sencillo y fácil y la zona es hermosa y súper segura llena de bares y actividades para hacer. Volveremos si o si",
+              "id": "1584168235227261679",
+              "language": "es",
+              "createdAt": "2025-12-25T17:39:29Z",
+              "responder": null,
+              "reviewee": {
+                "__typename": "ReviewUser",
+                "deleted": false,
+                "firstName": "Tomás",
+                "hostName": "Tomás",
+                "id": "395388424",
+                "contextualUserId": "1560302278752735250",
+                "pictureUrl": "https://a0.muscache.com/im/pictures/user/User-395388424/original/cfb9dfff-774b-4cfa-aab6-920d116d1ee6.jpeg",
+                "profilePath": "/users/profile/1560302278752735250",
+                "isSuperhost": false,
+                "userProfilePicture": {
+                  "__typename": "Image",
+                  "baseUrl": "https://a0.muscache.com/im/pictures/user/User-395388424/original/cfb9dfff-774b-4cfa-aab6-920d116d1ee6.jpeg",
+                  "onPressAction": {
+                    "__typename": "NavigateToUserProfile",
+                    "url": "/users/profile/1560302278752735250"
+                  }
+                }
+              },
+              "reviewer": {
+                "__typename": "ReviewUser",
+                "deleted": false,
+                "firstName": "Juan",
+                "hostName": "Juan",
+                "id": "672856581",
+                "contextualUserId": "1489295267853200078",
+                "pictureUrl": "https://a0.muscache.com/im/pictures/user/User/original/d7c7b0db-3631-4df5-8663-3f2c48a18835.jpeg",
+                "profilePath": "/users/profile/1489295267853200078",
+                "isSuperhost": false,
+                "userProfilePicture": {
+                  "__typename": "Image",
+                  "baseUrl": "https://a0.muscache.com/im/pictures/user/User/original/d7c7b0db-3631-4df5-8663-3f2c48a18835.jpeg",
+                  "onPressAction": {
+                    "__typename": "NavigateToUserProfile",
+                    "url": "/users/profile/1489295267853200078"
+                  }
+                }
+              },
+              "reviewHighlight": "Estadía de una noche",
+              "highlightType": "LENGTH_OF_STAY",
+              "localizedDate": "diciembre de 2025",
+              "localizedRespondedDate": null,
+              "localizedReviewerLocation": "Buenos Aires, Argentina",
+              "localizedReview": null,
+              "rating": 5,
+              "ratingAccessibilityLabel": "Calificación: 5 estrellas",
+              "recommendedNumberOfLines": null,
+              "response": null,
+              "roomTypeListingTitle": null,
+              "roomTypeListingId": null,
+              "highlightedReviewSentence": [],
+              "highlightReviewMentioned": null,
+              "showMoreButton": {
+                "__typename": "BasicListItem",
+                "title": "Mostrar más",
+                "loggingEventData": {
+                  "__typename": "LoggingEventData",
+                  "loggingId": "pdp.reviews.readMore",
+                  "experiments": [],
+                  "eventData": null,
+                  "eventDataSchemaName": null,
+                  "section": null,
+                  "component": null
+                }
+              },
+              "subtitleItems": [],
+              "channel": null,
+              "reviewMediaItems": [],
+              "isHostHighlightedReview": null,
+              "reviewPhotoUrls": [],
+              "commentV2": "El alojamiento es un 10. Es hermoso súper limpio todo huele bien tomas el anfitrión estuvo estupendo en todo sentido. Siempre nos contestó al instante y cumplió con todo lo que le pediamos. El check in es súper sencillo y fácil y la zona es hermosa y súper segura llena de bares y actividades para hacer. Volveremos si o si",
+              "localizedCommentV2": {
+                "__typename": "LocalizedReview",
+                "comments": "El alojamiento es un 10. Es hermoso súper limpio todo huele bien tomas el anfitrión estuvo estupendo en todo sentido. Siempre nos contestó al instante y cumplió con todo lo que le pediamos. El check in es súper sencillo y fácil y la zona es hermosa y súper segura llena de bares y actividades para hacer. Volveremos si o si",
+                "commentsLanguage": "es",
+                "disclaimer": null,
+                "needsTranslation": false,
+                "response": null,
+                "responseDisclaimer": null
+              },
+              "localizedPaidPromotionDisclaimer": null
+            },
+            {
+              "__typename": "PdpReviewForP3",
+              "collectionTag": null,
+              "comments": "Estadía perfecta. El departamento es impecable: moderno, súper cómodo y muy bien decorado. Todo es nuevo y está pensado al detalle. La ubicación es inmejorable, todo a la mano y el balcón es un plus enorme para relajarse. Tomas fue un anfitrión excepcional, respondió al instante y con una predisposición increíble. Sin dudas volvería. 10/10.",
+              "id": "1560981788432428775",
+              "language": "es",
+              "createdAt": "2025-11-23T17:52:10Z",
+              "responder": null,
+              "reviewee": {
+                "__typename": "ReviewUser",
+                "deleted": false,
+                "firstName": "Tomás",
+                "hostName": "Tomás",
+                "id": "395388424",
+                "contextualUserId": "1560302278752735250",
+                "pictureUrl": "https://a0.muscache.com/im/pictures/user/User-395388424/original/cfb9dfff-774b-4cfa-aab6-920d116d1ee6.jpeg",
+                "profilePath": "/users/profile/1560302278752735250",
+                "isSuperhost": false,
+                "userProfilePicture": {
+                  "__typename": "Image",
+                  "baseUrl": "https://a0.muscache.com/im/pictures/user/User-395388424/original/cfb9dfff-774b-4cfa-aab6-920d116d1ee6.jpeg",
+                  "onPressAction": {
+                    "__typename": "NavigateToUserProfile",
+                    "url": "/users/profile/1560302278752735250"
+                  }
+                }
+              },
+              "reviewer": {
+                "__typename": "ReviewUser",
+                "deleted": false,
+                "firstName": "Sergio Exequiel",
+                "hostName": "Sergio Exequiel",
+                "id": "538864644",
+                "contextualUserId": "1480044319954821313",
+                "pictureUrl": "https://a0.muscache.com/im/pictures/user/76d0e7a4-0700-4b87-9622-909330568bf6.jpg",
+                "profilePath": "/users/profile/1480044319954821313",
+                "isSuperhost": false,
+                "userProfilePicture": {
+                  "__typename": "Image",
+                  "baseUrl": "https://a0.muscache.com/im/pictures/user/76d0e7a4-0700-4b87-9622-909330568bf6.jpg",
+                  "onPressAction": {
+                    "__typename": "NavigateToUserProfile",
+                    "url": "/users/profile/1480044319954821313"
+                  }
+                }
+              },
+              "reviewHighlight": "Estadía de una noche",
+              "highlightType": "LENGTH_OF_STAY",
+              "localizedDate": "noviembre de 2025",
+              "localizedRespondedDate": null,
+              "localizedReviewerLocation": "Salta, Argentina",
+              "localizedReview": null,
+              "rating": 5,
+              "ratingAccessibilityLabel": "Calificación: 5 estrellas",
+              "recommendedNumberOfLines": null,
+              "response": null,
+              "roomTypeListingTitle": null,
+              "roomTypeListingId": null,
+              "highlightedReviewSentence": [],
+              "highlightReviewMentioned": null,
+              "showMoreButton": {
+                "__typename": "BasicListItem",
+                "title": "Mostrar más",
+                "loggingEventData": {
+                  "__typename": "LoggingEventData",
+                  "loggingId": "pdp.reviews.readMore",
+                  "experiments": [],
+                  "eventData": null,
+                  "eventDataSchemaName": null,
+                  "section": null,
+                  "component": null
+                }
+              },
+              "subtitleItems": [],
+              "channel": null,
+              "reviewMediaItems": [],
+              "isHostHighlightedReview": null,
+              "reviewPhotoUrls": [],
+              "commentV2": "Estadía perfecta. El departamento es impecable: moderno, súper cómodo y muy bien decorado. Todo es nuevo y está pensado al detalle. La ubicación es inmejorable, todo a la mano y el balcón es un plus enorme para relajarse. Tomas fue un anfitrión excepcional, respondió al instante y con una predisposición increíble. Sin dudas volvería. 10/10.",
+              "localizedCommentV2": {
+                "__typename": "LocalizedReview",
+                "comments": "Estadía perfecta. El departamento es impecable: moderno, súper cómodo y muy bien decorado. Todo es nuevo y está pensado al detalle. La ubicación es inmejorable, todo a la mano y el balcón es un plus enorme para relajarse. Tomas fue un anfitrión excepcional, respondió al instante y con una predisposición increíble. Sin dudas volvería. 10/10.",
+                "commentsLanguage": "es",
+                "disclaimer": null,
+                "needsTranslation": false,
+                "response": null,
+                "responseDisclaimer": null
+              },
+              "localizedPaidPromotionDisclaimer": null
+            },
+            {
+              "__typename": "PdpReviewForP3",
+              "collectionTag": null,
+              "comments": "Si bien nos quedamos una sola noche porque debíamos continuar viaje, volveríamos otra vez para una estancia más larga. Tomás fue un súper anfitrión y el apartamento perfecto para nosotros",
+              "id": "1666069993912952422",
+              "language": "es",
+              "createdAt": "2026-04-17T17:43:40Z",
+              "responder": null,
+              "reviewee": {
+                "__typename": "ReviewUser",
+                "deleted": false,
+                "firstName": "Tomás",
+                "hostName": "Tomás",
+                "id": "395388424",
+                "contextualUserId": "1560302278752735250",
+                "pictureUrl": "https://a0.muscache.com/im/pictures/user/User-395388424/original/cfb9dfff-774b-4cfa-aab6-920d116d1ee6.jpeg",
+                "profilePath": "/users/profile/1560302278752735250",
+                "isSuperhost": false,
+                "userProfilePicture": {
+                  "__typename": "Image",
+                  "baseUrl": "https://a0.muscache.com/im/pictures/user/User-395388424/original/cfb9dfff-774b-4cfa-aab6-920d116d1ee6.jpeg",
+                  "onPressAction": {
+                    "__typename": "NavigateToUserProfile",
+                    "url": "/users/profile/1560302278752735250"
+                  }
+                }
+              },
+              "reviewer": {
+                "__typename": "ReviewUser",
+                "deleted": false,
+                "firstName": "Julian",
+                "hostName": "Julian",
+                "id": "102464770",
+                "contextualUserId": "1502109322702710543",
+                "pictureUrl": "https://a0.muscache.com/im/pictures/user/ae4a508c-62df-4de9-a7b2-696fd276413c.jpg",
+                "profilePath": "/users/profile/1502109322702710543",
+                "isSuperhost": false,
+                "userProfilePicture": {
+                  "__typename": "Image",
+                  "baseUrl": "https://a0.muscache.com/im/pictures/user/ae4a508c-62df-4de9-a7b2-696fd276413c.jpg",
+                  "onPressAction": {
+                    "__typename": "NavigateToUserProfile",
+                    "url": "/users/profile/1502109322702710543"
+                  }
+                }
+              },
+              "reviewHighlight": "Estadía con niños",
+              "highlightType": "TYPE_OF_TRIP",
+              "localizedDate": "Hace 3 semanas",
+              "localizedRespondedDate": null,
+              "localizedReviewerLocation": "Posadas, Argentina",
+              "localizedReview": null,
+              "rating": 5,
+              "ratingAccessibilityLabel": "Calificación: 5 estrellas",
+              "recommendedNumberOfLines": null,
+              "response": null,
+              "roomTypeListingTitle": null,
+              "roomTypeListingId": null,
+              "highlightedReviewSentence": [],
+              "highlightReviewMentioned": null,
+              "showMoreButton": {
+                "__typename": "BasicListItem",
+                "title": "Mostrar más",
+                "loggingEventData": {
+                  "__typename": "LoggingEventData",
+                  "loggingId": "pdp.reviews.readMore",
+                  "experiments": [],
+                  "eventData": null,
+                  "eventDataSchemaName": null,
+                  "section": null,
+                  "component": null
+                }
+              },
+              "subtitleItems": [],
+              "channel": null,
+              "reviewMediaItems": [],
+              "isHostHighlightedReview": null,
+              "reviewPhotoUrls": [],
+              "commentV2": "Si bien nos quedamos una sola noche porque debíamos continuar viaje, volveríamos otra vez para una estancia más larga. Tomás fue un súper anfitrión y el apartamento perfecto para nosotros",
+              "localizedCommentV2": {
+                "__typename": "LocalizedReview",
+                "comments": "Si bien nos quedamos una sola noche porque debíamos continuar viaje, volveríamos otra vez para una estancia más larga. Tomás fue un súper anfitrión y el apartamento perfecto para nosotros",
+                "commentsLanguage": "es",
+                "disclaimer": null,
+                "needsTranslation": false,
+                "response": null,
+                "responseDisclaimer": null
+              },
+              "localizedPaidPromotionDisclaimer": null
+            },
+            {
+              "__typename": "PdpReviewForP3",
+              "collectionTag": null,
+              "comments": "Tomas un anfitrión amable y expeditivo. Recomiendo el alojamiento, la zona es hermosa. El departamento es nuevo, tal cual las fotos. Super limpio y cómodo. Sin dudas lo volveríamos a elegir!!",
+              "id": "1612437455683372685",
+              "language": "es",
+              "createdAt": "2026-02-02T17:45:23Z",
+              "responder": null,
+              "reviewee": {
+                "__typename": "ReviewUser",
+                "deleted": false,
+                "firstName": "Tomás",
+                "hostName": "Tomás",
+                "id": "395388424",
+                "contextualUserId": "1560302278752735250",
+                "pictureUrl": "https://a0.muscache.com/im/pictures/user/User-395388424/original/cfb9dfff-774b-4cfa-aab6-920d116d1ee6.jpeg",
+                "profilePath": "/users/profile/1560302278752735250",
+                "isSuperhost": false,
+                "userProfilePicture": {
+                  "__typename": "Image",
+                  "baseUrl": "https://a0.muscache.com/im/pictures/user/User-395388424/original/cfb9dfff-774b-4cfa-aab6-920d116d1ee6.jpeg",
+                  "onPressAction": {
+                    "__typename": "NavigateToUserProfile",
+                    "url": "/users/profile/1560302278752735250"
+                  }
+                }
+              },
+              "reviewer": {
+                "__typename": "ReviewUser",
+                "deleted": false,
+                "firstName": "Yamila",
+                "hostName": "Yamila",
+                "id": "235049740",
+                "contextualUserId": "1498237817989045256",
+                "pictureUrl": "https://a0.muscache.com/im/pictures/user/ad9db69f-3e5a-4de0-b0fe-d719cad3b5f6.jpg",
+                "profilePath": "/users/profile/1498237817989045256",
+                "isSuperhost": false,
+                "userProfilePicture": {
+                  "__typename": "Image",
+                  "baseUrl": "https://a0.muscache.com/im/pictures/user/ad9db69f-3e5a-4de0-b0fe-d719cad3b5f6.jpg",
+                  "onPressAction": {
+                    "__typename": "NavigateToUserProfile",
+                    "url": "/users/profile/1498237817989045256"
+                  }
+                }
+              },
+              "reviewHighlight": "Estadía con niños",
+              "highlightType": "TYPE_OF_TRIP",
+              "localizedDate": "febrero de 2026",
+              "localizedRespondedDate": null,
+              "localizedReviewerLocation": "BNE, Argentina",
+              "localizedReview": null,
+              "rating": 5,
+              "ratingAccessibilityLabel": "Calificación: 5 estrellas",
+              "recommendedNumberOfLines": null,
+              "response": null,
+              "roomTypeListingTitle": null,
+              "roomTypeListingId": null,
+              "highlightedReviewSentence": [],
+              "highlightReviewMentioned": null,
+              "showMoreButton": {
+                "__typename": "BasicListItem",
+                "title": "Mostrar más",
+                "loggingEventData": {
+                  "__typename": "LoggingEventData",
+                  "loggingId": "pdp.reviews.readMore",
+                  "experiments": [],
+                  "eventData": null,
+                  "eventDataSchemaName": null,
+                  "section": null,
+                  "component": null
+                }
+              },
+              "subtitleItems": [],
+              "channel": null,
+              "reviewMediaItems": [],
+              "isHostHighlightedReview": null,
+              "reviewPhotoUrls": [],
+              "commentV2": "Tomas un anfitrión amable y expeditivo. Recomiendo el alojamiento, la zona es hermosa. El departamento es nuevo, tal cual las fotos. Super limpio y cómodo. Sin dudas lo volveríamos a elegir!!",
+              "localizedCommentV2": {
+                "__typename": "LocalizedReview",
+                "comments": "Tomas un anfitrión amable y expeditivo. Recomiendo el alojamiento, la zona es hermosa. El departamento es nuevo, tal cual las fotos. Super limpio y cómodo. Sin dudas lo volveríamos a elegir!!",
+                "commentsLanguage": "es",
+                "disclaimer": null,
+                "needsTranslation": false,
+                "response": null,
+                "responseDisclaimer": null
+              },
+              "localizedPaidPromotionDisclaimer": null
+            },
+            {
+              "__typename": "PdpReviewForP3",
+              "collectionTag": null,
+              "comments": "Gran ubicación y hermoso departamento. Todo limpio y super equipado como uno espera que sea. La estadía que tuvimos fue corta pero sin dudas lo aprovechamos. Destaco que la comunicación con Tomás fue impecable al igual que el checkin. Si vuelvo a Buenos Aires, pararía en este Airbnb.",
+              "id": "1611677631127534264",
+              "language": "es",
+              "createdAt": "2026-02-01T16:35:45Z",
+              "responder": null,
+              "reviewee": {
+                "__typename": "ReviewUser",
+                "deleted": false,
+                "firstName": "Tomás",
+                "hostName": "Tomás",
+                "id": "395388424",
+                "contextualUserId": "1560302278752735250",
+                "pictureUrl": "https://a0.muscache.com/im/pictures/user/User-395388424/original/cfb9dfff-774b-4cfa-aab6-920d116d1ee6.jpeg",
+                "profilePath": "/users/profile/1560302278752735250",
+                "isSuperhost": false,
+                "userProfilePicture": {
+                  "__typename": "Image",
+                  "baseUrl": "https://a0.muscache.com/im/pictures/user/User-395388424/original/cfb9dfff-774b-4cfa-aab6-920d116d1ee6.jpeg",
+                  "onPressAction": {
+                    "__typename": "NavigateToUserProfile",
+                    "url": "/users/profile/1560302278752735250"
+                  }
+                }
+              },
+              "reviewer": {
+                "__typename": "ReviewUser",
+                "deleted": false,
+                "firstName": "Matias",
+                "hostName": "Matias",
+                "id": "475386595",
+                "contextualUserId": "1501805988280102040",
+                "pictureUrl": "https://a0.muscache.com/im/pictures/user/99d0a2e0-c18b-4260-a39b-2de516b9e5ee.jpg",
+                "profilePath": "/users/profile/1501805988280102040",
+                "isSuperhost": false,
+                "userProfilePicture": {
+                  "__typename": "Image",
+                  "baseUrl": "https://a0.muscache.com/im/pictures/user/99d0a2e0-c18b-4260-a39b-2de516b9e5ee.jpg",
+                  "onPressAction": {
+                    "__typename": "NavigateToUserProfile",
+                    "url": "/users/profile/1501805988280102040"
+                  }
+                }
+              },
+              "reviewHighlight": "Estadía de una noche",
+              "highlightType": "LENGTH_OF_STAY",
+              "localizedDate": "febrero de 2026",
+              "localizedRespondedDate": null,
+              "localizedReviewerLocation": "Córdoba, Argentina",
+              "localizedReview": null,
+              "rating": 5,
+              "ratingAccessibilityLabel": "Calificación: 5 estrellas",
+              "recommendedNumberOfLines": null,
+              "response": null,
+              "roomTypeListingTitle": null,
+              "roomTypeListingId": null,
+              "highlightedReviewSentence": [],
+              "highlightReviewMentioned": null,
+              "showMoreButton": {
+                "__typename": "BasicListItem",
+                "title": "Mostrar más",
+                "loggingEventData": {
+                  "__typename": "LoggingEventData",
+                  "loggingId": "pdp.reviews.readMore",
+                  "experiments": [],
+                  "eventData": null,
+                  "eventDataSchemaName": null,
+                  "section": null,
+                  "component": null
+                }
+              },
+              "subtitleItems": [],
+              "channel": null,
+              "reviewMediaItems": [],
+              "isHostHighlightedReview": null,
+              "reviewPhotoUrls": [],
+              "commentV2": "Gran ubicación y hermoso departamento. Todo limpio y super equipado como uno espera que sea. La estadía que tuvimos fue corta pero sin dudas lo aprovechamos. Destaco que la comunicación con Tomás fue impecable al igual que el checkin. Si vuelvo a Buenos Aires, pararía en este Airbnb.",
+              "localizedCommentV2": {
+                "__typename": "LocalizedReview",
+                "comments": "Gran ubicación y hermoso departamento. Todo limpio y super equipado como uno espera que sea. La estadía que tuvimos fue corta pero sin dudas lo aprovechamos. Destaco que la comunicación con Tomás fue impecable al igual que el checkin. Si vuelvo a Buenos Aires, pararía en este Airbnb.",
+                "commentsLanguage": "es",
+                "disclaimer": null,
+                "needsTranslation": false,
+                "response": null,
+                "responseDisclaimer": null
+              },
+              "localizedPaidPromotionDisclaimer": null
+            },
+            {
+              "__typename": "PdpReviewForP3",
+              "collectionTag": null,
+              "comments": "Es mi primera vez con este sistema de alojamiento en la ciudad, el lugar era como se describía, en una ubicación excelente. La atención de Tomás fue de primera.<br/>Muy recomendable, y espero volver pronto.",
+              "id": "1610237520267219602",
+              "language": "es",
+              "createdAt": "2026-01-30T16:54:30Z",
+              "responder": null,
+              "reviewee": {
+                "__typename": "ReviewUser",
+                "deleted": false,
+                "firstName": "Tomás",
+                "hostName": "Tomás",
+                "id": "395388424",
+                "contextualUserId": "1560302278752735250",
+                "pictureUrl": "https://a0.muscache.com/im/pictures/user/User-395388424/original/cfb9dfff-774b-4cfa-aab6-920d116d1ee6.jpeg",
+                "profilePath": "/users/profile/1560302278752735250",
+                "isSuperhost": false,
+                "userProfilePicture": {
+                  "__typename": "Image",
+                  "baseUrl": "https://a0.muscache.com/im/pictures/user/User-395388424/original/cfb9dfff-774b-4cfa-aab6-920d116d1ee6.jpeg",
+                  "onPressAction": {
+                    "__typename": "NavigateToUserProfile",
+                    "url": "/users/profile/1560302278752735250"
+                  }
+                }
+              },
+              "reviewer": {
+                "__typename": "ReviewUser",
+                "deleted": false,
+                "firstName": "Martín",
+                "hostName": "Martín",
+                "id": "740014132",
+                "contextualUserId": "1598016600518816127",
+                "pictureUrl": "https://a0.muscache.com/im/pictures/user/User/original/ba95ae9b-b234-4028-afab-5d2cd2b42396.jpeg",
+                "profilePath": "/users/profile/1598016600518816127",
+                "isSuperhost": false,
+                "userProfilePicture": {
+                  "__typename": "Image",
+                  "baseUrl": "https://a0.muscache.com/im/pictures/user/User/original/ba95ae9b-b234-4028-afab-5d2cd2b42396.jpeg",
+                  "onPressAction": {
+                    "__typename": "NavigateToUserProfile",
+                    "url": "/users/profile/1598016600518816127"
+                  }
+                }
+              },
+              "reviewHighlight": "Estadía de algunas noches",
+              "highlightType": "LENGTH_OF_STAY",
+              "localizedDate": "enero de 2026",
+              "localizedRespondedDate": null,
+              "localizedReviewerLocation": "Reconquista, Argentina",
+              "localizedReview": null,
+              "rating": 5,
+              "ratingAccessibilityLabel": "Calificación: 5 estrellas",
+              "recommendedNumberOfLines": null,
+              "response": null,
+              "roomTypeListingTitle": null,
+              "roomTypeListingId": null,
+              "highlightedReviewSentence": [],
+              "highlightReviewMentioned": null,
+              "showMoreButton": {
+                "__typename": "BasicListItem",
+                "title": "Mostrar más",
+                "loggingEventData": {
+                  "__typename": "LoggingEventData",
+                  "loggingId": "pdp.reviews.readMore",
+                  "experiments": [],
+                  "eventData": null,
+                  "eventDataSchemaName": null,
+                  "section": null,
+                  "component": null
+                }
+              },
+              "subtitleItems": [],
+              "channel": null,
+              "reviewMediaItems": [],
+              "isHostHighlightedReview": null,
+              "reviewPhotoUrls": [],
+              "commentV2": "Es mi primera vez con este sistema de alojamiento en la ciudad, el lugar era como se describía, en una ubicación excelente. La atención de Tomás fue de primera.<br/>Muy recomendable, y espero volver pronto.",
+              "localizedCommentV2": {
+                "__typename": "LocalizedReview",
+                "comments": "Es mi primera vez con este sistema de alojamiento en la ciudad, el lugar era como se describía, en una ubicación excelente. La atención de Tomás fue de primera.<br/>Muy recomendable, y espero volver pronto.",
+                "commentsLanguage": "es",
+                "disclaimer": null,
+                "needsTranslation": false,
+                "response": null,
+                "responseDisclaimer": null
+              },
+              "localizedPaidPromotionDisclaimer": null
+            },
+            {
+              "__typename": "PdpReviewForP3",
+              "collectionTag": null,
+              "comments": "Muy bien ubicado! Muchos restaurantes en un radio de 5-8 cuadras. Las condiciones del departamentos son impecables. Muy cómoda la cama y los sillones. El baño funciona a la perfección. El anfitrión fue muy atento y brindo toda la info necesaria de forma clara.",
+              "id": "1606666413729979860",
+              "language": "es",
+              "createdAt": "2026-01-25T18:39:21Z",
+              "responder": null,
+              "reviewee": {
+                "__typename": "ReviewUser",
+                "deleted": false,
+                "firstName": "Tomás",
+                "hostName": "Tomás",
+                "id": "395388424",
+                "contextualUserId": "1560302278752735250",
+                "pictureUrl": "https://a0.muscache.com/im/pictures/user/User-395388424/original/cfb9dfff-774b-4cfa-aab6-920d116d1ee6.jpeg",
+                "profilePath": "/users/profile/1560302278752735250",
+                "isSuperhost": false,
+                "userProfilePicture": {
+                  "__typename": "Image",
+                  "baseUrl": "https://a0.muscache.com/im/pictures/user/User-395388424/original/cfb9dfff-774b-4cfa-aab6-920d116d1ee6.jpeg",
+                  "onPressAction": {
+                    "__typename": "NavigateToUserProfile",
+                    "url": "/users/profile/1560302278752735250"
+                  }
+                }
+              },
+              "reviewer": {
+                "__typename": "ReviewUser",
+                "deleted": false,
+                "firstName": "Athina",
+                "hostName": "Athina",
+                "id": "698363289",
+                "contextualUserId": "1505169913676373283",
+                "pictureUrl": "https://a0.muscache.com/im/Portrait/Avatars/v2/orange?im_w=240&im_t=A&im_s=86&im_f=AirbnbCerealLatinMedium.ttf&im_c=8f3400&script=latin",
+                "profilePath": "/users/profile/1505169913676373283",
+                "isSuperhost": false,
+                "userProfilePicture": {
+                  "__typename": "Image",
+                  "baseUrl": "https://a0.muscache.com/im/Portrait/Avatars/v2/orange?im_w=240&im_t=A&im_s=86&im_f=AirbnbCerealLatinMedium.ttf&im_c=8f3400&script=latin",
+                  "onPressAction": {
+                    "__typename": "NavigateToUserProfile",
+                    "url": "/users/profile/1505169913676373283"
+                  }
+                }
+              },
+              "reviewHighlight": "Estadía de una noche",
+              "highlightType": "LENGTH_OF_STAY",
+              "localizedDate": "enero de 2026",
+              "localizedRespondedDate": null,
+              "localizedReviewerLocation": "Hace 11 meses que está en Airbnb",
+              "localizedReview": null,
+              "rating": 5,
+              "ratingAccessibilityLabel": "Calificación: 5 estrellas",
+              "recommendedNumberOfLines": null,
+              "response": null,
+              "roomTypeListingTitle": null,
+              "roomTypeListingId": null,
+              "highlightedReviewSentence": [],
+              "highlightReviewMentioned": null,
+              "showMoreButton": {
+                "__typename": "BasicListItem",
+                "title": "Mostrar más",
+                "loggingEventData": {
+                  "__typename": "LoggingEventData",
+                  "loggingId": "pdp.reviews.readMore",
+                  "experiments": [],
+                  "eventData": null,
+                  "eventDataSchemaName": null,
+                  "section": null,
+                  "component": null
+                }
+              },
+              "subtitleItems": [],
+              "channel": null,
+              "reviewMediaItems": [],
+              "isHostHighlightedReview": null,
+              "reviewPhotoUrls": [],
+              "commentV2": "Muy bien ubicado! Muchos restaurantes en un radio de 5-8 cuadras. Las condiciones del departamentos son impecables. Muy cómoda la cama y los sillones. El baño funciona a la perfección. El anfitrión fue muy atento y brindo toda la info necesaria de forma clara.",
+              "localizedCommentV2": {
+                "__typename": "LocalizedReview",
+                "comments": "Muy bien ubicado! Muchos restaurantes en un radio de 5-8 cuadras. Las condiciones del departamentos son impecables. Muy cómoda la cama y los sillones. El baño funciona a la perfección. El anfitrión fue muy atento y brindo toda la info necesaria de forma clara.",
+                "commentsLanguage": "es",
+                "disclaimer": null,
+                "needsTranslation": false,
+                "response": null,
+                "responseDisclaimer": null
+              },
+              "localizedPaidPromotionDisclaimer": null
+            },
+            {
+              "__typename": "PdpReviewForP3",
+              "collectionTag": null,
+              "comments": "Excelente estadía, tomas muy proactivo con la comunicación. El departamento es hermoso, muy fácil de ingresar, autónomo. La zona excelente! Super recomendado ! Espero volver !",
+              "id": "1596546368680447513",
+              "language": "es",
+              "createdAt": "2026-01-11T19:32:38Z",
+              "responder": null,
+              "reviewee": {
+                "__typename": "ReviewUser",
+                "deleted": false,
+                "firstName": "Tomás",
+                "hostName": "Tomás",
+                "id": "395388424",
+                "contextualUserId": "1560302278752735250",
+                "pictureUrl": "https://a0.muscache.com/im/pictures/user/User-395388424/original/cfb9dfff-774b-4cfa-aab6-920d116d1ee6.jpeg",
+                "profilePath": "/users/profile/1560302278752735250",
+                "isSuperhost": false,
+                "userProfilePicture": {
+                  "__typename": "Image",
+                  "baseUrl": "https://a0.muscache.com/im/pictures/user/User-395388424/original/cfb9dfff-774b-4cfa-aab6-920d116d1ee6.jpeg",
+                  "onPressAction": {
+                    "__typename": "NavigateToUserProfile",
+                    "url": "/users/profile/1560302278752735250"
+                  }
+                }
+              },
+              "reviewer": {
+                "__typename": "ReviewUser",
+                "deleted": false,
+                "firstName": "Daniel Ignacio",
+                "hostName": "Daniel Ignacio",
+                "id": "248443176",
+                "contextualUserId": "1479105609106277171",
+                "pictureUrl": "https://a0.muscache.com/im/pictures/user/User-248443176/original/5d04de92-41ac-451d-9bb5-705f573501a4.jpeg",
+                "profilePath": "/users/profile/1479105609106277171",
+                "isSuperhost": false,
+                "userProfilePicture": {
+                  "__typename": "Image",
+                  "baseUrl": "https://a0.muscache.com/im/pictures/user/User-248443176/original/5d04de92-41ac-451d-9bb5-705f573501a4.jpeg",
+                  "onPressAction": {
+                    "__typename": "NavigateToUserProfile",
+                    "url": "/users/profile/1479105609106277171"
+                  }
+                }
+              },
+              "reviewHighlight": "Estadía de una noche",
+              "highlightType": "LENGTH_OF_STAY",
+              "localizedDate": "enero de 2026",
+              "localizedRespondedDate": null,
+              "localizedReviewerLocation": "Argentina",
+              "localizedReview": null,
+              "rating": 5,
+              "ratingAccessibilityLabel": "Calificación: 5 estrellas",
+              "recommendedNumberOfLines": null,
+              "response": null,
+              "roomTypeListingTitle": null,
+              "roomTypeListingId": null,
+              "highlightedReviewSentence": [],
+              "highlightReviewMentioned": null,
+              "showMoreButton": {
+                "__typename": "BasicListItem",
+                "title": "Mostrar más",
+                "loggingEventData": {
+                  "__typename": "LoggingEventData",
+                  "loggingId": "pdp.reviews.readMore",
+                  "experiments": [],
+                  "eventData": null,
+                  "eventDataSchemaName": null,
+                  "section": null,
+                  "component": null
+                }
+              },
+              "subtitleItems": [],
+              "channel": null,
+              "reviewMediaItems": [],
+              "isHostHighlightedReview": null,
+              "reviewPhotoUrls": [],
+              "commentV2": "Excelente estadía, tomas muy proactivo con la comunicación. El departamento es hermoso, muy fácil de ingresar, autónomo. La zona excelente! Super recomendado ! Espero volver !",
+              "localizedCommentV2": {
+                "__typename": "LocalizedReview",
+                "comments": "Excelente estadía, tomas muy proactivo con la comunicación. El departamento es hermoso, muy fácil de ingresar, autónomo. La zona excelente! Super recomendado ! Espero volver !",
+                "commentsLanguage": "es",
+                "disclaimer": null,
+                "needsTranslation": false,
+                "response": null,
+                "responseDisclaimer": null
+              },
+              "localizedPaidPromotionDisclaimer": null
+            },
+            {
+              "__typename": "PdpReviewForP3",
+              "collectionTag": null,
+              "comments": "Nos encontramos con un lugar muy lindo, muy bien ubicado, perfectamente equipado con cosas de calidad y funcionales y con un anfitrión dedicado que nos brinda toda la información para que nuestra estancia ser cómoda. Claramente lo recomiendo.",
+              "id": "1592156705629842010",
+              "language": "es",
+              "createdAt": "2026-01-05T18:11:09Z",
+              "responder": null,
+              "reviewee": {
+                "__typename": "ReviewUser",
+                "deleted": false,
+                "firstName": "Tomás",
+                "hostName": "Tomás",
+                "id": "395388424",
+                "contextualUserId": "1560302278752735250",
+                "pictureUrl": "https://a0.muscache.com/im/pictures/user/User-395388424/original/cfb9dfff-774b-4cfa-aab6-920d116d1ee6.jpeg",
+                "profilePath": "/users/profile/1560302278752735250",
+                "isSuperhost": false,
+                "userProfilePicture": {
+                  "__typename": "Image",
+                  "baseUrl": "https://a0.muscache.com/im/pictures/user/User-395388424/original/cfb9dfff-774b-4cfa-aab6-920d116d1ee6.jpeg",
+                  "onPressAction": {
+                    "__typename": "NavigateToUserProfile",
+                    "url": "/users/profile/1560302278752735250"
+                  }
+                }
+              },
+              "reviewer": {
+                "__typename": "ReviewUser",
+                "deleted": false,
+                "firstName": "Jose Augusto",
+                "hostName": "Jose Augusto",
+                "id": "734192242",
+                "contextualUserId": "1576787259437589266",
+                "pictureUrl": "https://a0.muscache.com/im/Portrait/Avatars/v2/magenta?im_w=240&im_t=J&im_s=86&im_f=AirbnbCerealLatinMedium.ttf&im_c=901e7c&script=latin",
+                "profilePath": "/users/profile/1576787259437589266",
+                "isSuperhost": false,
+                "userProfilePicture": {
+                  "__typename": "Image",
+                  "baseUrl": "https://a0.muscache.com/im/Portrait/Avatars/v2/magenta?im_w=240&im_t=J&im_s=86&im_f=AirbnbCerealLatinMedium.ttf&im_c=901e7c&script=latin",
+                  "onPressAction": {
+                    "__typename": "NavigateToUserProfile",
+                    "url": "/users/profile/1576787259437589266"
+                  }
+                }
+              },
+              "reviewHighlight": "Estadía con niños",
+              "highlightType": "TYPE_OF_TRIP",
+              "localizedDate": "enero de 2026",
+              "localizedRespondedDate": null,
+              "localizedReviewerLocation": "Hace 4 meses que está en Airbnb",
+              "localizedReview": null,
+              "rating": 5,
+              "ratingAccessibilityLabel": "Calificación: 5 estrellas",
+              "recommendedNumberOfLines": null,
+              "response": null,
+              "roomTypeListingTitle": null,
+              "roomTypeListingId": null,
+              "highlightedReviewSentence": [],
+              "highlightReviewMentioned": null,
+              "showMoreButton": {
+                "__typename": "BasicListItem",
+                "title": "Mostrar más",
+                "loggingEventData": {
+                  "__typename": "LoggingEventData",
+                  "loggingId": "pdp.reviews.readMore",
+                  "experiments": [],
+                  "eventData": null,
+                  "eventDataSchemaName": null,
+                  "section": null,
+                  "component": null
+                }
+              },
+              "subtitleItems": [],
+              "channel": null,
+              "reviewMediaItems": [],
+              "isHostHighlightedReview": null,
+              "reviewPhotoUrls": [],
+              "commentV2": "Nos encontramos con un lugar muy lindo, muy bien ubicado, perfectamente equipado con cosas de calidad y funcionales y con un anfitrión dedicado que nos brinda toda la información para que nuestra estancia ser cómoda. Claramente lo recomiendo.",
+              "localizedCommentV2": {
+                "__typename": "LocalizedReview",
+                "comments": "Nos encontramos con un lugar muy lindo, muy bien ubicado, perfectamente equipado con cosas de calidad y funcionales y con un anfitrión dedicado que nos brinda toda la información para que nuestra estancia ser cómoda. Claramente lo recomiendo.",
+                "commentsLanguage": "es",
+                "disclaimer": null,
+                "needsTranslation": false,
+                "response": null,
+                "responseDisclaimer": null
+              },
+              "localizedPaidPromotionDisclaimer": null
+            },
+            {
+              "__typename": "PdpReviewForP3",
+              "collectionTag": null,
+              "comments": "Muy buen servicio. Apartamento cómodo , confortable y limpio en excelente zona , muy segura. <br/>Muy recomendable.",
+              "id": "1663122257938124106",
+              "language": "es",
+              "createdAt": "2026-04-13T16:07:02Z",
+              "responder": null,
+              "reviewee": {
+                "__typename": "ReviewUser",
+                "deleted": false,
+                "firstName": "Tomás",
+                "hostName": "Tomás",
+                "id": "395388424",
+                "contextualUserId": "1560302278752735250",
+                "pictureUrl": "https://a0.muscache.com/im/pictures/user/User-395388424/original/cfb9dfff-774b-4cfa-aab6-920d116d1ee6.jpeg",
+                "profilePath": "/users/profile/1560302278752735250",
+                "isSuperhost": false,
+                "userProfilePicture": {
+                  "__typename": "Image",
+                  "baseUrl": "https://a0.muscache.com/im/pictures/user/User-395388424/original/cfb9dfff-774b-4cfa-aab6-920d116d1ee6.jpeg",
+                  "onPressAction": {
+                    "__typename": "NavigateToUserProfile",
+                    "url": "/users/profile/1560302278752735250"
+                  }
+                }
+              },
+              "reviewer": {
+                "__typename": "ReviewUser",
+                "deleted": false,
+                "firstName": "Mauricio",
+                "hostName": "Mauricio",
+                "id": "129934657",
+                "contextualUserId": "1502473498253226398",
+                "pictureUrl": "https://a0.muscache.com/im/pictures/user/User/original/5da5ba42-bd9a-4ffa-bb9e-e98373596be5.jpeg",
+                "profilePath": "/users/profile/1502473498253226398",
+                "isSuperhost": false,
+                "userProfilePicture": {
+                  "__typename": "Image",
+                  "baseUrl": "https://a0.muscache.com/im/pictures/user/User/original/5da5ba42-bd9a-4ffa-bb9e-e98373596be5.jpeg",
+                  "onPressAction": {
+                    "__typename": "NavigateToUserProfile",
+                    "url": "/users/profile/1502473498253226398"
+                  }
+                }
+              },
+              "reviewHighlight": "Estadía de una noche",
+              "highlightType": "LENGTH_OF_STAY",
+              "localizedDate": "Hace 3 semanas",
+              "localizedRespondedDate": null,
+              "localizedReviewerLocation": "Uruguay",
+              "localizedReview": null,
+              "rating": 5,
+              "ratingAccessibilityLabel": "Calificación: 5 estrellas",
+              "recommendedNumberOfLines": null,
+              "response": null,
+              "roomTypeListingTitle": null,
+              "roomTypeListingId": null,
+              "highlightedReviewSentence": [],
+              "highlightReviewMentioned": null,
+              "showMoreButton": {
+                "__typename": "BasicListItem",
+                "title": "Mostrar más",
+                "loggingEventData": {
+                  "__typename": "LoggingEventData",
+                  "loggingId": "pdp.reviews.readMore",
+                  "experiments": [],
+                  "eventData": null,
+                  "eventDataSchemaName": null,
+                  "section": null,
+                  "component": null
+                }
+              },
+              "subtitleItems": [],
+              "channel": null,
+              "reviewMediaItems": [],
+              "isHostHighlightedReview": null,
+              "reviewPhotoUrls": [],
+              "commentV2": "Muy buen servicio. Apartamento cómodo , confortable y limpio en excelente zona , muy segura. <br/>Muy recomendable.",
+              "localizedCommentV2": {
+                "__typename": "LocalizedReview",
+                "comments": "Muy buen servicio. Apartamento cómodo , confortable y limpio en excelente zona , muy segura. <br/>Muy recomendable.",
+                "commentsLanguage": "es",
+                "disclaimer": null,
+                "needsTranslation": false,
+                "response": null,
+                "responseDisclaimer": null
+              },
+              "localizedPaidPromotionDisclaimer": null
+            },
+            {
+              "__typename": "PdpReviewForP3",
+              "collectionTag": null,
+              "comments": "Excelente relación precio-calidad. Se cumplió con todo lo prometido. Las fotos describen muy bien el alojamiento. El anfitrión siempre atento. Súper recomendable.",
+              "id": "1647184713118910971",
+              "language": "es",
+              "createdAt": "2026-03-22T16:21:59Z",
+              "responder": null,
+              "reviewee": {
+                "__typename": "ReviewUser",
+                "deleted": false,
+                "firstName": "Tomás",
+                "hostName": "Tomás",
+                "id": "395388424",
+                "contextualUserId": "1560302278752735250",
+                "pictureUrl": "https://a0.muscache.com/im/pictures/user/User-395388424/original/cfb9dfff-774b-4cfa-aab6-920d116d1ee6.jpeg",
+                "profilePath": "/users/profile/1560302278752735250",
+                "isSuperhost": false,
+                "userProfilePicture": {
+                  "__typename": "Image",
+                  "baseUrl": "https://a0.muscache.com/im/pictures/user/User-395388424/original/cfb9dfff-774b-4cfa-aab6-920d116d1ee6.jpeg",
+                  "onPressAction": {
+                    "__typename": "NavigateToUserProfile",
+                    "url": "/users/profile/1560302278752735250"
+                  }
+                }
+              },
+              "reviewer": {
+                "__typename": "ReviewUser",
+                "deleted": false,
+                "firstName": "Federico",
+                "hostName": "Federico",
+                "id": "153641846",
+                "contextualUserId": "1489179460522872946",
+                "pictureUrl": "https://a0.muscache.com/im/pictures/user/ac89d042-1b1f-4241-9797-5fc7c8b33aac.jpg",
+                "profilePath": "/users/profile/1489179460522872946",
+                "isSuperhost": false,
+                "userProfilePicture": {
+                  "__typename": "Image",
+                  "baseUrl": "https://a0.muscache.com/im/pictures/user/ac89d042-1b1f-4241-9797-5fc7c8b33aac.jpg",
+                  "onPressAction": {
+                    "__typename": "NavigateToUserProfile",
+                    "url": "/users/profile/1489179460522872946"
+                  }
+                }
+              },
+              "reviewHighlight": "Estadía con niños",
+              "highlightType": "TYPE_OF_TRIP",
+              "localizedDate": "marzo de 2026",
+              "localizedRespondedDate": null,
+              "localizedReviewerLocation": "Rosario, Argentina",
+              "localizedReview": null,
+              "rating": 4,
+              "ratingAccessibilityLabel": "Calificación: 4 estrellas",
+              "recommendedNumberOfLines": null,
+              "response": null,
+              "roomTypeListingTitle": null,
+              "roomTypeListingId": null,
+              "highlightedReviewSentence": [],
+              "highlightReviewMentioned": null,
+              "showMoreButton": {
+                "__typename": "BasicListItem",
+                "title": "Mostrar más",
+                "loggingEventData": {
+                  "__typename": "LoggingEventData",
+                  "loggingId": "pdp.reviews.readMore",
+                  "experiments": [],
+                  "eventData": null,
+                  "eventDataSchemaName": null,
+                  "section": null,
+                  "component": null
+                }
+              },
+              "subtitleItems": [],
+              "channel": null,
+              "reviewMediaItems": [],
+              "isHostHighlightedReview": null,
+              "reviewPhotoUrls": [],
+              "commentV2": "Excelente relación precio-calidad. Se cumplió con todo lo prometido. Las fotos describen muy bien el alojamiento. El anfitrión siempre atento. Súper recomendable.",
+              "localizedCommentV2": {
+                "__typename": "LocalizedReview",
+                "comments": "Excelente relación precio-calidad. Se cumplió con todo lo prometido. Las fotos describen muy bien el alojamiento. El anfitrión siempre atento. Súper recomendable.",
+                "commentsLanguage": "es",
+                "disclaimer": null,
+                "needsTranslation": false,
+                "response": null,
+                "responseDisclaimer": null
+              },
+              "localizedPaidPromotionDisclaimer": null
+            },
+            {
+              "__typename": "PdpReviewForP3",
+              "collectionTag": null,
+              "comments": "El departamento muy cómodo, impecable, todo nuevo! Excelente ubicación! El anfitrión súper amable, flexible y muy predispuesto! Seguro volvemos! Gracias Tomás!!!!!",
+              "id": "1637146741074311042",
+              "language": "es",
+              "createdAt": "2026-03-08T19:58:19Z",
+              "responder": null,
+              "reviewee": {
+                "__typename": "ReviewUser",
+                "deleted": false,
+                "firstName": "Tomás",
+                "hostName": "Tomás",
+                "id": "395388424",
+                "contextualUserId": "1560302278752735250",
+                "pictureUrl": "https://a0.muscache.com/im/pictures/user/User-395388424/original/cfb9dfff-774b-4cfa-aab6-920d116d1ee6.jpeg",
+                "profilePath": "/users/profile/1560302278752735250",
+                "isSuperhost": false,
+                "userProfilePicture": {
+                  "__typename": "Image",
+                  "baseUrl": "https://a0.muscache.com/im/pictures/user/User-395388424/original/cfb9dfff-774b-4cfa-aab6-920d116d1ee6.jpeg",
+                  "onPressAction": {
+                    "__typename": "NavigateToUserProfile",
+                    "url": "/users/profile/1560302278752735250"
+                  }
+                }
+              },
+              "reviewer": {
+                "__typename": "ReviewUser",
+                "deleted": false,
+                "firstName": "Maria Eugenia",
+                "hostName": "Maria Eugenia",
+                "id": "98365998",
+                "contextualUserId": "1483304216298476636",
+                "pictureUrl": "https://a0.muscache.com/im/pictures/user/User-98365998/original/b7064516-d607-4e72-9e21-d82375110a96.jpeg",
+                "profilePath": "/users/profile/1483304216298476636",
+                "isSuperhost": false,
+                "userProfilePicture": {
+                  "__typename": "Image",
+                  "baseUrl": "https://a0.muscache.com/im/pictures/user/User-98365998/original/b7064516-d607-4e72-9e21-d82375110a96.jpeg",
+                  "onPressAction": {
+                    "__typename": "NavigateToUserProfile",
+                    "url": "/users/profile/1483304216298476636"
+                  }
+                }
+              },
+              "reviewHighlight": "Estadía de algunas noches",
+              "highlightType": "LENGTH_OF_STAY",
+              "localizedDate": "marzo de 2026",
+              "localizedRespondedDate": null,
+              "localizedReviewerLocation": "San Juan, Argentina",
+              "localizedReview": null,
+              "rating": 5,
+              "ratingAccessibilityLabel": "Calificación: 5 estrellas",
+              "recommendedNumberOfLines": null,
+              "response": null,
+              "roomTypeListingTitle": null,
+              "roomTypeListingId": null,
+              "highlightedReviewSentence": [],
+              "highlightReviewMentioned": null,
+              "showMoreButton": {
+                "__typename": "BasicListItem",
+                "title": "Mostrar más",
+                "loggingEventData": {
+                  "__typename": "LoggingEventData",
+                  "loggingId": "pdp.reviews.readMore",
+                  "experiments": [],
+                  "eventData": null,
+                  "eventDataSchemaName": null,
+                  "section": null,
+                  "component": null
+                }
+              },
+              "subtitleItems": [],
+              "channel": null,
+              "reviewMediaItems": [],
+              "isHostHighlightedReview": null,
+              "reviewPhotoUrls": [],
+              "commentV2": "El departamento muy cómodo, impecable, todo nuevo! Excelente ubicación! El anfitrión súper amable, flexible y muy predispuesto! Seguro volvemos! Gracias Tomás!!!!!",
+              "localizedCommentV2": {
+                "__typename": "LocalizedReview",
+                "comments": "El departamento muy cómodo, impecable, todo nuevo! Excelente ubicación! El anfitrión súper amable, flexible y muy predispuesto! Seguro volvemos! Gracias Tomás!!!!!",
+                "commentsLanguage": "es",
+                "disclaimer": null,
+                "needsTranslation": false,
+                "response": null,
+                "responseDisclaimer": null
+              },
+              "localizedPaidPromotionDisclaimer": null
+            },
+            {
+              "__typename": "PdpReviewForP3",
+              "collectionTag": null,
+              "comments": "Una joyita en pleno Palermo. Está impecable y súper bien equipado, se nota que todo es nuevo y pensado para que no falte nada. La ducha es un 10, de las mejores que probé.<br/>El wifi es rapidísimo y el acceso inteligente hizo que el check-in fuera instantáneo y sin complicaciones.<br/>La ubicación no puede ser mejor: estás en pleno Palermo Soho, rodeado de cafés y restaurantes, a pasos de Distrito Arcos, del subte, y con parques muy lindos a pocas cuadras para salir a caminar o despejarse.<br/>Tomas fue un anfitrión espectacular, respondió siempre al toque y con muy buena onda. Un lugar que descubrís de casualidad y termina siendo tu primera opción para volver.",
+              "id": "1571179120508640332",
+              "language": "es",
+              "createdAt": "2025-12-07T19:32:26Z",
+              "responder": null,
+              "reviewee": {
+                "__typename": "ReviewUser",
+                "deleted": false,
+                "firstName": "Tomás",
+                "hostName": "Tomás",
+                "id": "395388424",
+                "contextualUserId": "1560302278752735250",
+                "pictureUrl": "https://a0.muscache.com/im/pictures/user/User-395388424/original/cfb9dfff-774b-4cfa-aab6-920d116d1ee6.jpeg",
+                "profilePath": "/users/profile/1560302278752735250",
+                "isSuperhost": false,
+                "userProfilePicture": {
+                  "__typename": "Image",
+                  "baseUrl": "https://a0.muscache.com/im/pictures/user/User-395388424/original/cfb9dfff-774b-4cfa-aab6-920d116d1ee6.jpeg",
+                  "onPressAction": {
+                    "__typename": "NavigateToUserProfile",
+                    "url": "/users/profile/1560302278752735250"
+                  }
+                }
+              },
+              "reviewer": {
+                "__typename": "ReviewUser",
+                "deleted": false,
+                "firstName": "Maria Carolina",
+                "hostName": "Maria Carolina",
+                "id": "731741091",
+                "contextualUserId": "1565992542819735067",
+                "pictureUrl": "https://a0.muscache.com/im/Portrait/Avatars/v2/purple?im_w=240&im_t=M&im_s=86&im_f=AirbnbCerealLatinMedium.ttf&im_c=503eb2&script=latin",
+                "profilePath": "/users/profile/1565992542819735067",
+                "isSuperhost": false,
+                "userProfilePicture": {
+                  "__typename": "Image",
+                  "baseUrl": "https://a0.muscache.com/im/Portrait/Avatars/v2/purple?im_w=240&im_t=M&im_s=86&im_f=AirbnbCerealLatinMedium.ttf&im_c=503eb2&script=latin",
+                  "onPressAction": {
+                    "__typename": "NavigateToUserProfile",
+                    "url": "/users/profile/1565992542819735067"
+                  }
+                }
+              },
+              "reviewHighlight": "Estadía de algunas noches",
+              "highlightType": "LENGTH_OF_STAY",
+              "localizedDate": "diciembre de 2025",
+              "localizedRespondedDate": null,
+              "localizedReviewerLocation": "Hace 5 meses que está en Airbnb",
+              "localizedReview": null,
+              "rating": 5,
+              "ratingAccessibilityLabel": "Calificación: 5 estrellas",
+              "recommendedNumberOfLines": null,
+              "response": null,
+              "roomTypeListingTitle": null,
+              "roomTypeListingId": null,
+              "highlightedReviewSentence": [],
+              "highlightReviewMentioned": null,
+              "showMoreButton": {
+                "__typename": "BasicListItem",
+                "title": "Mostrar más",
+                "loggingEventData": {
+                  "__typename": "LoggingEventData",
+                  "loggingId": "pdp.reviews.readMore",
+                  "experiments": [],
+                  "eventData": null,
+                  "eventDataSchemaName": null,
+                  "section": null,
+                  "component": null
+                }
+              },
+              "subtitleItems": [],
+              "channel": null,
+              "reviewMediaItems": [],
+              "isHostHighlightedReview": null,
+              "reviewPhotoUrls": [],
+              "commentV2": "Una joyita en pleno Palermo. Está impecable y súper bien equipado, se nota que todo es nuevo y pensado para que no falte nada. La ducha es un 10, de las mejores que probé.<br/>El wifi es rapidísimo y el acceso inteligente hizo que el check-in fuera instantáneo y sin complicaciones.<br/>La ubicación no puede ser mejor: estás en pleno Palermo Soho, rodeado de cafés y restaurantes, a pasos de Distrito Arcos, del subte, y con parques muy lindos a pocas cuadras para salir a caminar o despejarse.<br/>Tomas fue un anfitrión espectacular, respondió siempre al toque y con muy buena onda. Un lugar que descubrís de casualidad y termina siendo tu primera opción para volver.",
+              "localizedCommentV2": {
+                "__typename": "LocalizedReview",
+                "comments": "Una joyita en pleno Palermo. Está impecable y súper bien equipado, se nota que todo es nuevo y pensado para que no falte nada. La ducha es un 10, de las mejores que probé.<br/>El wifi es rapidísimo y el acceso inteligente hizo que el check-in fuera instantáneo y sin complicaciones.<br/>La ubicación no puede ser mejor: estás en pleno Palermo Soho, rodeado de cafés y restaurantes, a pasos de Distrito Arcos, del subte, y con parques muy lindos a pocas cuadras para salir a caminar o despejarse.<br/>Tomas fue un anfitrión espectacular, respondió siempre al toque y con muy buena onda. Un lugar que descubrís de casualidad y termina siendo tu primera opción para volver.",
+                "commentsLanguage": "es",
+                "disclaimer": null,
+                "needsTranslation": false,
+                "response": null,
+                "responseDisclaimer": null
+              },
+              "localizedPaidPromotionDisclaimer": null
+            },
+            {
+              "__typename": "PdpReviewForP3",
+              "collectionTag": null,
+              "comments": "Excelente ubicación, tomas muy amable, y en el departamento impecable todo.",
+              "id": "1618944037533435598",
+              "language": "es",
+              "createdAt": "2026-02-11T17:12:48Z",
+              "responder": null,
+              "reviewee": {
+                "__typename": "ReviewUser",
+                "deleted": false,
+                "firstName": "Tomás",
+                "hostName": "Tomás",
+                "id": "395388424",
+                "contextualUserId": "1560302278752735250",
+                "pictureUrl": "https://a0.muscache.com/im/pictures/user/User-395388424/original/cfb9dfff-774b-4cfa-aab6-920d116d1ee6.jpeg",
+                "profilePath": "/users/profile/1560302278752735250",
+                "isSuperhost": false,
+                "userProfilePicture": {
+                  "__typename": "Image",
+                  "baseUrl": "https://a0.muscache.com/im/pictures/user/User-395388424/original/cfb9dfff-774b-4cfa-aab6-920d116d1ee6.jpeg",
+                  "onPressAction": {
+                    "__typename": "NavigateToUserProfile",
+                    "url": "/users/profile/1560302278752735250"
+                  }
+                }
+              },
+              "reviewer": {
+                "__typename": "ReviewUser",
+                "deleted": false,
+                "firstName": "Agostina",
+                "hostName": "Agostina",
+                "id": "296343990",
+                "contextualUserId": "1483746867163813914",
+                "pictureUrl": "https://a0.muscache.com/im/pictures/user/01a43668-bfb5-443f-b31f-ca117a97db5c.jpg",
+                "profilePath": "/users/profile/1483746867163813914",
+                "isSuperhost": false,
+                "userProfilePicture": {
+                  "__typename": "Image",
+                  "baseUrl": "https://a0.muscache.com/im/pictures/user/01a43668-bfb5-443f-b31f-ca117a97db5c.jpg",
+                  "onPressAction": {
+                    "__typename": "NavigateToUserProfile",
+                    "url": "/users/profile/1483746867163813914"
+                  }
+                }
+              },
+              "reviewHighlight": "Estadía con niños",
+              "highlightType": "TYPE_OF_TRIP",
+              "localizedDate": "febrero de 2026",
+              "localizedRespondedDate": null,
+              "localizedReviewerLocation": "Villa Allende, Argentina",
+              "localizedReview": null,
+              "rating": 5,
+              "ratingAccessibilityLabel": "Calificación: 5 estrellas",
+              "recommendedNumberOfLines": null,
+              "response": null,
+              "roomTypeListingTitle": null,
+              "roomTypeListingId": null,
+              "highlightedReviewSentence": [],
+              "highlightReviewMentioned": null,
+              "showMoreButton": {
+                "__typename": "BasicListItem",
+                "title": "Mostrar más",
+                "loggingEventData": {
+                  "__typename": "LoggingEventData",
+                  "loggingId": "pdp.reviews.readMore",
+                  "experiments": [],
+                  "eventData": null,
+                  "eventDataSchemaName": null,
+                  "section": null,
+                  "component": null
+                }
+              },
+              "subtitleItems": [],
+              "channel": null,
+              "reviewMediaItems": [],
+              "isHostHighlightedReview": null,
+              "reviewPhotoUrls": [],
+              "commentV2": "Excelente ubicación, tomas muy amable, y en el departamento impecable todo.",
+              "localizedCommentV2": {
+                "__typename": "LocalizedReview",
+                "comments": "Excelente ubicación, tomas muy amable, y en el departamento impecable todo.",
+                "commentsLanguage": "es",
+                "disclaimer": null,
+                "needsTranslation": false,
+                "response": null,
+                "responseDisclaimer": null
+              },
+              "localizedPaidPromotionDisclaimer": null
+            },
+            {
+              "__typename": "PdpReviewForP3",
+              "collectionTag": null,
+              "comments": "describe exactamente cómo es<br/> lugar muy bueno para descansar en palermo y muy cerca de todo. <br/>muy limpio y nuevo todo. <br/>lo recomiendo",
+              "id": "1616017405348699232",
+              "language": "es",
+              "createdAt": "2026-02-07T16:18:06Z",
+              "responder": null,
+              "reviewee": {
+                "__typename": "ReviewUser",
+                "deleted": false,
+                "firstName": "Tomás",
+                "hostName": "Tomás",
+                "id": "395388424",
+                "contextualUserId": "1560302278752735250",
+                "pictureUrl": "https://a0.muscache.com/im/pictures/user/User-395388424/original/cfb9dfff-774b-4cfa-aab6-920d116d1ee6.jpeg",
+                "profilePath": "/users/profile/1560302278752735250",
+                "isSuperhost": false,
+                "userProfilePicture": {
+                  "__typename": "Image",
+                  "baseUrl": "https://a0.muscache.com/im/pictures/user/User-395388424/original/cfb9dfff-774b-4cfa-aab6-920d116d1ee6.jpeg",
+                  "onPressAction": {
+                    "__typename": "NavigateToUserProfile",
+                    "url": "/users/profile/1560302278752735250"
+                  }
+                }
+              },
+              "reviewer": {
+                "__typename": "ReviewUser",
+                "deleted": false,
+                "firstName": "Leonardo Javier",
+                "hostName": "Leonardo Javier",
+                "id": "37302736",
+                "contextualUserId": "1501643005826749983",
+                "pictureUrl": "https://a0.muscache.com/im/pictures/user/38fd8aec-4994-4196-b65f-58991f790fee.jpg",
+                "profilePath": "/users/profile/1501643005826749983",
+                "isSuperhost": false,
+                "userProfilePicture": {
+                  "__typename": "Image",
+                  "baseUrl": "https://a0.muscache.com/im/pictures/user/38fd8aec-4994-4196-b65f-58991f790fee.jpg",
+                  "onPressAction": {
+                    "__typename": "NavigateToUserProfile",
+                    "url": "/users/profile/1501643005826749983"
+                  }
+                }
+              },
+              "reviewHighlight": "Estadía con niños",
+              "highlightType": "TYPE_OF_TRIP",
+              "localizedDate": "febrero de 2026",
+              "localizedRespondedDate": null,
+              "localizedReviewerLocation": "Santa Fe, Argentina",
+              "localizedReview": null,
+              "rating": 4,
+              "ratingAccessibilityLabel": "Calificación: 4 estrellas",
+              "recommendedNumberOfLines": null,
+              "response": null,
+              "roomTypeListingTitle": null,
+              "roomTypeListingId": null,
+              "highlightedReviewSentence": [],
+              "highlightReviewMentioned": null,
+              "showMoreButton": {
+                "__typename": "BasicListItem",
+                "title": "Mostrar más",
+                "loggingEventData": {
+                  "__typename": "LoggingEventData",
+                  "loggingId": "pdp.reviews.readMore",
+                  "experiments": [],
+                  "eventData": null,
+                  "eventDataSchemaName": null,
+                  "section": null,
+                  "component": null
+                }
+              },
+              "subtitleItems": [],
+              "channel": null,
+              "reviewMediaItems": [],
+              "isHostHighlightedReview": null,
+              "reviewPhotoUrls": [],
+              "commentV2": "describe exactamente cómo es<br/> lugar muy bueno para descansar en palermo y muy cerca de todo. <br/>muy limpio y nuevo todo. <br/>lo recomiendo",
+              "localizedCommentV2": {
+                "__typename": "LocalizedReview",
+                "comments": "describe exactamente cómo es<br/> lugar muy bueno para descansar en palermo y muy cerca de todo. <br/>muy limpio y nuevo todo. <br/>lo recomiendo",
+                "commentsLanguage": "es",
+                "disclaimer": null,
+                "needsTranslation": false,
+                "response": null,
+                "responseDisclaimer": null
+              },
+              "localizedPaidPromotionDisclaimer": null
+            },
+            {
+              "__typename": "PdpReviewForP3",
+              "collectionTag": null,
+              "comments": "El departamento es tal cual lo describe y el proceso tanto de check in como de check out fueron muy amenos. Volvería sin dudarlo!",
+              "id": "1608148294427122758",
+              "language": "es",
+              "createdAt": "2026-01-27T19:43:35Z",
+              "responder": null,
+              "reviewee": {
+                "__typename": "ReviewUser",
+                "deleted": false,
+                "firstName": "Tomás",
+                "hostName": "Tomás",
+                "id": "395388424",
+                "contextualUserId": "1560302278752735250",
+                "pictureUrl": "https://a0.muscache.com/im/pictures/user/User-395388424/original/cfb9dfff-774b-4cfa-aab6-920d116d1ee6.jpeg",
+                "profilePath": "/users/profile/1560302278752735250",
+                "isSuperhost": false,
+                "userProfilePicture": {
+                  "__typename": "Image",
+                  "baseUrl": "https://a0.muscache.com/im/pictures/user/User-395388424/original/cfb9dfff-774b-4cfa-aab6-920d116d1ee6.jpeg",
+                  "onPressAction": {
+                    "__typename": "NavigateToUserProfile",
+                    "url": "/users/profile/1560302278752735250"
+                  }
+                }
+              },
+              "reviewer": {
+                "__typename": "ReviewUser",
+                "deleted": false,
+                "firstName": "Flor",
+                "hostName": "Flor",
+                "id": "466826340",
+                "contextualUserId": "1496377362165337328",
+                "pictureUrl": "https://a0.muscache.com/im/pictures/user/User/original/97893ce1-dad9-4c3c-8d17-78ab33e6641b.jpeg",
+                "profilePath": "/users/profile/1496377362165337328",
+                "isSuperhost": false,
+                "userProfilePicture": {
+                  "__typename": "Image",
+                  "baseUrl": "https://a0.muscache.com/im/pictures/user/User/original/97893ce1-dad9-4c3c-8d17-78ab33e6641b.jpeg",
+                  "onPressAction": {
+                    "__typename": "NavigateToUserProfile",
+                    "url": "/users/profile/1496377362165337328"
+                  }
+                }
+              },
+              "reviewHighlight": "Estadía de una noche",
+              "highlightType": "LENGTH_OF_STAY",
+              "localizedDate": "enero de 2026",
+              "localizedRespondedDate": null,
+              "localizedReviewerLocation": "Hace 4 años que está en Airbnb",
+              "localizedReview": null,
+              "rating": 5,
+              "ratingAccessibilityLabel": "Calificación: 5 estrellas",
+              "recommendedNumberOfLines": null,
+              "response": null,
+              "roomTypeListingTitle": null,
+              "roomTypeListingId": null,
+              "highlightedReviewSentence": [],
+              "highlightReviewMentioned": null,
+              "showMoreButton": {
+                "__typename": "BasicListItem",
+                "title": "Mostrar más",
+                "loggingEventData": {
+                  "__typename": "LoggingEventData",
+                  "loggingId": "pdp.reviews.readMore",
+                  "experiments": [],
+                  "eventData": null,
+                  "eventDataSchemaName": null,
+                  "section": null,
+                  "component": null
+                }
+              },
+              "subtitleItems": [],
+              "channel": null,
+              "reviewMediaItems": [],
+              "isHostHighlightedReview": null,
+              "reviewPhotoUrls": [],
+              "commentV2": "El departamento es tal cual lo describe y el proceso tanto de check in como de check out fueron muy amenos. Volvería sin dudarlo!",
+              "localizedCommentV2": {
+                "__typename": "LocalizedReview",
+                "comments": "El departamento es tal cual lo describe y el proceso tanto de check in como de check out fueron muy amenos. Volvería sin dudarlo!",
+                "commentsLanguage": "es",
+                "disclaimer": null,
+                "needsTranslation": false,
+                "response": null,
+                "responseDisclaimer": null
+              },
+              "localizedPaidPromotionDisclaimer": null
+            },
+            {
+              "__typename": "PdpReviewForP3",
+              "collectionTag": null,
+              "comments": "Tomas excelente, muy predispuesto y amable, el departamento increíble , justo lo que necesitábamos; impecable",
+              "id": "1605155445083470213",
+              "language": "es",
+              "createdAt": "2026-01-23T16:37:20Z",
+              "responder": null,
+              "reviewee": {
+                "__typename": "ReviewUser",
+                "deleted": false,
+                "firstName": "Tomás",
+                "hostName": "Tomás",
+                "id": "395388424",
+                "contextualUserId": "1560302278752735250",
+                "pictureUrl": "https://a0.muscache.com/im/pictures/user/User-395388424/original/cfb9dfff-774b-4cfa-aab6-920d116d1ee6.jpeg",
+                "profilePath": "/users/profile/1560302278752735250",
+                "isSuperhost": false,
+                "userProfilePicture": {
+                  "__typename": "Image",
+                  "baseUrl": "https://a0.muscache.com/im/pictures/user/User-395388424/original/cfb9dfff-774b-4cfa-aab6-920d116d1ee6.jpeg",
+                  "onPressAction": {
+                    "__typename": "NavigateToUserProfile",
+                    "url": "/users/profile/1560302278752735250"
+                  }
+                }
+              },
+              "reviewer": {
+                "__typename": "ReviewUser",
+                "deleted": false,
+                "firstName": "Camila",
+                "hostName": "Camila",
+                "id": "239107955",
+                "contextualUserId": "1492379526475681818",
+                "pictureUrl": "https://a0.muscache.com/im/pictures/user/User-239107955/original/71d5fb1a-fcc8-4006-a340-2012606bb8ec.jpeg",
+                "profilePath": "/users/profile/1492379526475681818",
+                "isSuperhost": false,
+                "userProfilePicture": {
+                  "__typename": "Image",
+                  "baseUrl": "https://a0.muscache.com/im/pictures/user/User-239107955/original/71d5fb1a-fcc8-4006-a340-2012606bb8ec.jpeg",
+                  "onPressAction": {
+                    "__typename": "NavigateToUserProfile",
+                    "url": "/users/profile/1492379526475681818"
+                  }
+                }
+              },
+              "reviewHighlight": "Estadía de algunas noches",
+              "highlightType": "LENGTH_OF_STAY",
+              "localizedDate": "enero de 2026",
+              "localizedRespondedDate": null,
+              "localizedReviewerLocation": "Argentina",
+              "localizedReview": null,
+              "rating": 5,
+              "ratingAccessibilityLabel": "Calificación: 5 estrellas",
+              "recommendedNumberOfLines": null,
+              "response": null,
+              "roomTypeListingTitle": null,
+              "roomTypeListingId": null,
+              "highlightedReviewSentence": [],
+              "highlightReviewMentioned": null,
+              "showMoreButton": {
+                "__typename": "BasicListItem",
+                "title": "Mostrar más",
+                "loggingEventData": {
+                  "__typename": "LoggingEventData",
+                  "loggingId": "pdp.reviews.readMore",
+                  "experiments": [],
+                  "eventData": null,
+                  "eventDataSchemaName": null,
+                  "section": null,
+                  "component": null
+                }
+              },
+              "subtitleItems": [],
+              "channel": null,
+              "reviewMediaItems": [],
+              "isHostHighlightedReview": null,
+              "reviewPhotoUrls": [],
+              "commentV2": "Tomas excelente, muy predispuesto y amable, el departamento increíble , justo lo que necesitábamos; impecable",
+              "localizedCommentV2": {
+                "__typename": "LocalizedReview",
+                "comments": "Tomas excelente, muy predispuesto y amable, el departamento increíble , justo lo que necesitábamos; impecable",
+                "commentsLanguage": "es",
+                "disclaimer": null,
+                "needsTranslation": false,
+                "response": null,
+                "responseDisclaimer": null
+              },
+              "localizedPaidPromotionDisclaimer": null
+            },
+            {
+              "__typename": "PdpReviewForP3",
+              "collectionTag": null,
+              "comments": "Muy lindo Depto, todo en excelente estado, el anfitrión siempre muy atento y cordial, pronto volveremos!",
+              "id": "1586307286802983492",
+              "language": "es",
+              "createdAt": "2025-12-28T16:29:24Z",
+              "responder": null,
+              "reviewee": {
+                "__typename": "ReviewUser",
+                "deleted": false,
+                "firstName": "Tomás",
+                "hostName": "Tomás",
+                "id": "395388424",
+                "contextualUserId": "1560302278752735250",
+                "pictureUrl": "https://a0.muscache.com/im/pictures/user/User-395388424/original/cfb9dfff-774b-4cfa-aab6-920d116d1ee6.jpeg",
+                "profilePath": "/users/profile/1560302278752735250",
+                "isSuperhost": false,
+                "userProfilePicture": {
+                  "__typename": "Image",
+                  "baseUrl": "https://a0.muscache.com/im/pictures/user/User-395388424/original/cfb9dfff-774b-4cfa-aab6-920d116d1ee6.jpeg",
+                  "onPressAction": {
+                    "__typename": "NavigateToUserProfile",
+                    "url": "/users/profile/1560302278752735250"
+                  }
+                }
+              },
+              "reviewer": {
+                "__typename": "ReviewUser",
+                "deleted": false,
+                "firstName": "Ariadna",
+                "hostName": "Ariadna",
+                "id": "23704273",
+                "contextualUserId": "1474012893379558683",
+                "pictureUrl": "https://a0.muscache.com/im/users/23704273/profile_pic/1436972949/original.jpg",
+                "profilePath": "/users/profile/1474012893379558683",
+                "isSuperhost": false,
+                "userProfilePicture": {
+                  "__typename": "Image",
+                  "baseUrl": "https://a0.muscache.com/im/users/23704273/profile_pic/1436972949/original.jpg",
+                  "onPressAction": {
+                    "__typename": "NavigateToUserProfile",
+                    "url": "/users/profile/1474012893379558683"
+                  }
+                }
+              },
+              "reviewHighlight": "Estadía de una noche",
+              "highlightType": "LENGTH_OF_STAY",
+              "localizedDate": "diciembre de 2025",
+              "localizedRespondedDate": null,
+              "localizedReviewerLocation": "Rosario, Argentina",
+              "localizedReview": null,
+              "rating": 5,
+              "ratingAccessibilityLabel": "Calificación: 5 estrellas",
+              "recommendedNumberOfLines": null,
+              "response": null,
+              "roomTypeListingTitle": null,
+              "roomTypeListingId": null,
+              "highlightedReviewSentence": [],
+              "highlightReviewMentioned": null,
+              "showMoreButton": {
+                "__typename": "BasicListItem",
+                "title": "Mostrar más",
+                "loggingEventData": {
+                  "__typename": "LoggingEventData",
+                  "loggingId": "pdp.reviews.readMore",
+                  "experiments": [],
+                  "eventData": null,
+                  "eventDataSchemaName": null,
+                  "section": null,
+                  "component": null
+                }
+              },
+              "subtitleItems": [],
+              "channel": null,
+              "reviewMediaItems": [],
+              "isHostHighlightedReview": null,
+              "reviewPhotoUrls": [],
+              "commentV2": "Muy lindo Depto, todo en excelente estado, el anfitrión siempre muy atento y cordial, pronto volveremos!",
+              "localizedCommentV2": {
+                "__typename": "LocalizedReview",
+                "comments": "Muy lindo Depto, todo en excelente estado, el anfitrión siempre muy atento y cordial, pronto volveremos!",
+                "commentsLanguage": "es",
+                "disclaimer": null,
+                "needsTranslation": false,
+                "response": null,
+                "responseDisclaimer": null
+              },
+              "localizedPaidPromotionDisclaimer": null
+            }
+          ],
+          "metadata": {
+            "__typename": "PdpReviewsMetadata",
+            "reviewsCount": 55,
+            "modalSubtitle": null,
+            "isReviewsSearchResults": null,
+            "isReviewsHighlightTagResults": null,
+            "isAutoTranslateOn": true,
+            "endCursor": null,
+            "experiments": [],
+            "reviewTags": [
+              {
+                "__typename": "ReviewTag",
+                "count": 29,
+                "localizedName": "Ubicación",
+                "name": "LOCATION",
+                "icon": {
+                  "__typename": "Image",
+                  "baseUrl": "https://a0.muscache.com/im/pictures/AirbnbPlatformAssets/AirbnbPlatformAssets-Review-AI-Synthesis/original/481a6680-46b2-4c94-91e9-d7917d97b660.png"
+                },
+                "summary": null
+              },
+              {
+                "__typename": "ReviewTag",
+                "count": 38,
+                "localizedName": "Hospitalidad",
+                "name": "HOSPITALITY",
+                "icon": {
+                  "__typename": "Image",
+                  "baseUrl": "https://a0.muscache.com/im/pictures/AirbnbPlatformAssets/AirbnbPlatformAssets-Review-AI-Synthesis/original/b5957392-bf60-4304-8666-c030859eebf7.png"
+                },
+                "summary": null
+              },
+              {
+                "__typename": "ReviewTag",
+                "count": 11,
+                "localizedName": "Cerca",
+                "name": "NEARBY",
+                "icon": {
+                  "__typename": "Image",
+                  "baseUrl": "https://a0.muscache.com/im/pictures/AirbnbPlatformAssets/AirbnbPlatformAssets-Review-AI-Synthesis/original/9a063063-76d9-401e-b8e7-8992e32a38f7.png"
+                },
+                "summary": null
+              },
+              {
+                "__typename": "ReviewTag",
+                "count": 10,
+                "localizedName": "Veracidad",
+                "name": "ACCURACY",
+                "icon": {
+                  "__typename": "Image",
+                  "baseUrl": "https://a0.muscache.com/im/pictures/AirbnbPlatformAssets/AirbnbPlatformAssets-Review-AI-Synthesis/original/b0dbbf5c-02a9-4781-a3ad-cf6953beccdc.png"
+                },
+                "summary": null
+              },
+              {
+                "__typename": "ReviewTag",
+                "count": 16,
+                "localizedName": "Limpieza",
+                "name": "CLEANLINESS",
+                "icon": {
+                  "__typename": "Image",
+                  "baseUrl": "https://a0.muscache.com/im/pictures/AirbnbPlatformAssets/AirbnbPlatformAssets-Review-AI-Synthesis/original/b0d9a4f0-26d1-4d4d-a269-4884338ab168.png"
+                },
+                "summary": null
+              },
+              {
+                "__typename": "ReviewTag",
+                "count": 13,
+                "localizedName": "Confort",
+                "name": "COMFORT",
+                "icon": {
+                  "__typename": "Image",
+                  "baseUrl": "https://a0.muscache.com/im/pictures/AirbnbPlatformAssets/AirbnbPlatformAssets-Review-AI-Synthesis/original/e4546c79-fd9d-412c-862b-7faade48f32e.png"
+                },
+                "summary": null
+              },
+              {
+                "__typename": "ReviewTag",
+                "count": 3,
+                "localizedName": "Check-out",
+                "name": "CHECKOUT",
+                "icon": {
+                  "__typename": "Image",
+                  "baseUrl": "https://a0.muscache.com/im/pictures/AirbnbPlatformAssets/AirbnbPlatformAssets-Review-AI-Synthesis/original/16838f5c-a288-420b-bb3a-7ee70278d723.png"
+                },
+                "summary": null
+              },
+              {
+                "__typename": "ReviewTag",
+                "count": 10,
+                "localizedName": "Interiores",
+                "name": "INDOOR_SPACES",
+                "icon": {
+                  "__typename": "Image",
+                  "baseUrl": "https://a0.muscache.com/im/pictures/AirbnbPlatformAssets/AirbnbPlatformAssets-Review-AI-Synthesis/original/8ab51c28-bc4b-464e-8e54-f391fc36f132.png"
+                },
+                "summary": null
+              },
+              {
+                "__typename": "ReviewTag",
+                "count": 7,
+                "localizedName": "Check-in",
+                "name": "CHECK_IN",
+                "icon": {
+                  "__typename": "Image",
+                  "baseUrl": "https://a0.muscache.com/im/pictures/AirbnbPlatformAssets/AirbnbPlatformAssets-Review-AI-Synthesis/original/a189c291-f179-4cf5-912e-5949e419e182.png"
+                },
+                "summary": null
+              },
+              {
+                "__typename": "ReviewTag",
+                "count": 8,
+                "localizedName": "Estado",
+                "name": "CONDITION",
+                "icon": {
+                  "__typename": "Image",
+                  "baseUrl": "https://a0.muscache.com/im/pictures/AirbnbPlatformAssets/AirbnbPlatformAssets-Review-AI-Synthesis/original/aa73c8e3-75cd-4130-8a7f-df014c5d5e61.png"
+                },
+                "summary": null
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "extensions": {
+    "traceId": "B6PvJAhnglKn5lSjVo9ROw=="
+  }
+}

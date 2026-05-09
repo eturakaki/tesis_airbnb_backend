@@ -1,0 +1,1147 @@
+{
+  "data": {
+    "presentation": {
+      "__typename": "RootPresentationContainer",
+      "autoSuggestions": {
+        "__typename": "AutoSuggestionsResponse",
+        "staysAutoSuggestionResults": [
+          {
+            "__typename": "RecommendedDestinationResult",
+            "items": [
+              {
+                "__typename": "LocationSuggestionItem",
+                "iconUrl": "https://a0.muscache.com/im/pictures/airbnb-platform-assets/AirbnbPlatformAssets-hawaii-autosuggest-destination-icons-2/original/ea5e5ee3-e9d8-48a1-b7e9-1003bf6fe850.png",
+                "itemId": null,
+                "location": null,
+                "searchParams": {
+                  "__typename": "ExploreSearchParams",
+                  "locationSearch": null,
+                  "params": [
+                    {
+                      "__typename": "ExploreSearchParam",
+                      "deleteBool": null,
+                      "inArray": null,
+                      "key": "location_search",
+                      "value": {
+                        "__typename": "StringValue",
+                        "stringValue": "NEARBY"
+                      },
+                      "valueType": "string"
+                    },
+                    {
+                      "__typename": "ExploreSearchParam",
+                      "deleteBool": null,
+                      "inArray": null,
+                      "key": "center_lat",
+                      "value": {
+                        "__typename": "DoubleValue",
+                        "doubleValue": -24.78
+                      },
+                      "valueType": "float"
+                    },
+                    {
+                      "__typename": "ExploreSearchParam",
+                      "deleteBool": null,
+                      "inArray": null,
+                      "key": "center_lng",
+                      "value": {
+                        "__typename": "DoubleValue",
+                        "doubleValue": -65.42
+                      },
+                      "valueType": "float"
+                    }
+                  ],
+                  "placeId": null,
+                  "query": null,
+                  "refinementPaths": [
+                    "/homes"
+                  ],
+                  "resetFilters": false,
+                  "resetKeys": [
+                    "category_tag",
+                    "parent_city_place_id",
+                    "place_id",
+                    "query",
+                    "location",
+                    "location_search",
+                    "location_search_type",
+                    "ne_lat",
+                    "ne_lng",
+                    "sw_lat",
+                    "sw_lng",
+                    "search_by_map",
+                    "search_mode",
+                    "center_lat",
+                    "center_lng"
+                  ]
+                },
+                "subtitle": "Descubrí qué hay cerca de vos",
+                "subtitleA11yText": null,
+                "title": "En la zona",
+                "description": null
+              },
+              {
+                "__typename": "LocationSuggestionItem",
+                "iconUrl": "https://a0.muscache.com/im/pictures/airbnb-platform-assets/AirbnbPlatformAssets-hawaii-autosuggest-destination-icons-1/original/ef838e5e-251c-424a-85f8-cfb218717f75.png",
+                "itemId": "e4317215-a949-4dbd-bf13-04c07ece3696",
+                "location": null,
+                "searchParams": {
+                  "__typename": "ExploreSearchParams",
+                  "locationSearch": null,
+                  "params": [],
+                  "placeId": "ChIJvQz5TjvKvJURh47oiC6Bs6A",
+                  "query": "Buenos Aires, Buenos Aires",
+                  "refinementPaths": [
+                    "/homes"
+                  ],
+                  "resetFilters": false,
+                  "resetKeys": [
+                    "parent_city_place_id",
+                    "place_id",
+                    "query",
+                    "location",
+                    "location_search",
+                    "ne_lat",
+                    "ne_lng",
+                    "sw_lat",
+                    "sw_lng",
+                    "search_by_map"
+                  ]
+                },
+                "subtitle": "Por lugares de interés como este: Obelisco de Buenos Aires",
+                "subtitleA11yText": null,
+                "title": "Buenos Aires, Buenos Aires",
+                "description": null
+              },
+              {
+                "__typename": "LocationSuggestionItem",
+                "iconUrl": "https://a0.muscache.com/im/pictures/airbnb-platform-assets/AirbnbPlatformAssets-hawaii-autosuggest-destination-icons-2/original/447b22da-3842-4977-89c9-d58e182c0ce2.png",
+                "itemId": "e536b9bd-7c2d-4cb3-9b72-e14cd9044d47",
+                "location": null,
+                "searchParams": {
+                  "__typename": "ExploreSearchParams",
+                  "locationSearch": null,
+                  "params": [],
+                  "placeId": "ChIJA2nF1pI3IpQRJ2XFtZJbjfg",
+                  "query": "San Miguel de Tucumán, Tucumán",
+                  "refinementPaths": [
+                    "/homes"
+                  ],
+                  "resetFilters": false,
+                  "resetKeys": [
+                    "parent_city_place_id",
+                    "place_id",
+                    "query",
+                    "location",
+                    "location_search",
+                    "ne_lat",
+                    "ne_lng",
+                    "sw_lat",
+                    "sw_lng",
+                    "search_by_map"
+                  ]
+                },
+                "subtitle": "Una joya oculta",
+                "subtitleA11yText": null,
+                "title": "San Miguel de Tucumán, Tucumán",
+                "description": null
+              },
+              {
+                "__typename": "LocationSuggestionItem",
+                "iconUrl": "https://a0.muscache.com/im/pictures/airbnb-platform-assets/AirbnbPlatformAssets-hawaii-autosuggest-destination-icons-1/original/067f0eaa-0c0f-4eee-b7e9-1a539b8cb48b.png",
+                "itemId": "aaf97298-105f-4510-845f-f9a41705f9da",
+                "location": null,
+                "searchParams": {
+                  "__typename": "ExploreSearchParams",
+                  "locationSearch": null,
+                  "params": [],
+                  "placeId": "ChIJYxrApxzo8ZMRG2FnpFMKi1w",
+                  "query": "Santa Cruz de la Sierra, Bolivia",
+                  "refinementPaths": [
+                    "/homes"
+                  ],
+                  "resetFilters": false,
+                  "resetKeys": [
+                    "parent_city_place_id",
+                    "place_id",
+                    "query",
+                    "location",
+                    "location_search",
+                    "ne_lat",
+                    "ne_lng",
+                    "sw_lat",
+                    "sw_lng",
+                    "search_by_map"
+                  ]
+                },
+                "subtitle": "Para un viaje al extranjero",
+                "subtitleA11yText": null,
+                "title": "Santa Cruz de la Sierra, Bolivia",
+                "description": null
+              },
+              {
+                "__typename": "LocationSuggestionItem",
+                "iconUrl": "https://a0.muscache.com/im/pictures/airbnb-platform-assets/AirbnbPlatformAssets-hawaii-autosuggest-destination-icons-1/original/e96cd0bc-cdba-4385-8a9c-1c8d1b6af23d.png",
+                "itemId": "c0ef01ad-85da-4305-bb40-4a4a8db198be",
+                "location": null,
+                "searchParams": {
+                  "__typename": "ExploreSearchParams",
+                  "locationSearch": null,
+                  "params": [],
+                  "placeId": "ChIJ5WDIIBV7GpYRZZp7y5euEII",
+                  "query": "San Carlos de Bariloche, Río Negro",
+                  "refinementPaths": [
+                    "/homes"
+                  ],
+                  "resetFilters": false,
+                  "resetKeys": [
+                    "parent_city_place_id",
+                    "place_id",
+                    "query",
+                    "location",
+                    "location_search",
+                    "ne_lat",
+                    "ne_lng",
+                    "sw_lat",
+                    "sw_lng",
+                    "search_by_map"
+                  ]
+                },
+                "subtitle": "Un destino popular por sus lagos",
+                "subtitleA11yText": null,
+                "title": "San Carlos de Bariloche, Río Negro",
+                "description": null
+              },
+              {
+                "__typename": "LocationSuggestionItem",
+                "iconUrl": "https://a0.muscache.com/im/pictures/airbnb-platform-assets/AirbnbPlatformAssets-hawaii-autosuggest-destination-icons-1/original/a2d4538a-cccd-44cb-a2fd-89bcffd12f32.png",
+                "itemId": "e35157b0-48f6-4a0b-8384-2a047bf1b9d3",
+                "location": null,
+                "searchParams": {
+                  "__typename": "ExploreSearchParams",
+                  "locationSearch": null,
+                  "params": [],
+                  "placeId": "ChIJNZk2-GPzUpERMEnJqa6qVyo",
+                  "query": "Iquique, Chile",
+                  "refinementPaths": [
+                    "/homes"
+                  ],
+                  "resetFilters": false,
+                  "resetKeys": [
+                    "parent_city_place_id",
+                    "place_id",
+                    "query",
+                    "location",
+                    "location_search",
+                    "ne_lat",
+                    "ne_lng",
+                    "sw_lat",
+                    "sw_lng",
+                    "search_by_map"
+                  ]
+                },
+                "subtitle": "Por su encanto costero",
+                "subtitleA11yText": null,
+                "title": "Iquique, Chile",
+                "description": null
+              },
+              {
+                "__typename": "LocationSuggestionItem",
+                "iconUrl": "https://a0.muscache.com/im/pictures/airbnb-platform-assets/AirbnbPlatformAssets-hawaii-autosuggest-destination-icons-1/original/ed75c050-042b-44ba-a991-54044d93a91b.png",
+                "itemId": "27073fce-ec53-4dcd-aa54-7ea14e79a1a7",
+                "location": null,
+                "searchParams": {
+                  "__typename": "ExploreSearchParams",
+                  "locationSearch": null,
+                  "params": [],
+                  "placeId": "ChIJv3lRxD4JfpYROvoO0vZ4WiA",
+                  "query": "Mendoza, Mendoza",
+                  "refinementPaths": [
+                    "/homes"
+                  ],
+                  "resetFilters": false,
+                  "resetKeys": [
+                    "parent_city_place_id",
+                    "place_id",
+                    "query",
+                    "location",
+                    "location_search",
+                    "ne_lat",
+                    "ne_lng",
+                    "sw_lat",
+                    "sw_lng",
+                    "search_by_map"
+                  ]
+                },
+                "subtitle": "Por lugares de interés como este: Plaza Independencia, Mendoza",
+                "subtitleA11yText": null,
+                "title": "Mendoza, Mendoza",
+                "description": null
+              },
+              {
+                "__typename": "LocationSuggestionItem",
+                "iconUrl": "https://a0.muscache.com/im/pictures/airbnb-platform-assets/AirbnbPlatformAssets-hawaii-autosuggest-destination-icons-1/original/1d6cca5a-0933-429c-86ff-84951fa60a1b.png",
+                "itemId": "0fd9b6f1-6a32-489e-9b9d-9851e8685e2e",
+                "location": null,
+                "searchParams": {
+                  "__typename": "ExploreSearchParams",
+                  "locationSearch": null,
+                  "params": [],
+                  "placeId": "ChIJv4lIEtKnXZQRZnNRA0ZNB7g",
+                  "query": "Asunción, Paraguay",
+                  "refinementPaths": [
+                    "/homes"
+                  ],
+                  "resetFilters": false,
+                  "resetKeys": [
+                    "parent_city_place_id",
+                    "place_id",
+                    "query",
+                    "location",
+                    "location_search",
+                    "ne_lat",
+                    "ne_lng",
+                    "sw_lat",
+                    "sw_lng",
+                    "search_by_map"
+                  ]
+                },
+                "subtitle": "Para un viaje al extranjero",
+                "subtitleA11yText": null,
+                "title": "Asunción, Paraguay",
+                "description": null
+              },
+              {
+                "__typename": "LocationSuggestionItem",
+                "iconUrl": "https://a0.muscache.com/im/pictures/airbnb-platform-assets/AirbnbPlatformAssets-hawaii-autosuggest-destination-icons-2/original/475c6daa-9169-4cdf-8b05-6886e8757a67.png",
+                "itemId": "ac9cb0fd-af54-46e2-b434-9ff3cbe9f427",
+                "location": null,
+                "searchParams": {
+                  "__typename": "ExploreSearchParams",
+                  "locationSearch": null,
+                  "params": [],
+                  "placeId": "ChIJX2lx983QvJURnVh_nJxNfcI",
+                  "query": "Ezeiza, Buenos Aires",
+                  "refinementPaths": [
+                    "/homes"
+                  ],
+                  "resetFilters": false,
+                  "resetKeys": [
+                    "parent_city_place_id",
+                    "place_id",
+                    "query",
+                    "location",
+                    "location_search",
+                    "ne_lat",
+                    "ne_lng",
+                    "sw_lat",
+                    "sw_lng",
+                    "search_by_map"
+                  ]
+                },
+                "subtitle": "Una joya oculta",
+                "subtitleA11yText": null,
+                "title": "Ezeiza, Buenos Aires",
+                "description": null
+              },
+              {
+                "__typename": "LocationSuggestionItem",
+                "iconUrl": "https://a0.muscache.com/im/pictures/airbnb-platform-assets/AirbnbPlatformAssets-hawaii-autosuggest-destination-icons-1/original/be94de25-865b-4fac-8330-84f6f1a3fea6.png",
+                "itemId": "b42b016c-4350-4533-aa36-b3b8371b2a19",
+                "location": null,
+                "searchParams": {
+                  "__typename": "ExploreSearchParams",
+                  "locationSearch": null,
+                  "params": [],
+                  "placeId": "ChIJaVuPR1-YMpQRkrBmU5pPorA",
+                  "query": "Córdoba, Córdoba",
+                  "refinementPaths": [
+                    "/homes"
+                  ],
+                  "resetFilters": false,
+                  "resetKeys": [
+                    "parent_city_place_id",
+                    "place_id",
+                    "query",
+                    "location",
+                    "location_search",
+                    "ne_lat",
+                    "ne_lng",
+                    "sw_lat",
+                    "sw_lng",
+                    "search_by_map"
+                  ]
+                },
+                "subtitle": "Uno de los destinos más populares",
+                "subtitleA11yText": null,
+                "title": "Córdoba, Córdoba",
+                "description": null
+              },
+              {
+                "__typename": "LocationSuggestionItem",
+                "iconUrl": "https://a0.muscache.com/im/pictures/airbnb-platform-assets/AirbnbPlatformAssets-hawaii-autosuggest-destination-icons-2/original/e9efb4fc-a002-40cf-8811-42ef5ce74518.png",
+                "itemId": "bdae8669-d1c5-4663-812d-32ce78a1760c",
+                "location": null,
+                "searchParams": {
+                  "__typename": "ExploreSearchParams",
+                  "locationSearch": null,
+                  "params": [],
+                  "placeId": "ChIJgTwKgJcpQg0RaSKMYcHeNsQ",
+                  "query": "Madrid, España",
+                  "refinementPaths": [
+                    "/homes"
+                  ],
+                  "resetFilters": false,
+                  "resetKeys": [
+                    "parent_city_place_id",
+                    "place_id",
+                    "query",
+                    "location",
+                    "location_search",
+                    "ne_lat",
+                    "ne_lng",
+                    "sw_lat",
+                    "sw_lng",
+                    "search_by_map"
+                  ]
+                },
+                "subtitle": "Por lugares de interés como este: Parque del Retiro",
+                "subtitleA11yText": null,
+                "title": "Madrid, España",
+                "description": null
+              },
+              {
+                "__typename": "LocationSuggestionItem",
+                "iconUrl": "https://a0.muscache.com/im/pictures/airbnb-platform-assets/AirbnbPlatformAssets-hawaii-autosuggest-destination-icons-1/original/eede907b-881f-4c1f-abeb-6379d89a74b6.png",
+                "itemId": "1b6b009e-cccb-4285-bc85-a55b10e21ecc",
+                "location": null,
+                "searchParams": {
+                  "__typename": "ExploreSearchParams",
+                  "locationSearch": null,
+                  "params": [],
+                  "placeId": "ChIJW9fXNZNTtpURV6VYAumGQOw",
+                  "query": "Rosario, Santa Fe",
+                  "refinementPaths": [
+                    "/homes"
+                  ],
+                  "resetFilters": false,
+                  "resetKeys": [
+                    "parent_city_place_id",
+                    "place_id",
+                    "query",
+                    "location",
+                    "location_search",
+                    "ne_lat",
+                    "ne_lng",
+                    "sw_lat",
+                    "sw_lng",
+                    "search_by_map"
+                  ]
+                },
+                "subtitle": "Por los caminos menos explorados",
+                "subtitleA11yText": null,
+                "title": "Rosario, Santa Fe",
+                "description": null
+              },
+              {
+                "__typename": "LocationSuggestionItem",
+                "iconUrl": "https://a0.muscache.com/im/pictures/airbnb-platform-assets/AirbnbPlatformAssets-hawaii-autosuggest-destination-icons-1/original/be94de25-865b-4fac-8330-84f6f1a3fea6.png",
+                "itemId": "5d6b4ca9-8c2b-4c2a-bdd2-5bf0c0799eba",
+                "location": null,
+                "searchParams": {
+                  "__typename": "ExploreSearchParams",
+                  "locationSearch": null,
+                  "params": [],
+                  "placeId": "ChIJ3ZZO9zqS9pQRB64qlNruuLQ",
+                  "query": "Puerto Iguazú",
+                  "refinementPaths": [
+                    "/homes"
+                  ],
+                  "resetFilters": false,
+                  "resetKeys": [
+                    "parent_city_place_id",
+                    "place_id",
+                    "query",
+                    "location",
+                    "location_search",
+                    "ne_lat",
+                    "ne_lng",
+                    "sw_lat",
+                    "sw_lng",
+                    "search_by_map"
+                  ]
+                },
+                "subtitle": "Para amantes de la naturaleza",
+                "subtitleA11yText": null,
+                "title": "Puerto Iguazú",
+                "description": null
+              },
+              {
+                "__typename": "LocationSuggestionItem",
+                "iconUrl": "https://a0.muscache.com/im/pictures/airbnb-platform-assets/AirbnbPlatformAssets-hawaii-autosuggest-destination-icons-1/original/41684809-5639-4736-a820-086ee7d10185.png",
+                "itemId": "c0199a26-5d70-4b60-a6a3-84789597c85e",
+                "location": null,
+                "searchParams": {
+                  "__typename": "ExploreSearchParams",
+                  "locationSearch": null,
+                  "params": [],
+                  "placeId": "ChIJG6bDaRMxH5QRDF06H8ZhDlQ",
+                  "query": "Cafayate, Salta",
+                  "refinementPaths": [
+                    "/homes"
+                  ],
+                  "resetFilters": false,
+                  "resetKeys": [
+                    "parent_city_place_id",
+                    "place_id",
+                    "query",
+                    "location",
+                    "location_search",
+                    "ne_lat",
+                    "ne_lng",
+                    "sw_lat",
+                    "sw_lng",
+                    "search_by_map"
+                  ]
+                },
+                "subtitle": "Para amantes de la naturaleza",
+                "subtitleA11yText": null,
+                "title": "Cafayate, Salta",
+                "description": null
+              },
+              {
+                "__typename": "LocationSuggestionItem",
+                "iconUrl": "https://a0.muscache.com/im/pictures/airbnb-platform-assets/AirbnbPlatformAssets-hawaii-autosuggest-destination-icons-2/original/b0d5d3cc-f5d3-4a60-a0cb-0172860decd2.png",
+                "itemId": "5c970385-9eaf-41be-8bd7-c7cc27f7986b",
+                "location": null,
+                "searchParams": {
+                  "__typename": "ExploreSearchParams",
+                  "locationSearch": null,
+                  "params": [],
+                  "placeId": "ChIJL6bXi04PG5QRmeT2V-BQUTE",
+                  "query": "San Salvador de Jujuy, Jujuy",
+                  "refinementPaths": [
+                    "/homes"
+                  ],
+                  "resetFilters": false,
+                  "resetKeys": [
+                    "parent_city_place_id",
+                    "place_id",
+                    "query",
+                    "location",
+                    "location_search",
+                    "ne_lat",
+                    "ne_lng",
+                    "sw_lat",
+                    "sw_lng",
+                    "search_by_map"
+                  ]
+                },
+                "subtitle": "Cerca de vos",
+                "subtitleA11yText": null,
+                "title": "San Salvador de Jujuy, Jujuy",
+                "description": null
+              },
+              {
+                "__typename": "LocationSuggestionItem",
+                "iconUrl": "https://a0.muscache.com/im/pictures/airbnb-platform-assets/AirbnbPlatformAssets-hawaii-autosuggest-destination-icons-2/original/aeba68c0-44ba-4ee6-9835-da23d7fb0a65.png",
+                "itemId": "889f8413-a222-412f-a636-8fc76f75c5b8",
+                "location": null,
+                "searchParams": {
+                  "__typename": "ExploreSearchParams",
+                  "locationSearch": null,
+                  "params": [],
+                  "placeId": "ChIJ5TCOcRaYpBIRCmZHTz37sEQ",
+                  "query": "Barcelona, España",
+                  "refinementPaths": [
+                    "/homes"
+                  ],
+                  "resetFilters": false,
+                  "resetKeys": [
+                    "parent_city_place_id",
+                    "place_id",
+                    "query",
+                    "location",
+                    "location_search",
+                    "ne_lat",
+                    "ne_lng",
+                    "sw_lat",
+                    "sw_lng",
+                    "search_by_map"
+                  ]
+                },
+                "subtitle": "Un destino de playa popular",
+                "subtitleA11yText": null,
+                "title": "Barcelona, España",
+                "description": null
+              },
+              {
+                "__typename": "LocationSuggestionItem",
+                "iconUrl": "https://a0.muscache.com/im/pictures/airbnb-platform-assets/AirbnbPlatformAssets-hawaii-autosuggest-destination-icons-2/original/7167e066-5543-4a7f-9fcb-50b2e477ccd6.png",
+                "itemId": "41f8f4f8-b2d8-4a33-935d-b6d849438d91",
+                "location": null,
+                "searchParams": {
+                  "__typename": "ExploreSearchParams",
+                  "locationSearch": null,
+                  "params": [],
+                  "placeId": "ChIJ-7_hLjpDIpQRsZgN7j4I1MU",
+                  "query": "Yerba Buena, Tucumán",
+                  "refinementPaths": [
+                    "/homes"
+                  ],
+                  "resetFilters": false,
+                  "resetKeys": [
+                    "parent_city_place_id",
+                    "place_id",
+                    "query",
+                    "location",
+                    "location_search",
+                    "ne_lat",
+                    "ne_lng",
+                    "sw_lat",
+                    "sw_lng",
+                    "search_by_map"
+                  ]
+                },
+                "subtitle": "Una joya oculta",
+                "subtitleA11yText": null,
+                "title": "Yerba Buena, Tucumán",
+                "description": null
+              },
+              {
+                "__typename": "LocationSuggestionItem",
+                "iconUrl": "https://a0.muscache.com/im/pictures/airbnb-platform-assets/AirbnbPlatformAssets-hawaii-autosuggest-destination-icons-1/original/e08aa790-1daa-4665-ad59-55bed16435ea.png",
+                "itemId": "b61e5c03-99bd-4aa7-9551-100a69888852",
+                "location": null,
+                "searchParams": {
+                  "__typename": "ExploreSearchParams",
+                  "locationSearch": null,
+                  "params": [],
+                  "placeId": "ChIJEcHIDqKw2YgRZU-t3XHylv8",
+                  "query": "Miami, Estados Unidos",
+                  "refinementPaths": [
+                    "/homes"
+                  ],
+                  "resetFilters": false,
+                  "resetKeys": [
+                    "parent_city_place_id",
+                    "place_id",
+                    "query",
+                    "location",
+                    "location_search",
+                    "ne_lat",
+                    "ne_lng",
+                    "sw_lat",
+                    "sw_lng",
+                    "search_by_map"
+                  ]
+                },
+                "subtitle": "Por lugares de interés como este: Bayside Marketplace",
+                "subtitleA11yText": null,
+                "title": "Miami, Estados Unidos",
+                "description": null
+              },
+              {
+                "__typename": "LocationSuggestionItem",
+                "iconUrl": "https://a0.muscache.com/im/pictures/airbnb-platform-assets/AirbnbPlatformAssets-hawaii-autosuggest-destination-icons-1/original/ebb968b2-3fb6-45d3-b675-7765e487f7b9.png",
+                "itemId": "4580a86a-587f-4ff7-8453-c890aca4a37e",
+                "location": null,
+                "searchParams": {
+                  "__typename": "ExploreSearchParams",
+                  "locationSearch": null,
+                  "params": [],
+                  "placeId": "ChIJ21P2rgUrTI8Ris1fYjy3Ms4",
+                  "query": "Cancún, México",
+                  "refinementPaths": [
+                    "/homes"
+                  ],
+                  "resetFilters": false,
+                  "resetKeys": [
+                    "parent_city_place_id",
+                    "place_id",
+                    "query",
+                    "location",
+                    "location_search",
+                    "ne_lat",
+                    "ne_lng",
+                    "sw_lat",
+                    "sw_lng",
+                    "search_by_map"
+                  ]
+                },
+                "subtitle": "Por su animada vida nocturna",
+                "subtitleA11yText": null,
+                "title": "Cancún, México",
+                "description": null
+              },
+              {
+                "__typename": "LocationSuggestionItem",
+                "iconUrl": "https://a0.muscache.com/im/pictures/airbnb-platform-assets/AirbnbPlatformAssets-hawaii-autosuggest-destination-icons-1/original/af70e151-7bfc-4743-b257-b950b06c259b.png",
+                "itemId": "b8944895-8e56-4e4d-bddc-b5fb8bffb411",
+                "location": null,
+                "searchParams": {
+                  "__typename": "ExploreSearchParams",
+                  "locationSearch": null,
+                  "params": [],
+                  "placeId": "ChIJCULTGU3ZhJURJtH-S4Bwlt0",
+                  "query": "Mar del Plata, Buenos Aires",
+                  "refinementPaths": [
+                    "/homes"
+                  ],
+                  "resetFilters": false,
+                  "resetKeys": [
+                    "parent_city_place_id",
+                    "place_id",
+                    "query",
+                    "location",
+                    "location_search",
+                    "ne_lat",
+                    "ne_lng",
+                    "sw_lat",
+                    "sw_lng",
+                    "search_by_map"
+                  ]
+                },
+                "subtitle": "Un destino de playa popular",
+                "subtitleA11yText": null,
+                "title": "Mar del Plata, Buenos Aires",
+                "description": null
+              },
+              {
+                "__typename": "LocationSuggestionItem",
+                "iconUrl": "https://a0.muscache.com/im/pictures/airbnb-platform-assets/AirbnbPlatformAssets-hawaii-autosuggest-destination-icons-2/original/eb63c43e-fd0e-48f2-8cab-ef156da3bc0c.png",
+                "itemId": "5890e497-0ba1-4ade-86c7-55a374b6e0fe",
+                "location": null,
+                "searchParams": {
+                  "__typename": "ExploreSearchParams",
+                  "locationSearch": null,
+                  "params": [],
+                  "placeId": "ChIJD7fiBh9u5kcRYJSMaMOCCwQ",
+                  "query": "París, Francia",
+                  "refinementPaths": [
+                    "/homes"
+                  ],
+                  "resetFilters": false,
+                  "resetKeys": [
+                    "parent_city_place_id",
+                    "place_id",
+                    "query",
+                    "location",
+                    "location_search",
+                    "ne_lat",
+                    "ne_lng",
+                    "sw_lat",
+                    "sw_lng",
+                    "search_by_map"
+                  ]
+                },
+                "subtitle": "Por su arquitectura impresionante",
+                "subtitleA11yText": null,
+                "title": "París, Francia",
+                "description": null
+              }
+            ],
+            "title": "Sugerencias de destinos"
+          }
+        ],
+        "experiencesAutoSuggestionResults": [
+          {
+            "__typename": "ReservationResult",
+            "items": [],
+            "title": null
+          },
+          {
+            "__typename": "NearbyDestinationResult",
+            "title": "En la zona",
+            "subtitle": "Descubrí qué hay cerca de vos",
+            "subtitleA11yText": null,
+            "exploreSearchParams": {
+              "__typename": "ExploreSearchParams",
+              "locationSearch": null,
+              "params": [
+                {
+                  "__typename": "ExploreSearchParam",
+                  "deleteBool": null,
+                  "inArray": null,
+                  "key": "location_search",
+                  "value": {
+                    "__typename": "StringValue",
+                    "stringValue": "NEARBY"
+                  },
+                  "valueType": "string"
+                },
+                {
+                  "__typename": "ExploreSearchParam",
+                  "deleteBool": null,
+                  "inArray": null,
+                  "key": "center_lat",
+                  "value": {
+                    "__typename": "DoubleValue",
+                    "doubleValue": -24.78
+                  },
+                  "valueType": "float"
+                },
+                {
+                  "__typename": "ExploreSearchParam",
+                  "deleteBool": null,
+                  "inArray": null,
+                  "key": "center_lng",
+                  "value": {
+                    "__typename": "DoubleValue",
+                    "doubleValue": -65.42
+                  },
+                  "valueType": "float"
+                }
+              ],
+              "placeId": null,
+              "query": null,
+              "refinementPaths": [
+                "/experiences"
+              ],
+              "resetFilters": false,
+              "resetKeys": [
+                "category_tag",
+                "parent_city_place_id",
+                "place_id",
+                "query",
+                "location",
+                "location_search",
+                "location_search_type",
+                "ne_lat",
+                "ne_lng",
+                "sw_lat",
+                "sw_lng",
+                "search_by_map",
+                "search_mode",
+                "center_lat",
+                "center_lng"
+              ]
+            }
+          },
+          {
+            "__typename": "RecommendedDestinationResult",
+            "items": [
+              {
+                "__typename": "LocationSuggestionItem",
+                "iconUrl": "https://a0.muscache.com/im/pictures/airbnb-platform-assets/AirbnbPlatformAssets-hawaii-autosuggest-destination-icons-1/original/ef838e5e-251c-424a-85f8-cfb218717f75.png",
+                "itemId": "e4317215-a949-4dbd-bf13-04c07ece3696",
+                "location": null,
+                "searchParams": {
+                  "__typename": "ExploreSearchParams",
+                  "locationSearch": null,
+                  "params": [],
+                  "placeId": "ChIJvQz5TjvKvJURh47oiC6Bs6A",
+                  "query": "Buenos Aires, Buenos Aires",
+                  "refinementPaths": [
+                    "/experiences"
+                  ],
+                  "resetFilters": false,
+                  "resetKeys": [
+                    "parent_city_place_id",
+                    "place_id",
+                    "query",
+                    "location",
+                    "location_search",
+                    "ne_lat",
+                    "ne_lng",
+                    "sw_lat",
+                    "sw_lng",
+                    "search_by_map"
+                  ]
+                },
+                "subtitle": "Por lugares de interés como este: Obelisco de Buenos Aires",
+                "subtitleA11yText": null,
+                "title": "Buenos Aires, Buenos Aires",
+                "description": null
+              },
+              {
+                "__typename": "LocationSuggestionItem",
+                "iconUrl": "https://a0.muscache.com/im/pictures/airbnb-platform-assets/AirbnbPlatformAssets-hawaii-autosuggest-destination-icons-1/original/e96cd0bc-cdba-4385-8a9c-1c8d1b6af23d.png",
+                "itemId": "c0ef01ad-85da-4305-bb40-4a4a8db198be",
+                "location": null,
+                "searchParams": {
+                  "__typename": "ExploreSearchParams",
+                  "locationSearch": null,
+                  "params": [],
+                  "placeId": "ChIJ5WDIIBV7GpYRZZp7y5euEII",
+                  "query": "San Carlos de Bariloche, Río Negro",
+                  "refinementPaths": [
+                    "/experiences"
+                  ],
+                  "resetFilters": false,
+                  "resetKeys": [
+                    "parent_city_place_id",
+                    "place_id",
+                    "query",
+                    "location",
+                    "location_search",
+                    "ne_lat",
+                    "ne_lng",
+                    "sw_lat",
+                    "sw_lng",
+                    "search_by_map"
+                  ]
+                },
+                "subtitle": "Un destino popular por sus lagos",
+                "subtitleA11yText": null,
+                "title": "San Carlos de Bariloche, Río Negro",
+                "description": null
+              },
+              {
+                "__typename": "LocationSuggestionItem",
+                "iconUrl": "https://a0.muscache.com/im/pictures/airbnb-platform-assets/AirbnbPlatformAssets-hawaii-autosuggest-destination-icons-1/original/ed75c050-042b-44ba-a991-54044d93a91b.png",
+                "itemId": "27073fce-ec53-4dcd-aa54-7ea14e79a1a7",
+                "location": null,
+                "searchParams": {
+                  "__typename": "ExploreSearchParams",
+                  "locationSearch": null,
+                  "params": [],
+                  "placeId": "ChIJv3lRxD4JfpYROvoO0vZ4WiA",
+                  "query": "Mendoza, Mendoza",
+                  "refinementPaths": [
+                    "/experiences"
+                  ],
+                  "resetFilters": false,
+                  "resetKeys": [
+                    "parent_city_place_id",
+                    "place_id",
+                    "query",
+                    "location",
+                    "location_search",
+                    "ne_lat",
+                    "ne_lng",
+                    "sw_lat",
+                    "sw_lng",
+                    "search_by_map"
+                  ]
+                },
+                "subtitle": "Por lugares de interés como este: Plaza Independencia, Mendoza",
+                "subtitleA11yText": null,
+                "title": "Mendoza, Mendoza",
+                "description": null
+              },
+              {
+                "__typename": "LocationSuggestionItem",
+                "iconUrl": "https://a0.muscache.com/im/pictures/airbnb-platform-assets/AirbnbPlatformAssets-hawaii-autosuggest-destination-icons-2/original/475c6daa-9169-4cdf-8b05-6886e8757a67.png",
+                "itemId": "ac9cb0fd-af54-46e2-b434-9ff3cbe9f427",
+                "location": null,
+                "searchParams": {
+                  "__typename": "ExploreSearchParams",
+                  "locationSearch": null,
+                  "params": [],
+                  "placeId": "ChIJX2lx983QvJURnVh_nJxNfcI",
+                  "query": "Ezeiza, Buenos Aires",
+                  "refinementPaths": [
+                    "/experiences"
+                  ],
+                  "resetFilters": false,
+                  "resetKeys": [
+                    "parent_city_place_id",
+                    "place_id",
+                    "query",
+                    "location",
+                    "location_search",
+                    "ne_lat",
+                    "ne_lng",
+                    "sw_lat",
+                    "sw_lng",
+                    "search_by_map"
+                  ]
+                },
+                "subtitle": "Una joya oculta",
+                "subtitleA11yText": null,
+                "title": "Ezeiza, Buenos Aires",
+                "description": null
+              },
+              {
+                "__typename": "LocationSuggestionItem",
+                "iconUrl": "https://a0.muscache.com/im/pictures/airbnb-platform-assets/AirbnbPlatformAssets-hawaii-autosuggest-destination-icons-2/original/e9efb4fc-a002-40cf-8811-42ef5ce74518.png",
+                "itemId": "bdae8669-d1c5-4663-812d-32ce78a1760c",
+                "location": null,
+                "searchParams": {
+                  "__typename": "ExploreSearchParams",
+                  "locationSearch": null,
+                  "params": [],
+                  "placeId": "ChIJgTwKgJcpQg0RaSKMYcHeNsQ",
+                  "query": "Madrid, España",
+                  "refinementPaths": [
+                    "/experiences"
+                  ],
+                  "resetFilters": false,
+                  "resetKeys": [
+                    "parent_city_place_id",
+                    "place_id",
+                    "query",
+                    "location",
+                    "location_search",
+                    "ne_lat",
+                    "ne_lng",
+                    "sw_lat",
+                    "sw_lng",
+                    "search_by_map"
+                  ]
+                },
+                "subtitle": "Por lugares de interés como este: Parque del Retiro",
+                "subtitleA11yText": null,
+                "title": "Madrid, España",
+                "description": null
+              },
+              {
+                "__typename": "LocationSuggestionItem",
+                "iconUrl": "https://a0.muscache.com/im/pictures/airbnb-platform-assets/AirbnbPlatformAssets-hawaii-autosuggest-destination-icons-2/original/aeba68c0-44ba-4ee6-9835-da23d7fb0a65.png",
+                "itemId": "889f8413-a222-412f-a636-8fc76f75c5b8",
+                "location": null,
+                "searchParams": {
+                  "__typename": "ExploreSearchParams",
+                  "locationSearch": null,
+                  "params": [],
+                  "placeId": "ChIJ5TCOcRaYpBIRCmZHTz37sEQ",
+                  "query": "Barcelona, España",
+                  "refinementPaths": [
+                    "/experiences"
+                  ],
+                  "resetFilters": false,
+                  "resetKeys": [
+                    "parent_city_place_id",
+                    "place_id",
+                    "query",
+                    "location",
+                    "location_search",
+                    "ne_lat",
+                    "ne_lng",
+                    "sw_lat",
+                    "sw_lng",
+                    "search_by_map"
+                  ]
+                },
+                "subtitle": "Un destino de playa popular",
+                "subtitleA11yText": null,
+                "title": "Barcelona, España",
+                "description": null
+              },
+              {
+                "__typename": "LocationSuggestionItem",
+                "iconUrl": "https://a0.muscache.com/im/pictures/airbnb-platform-assets/AirbnbPlatformAssets-hawaii-autosuggest-destination-icons-1/original/e08aa790-1daa-4665-ad59-55bed16435ea.png",
+                "itemId": "b61e5c03-99bd-4aa7-9551-100a69888852",
+                "location": null,
+                "searchParams": {
+                  "__typename": "ExploreSearchParams",
+                  "locationSearch": null,
+                  "params": [],
+                  "placeId": "ChIJEcHIDqKw2YgRZU-t3XHylv8",
+                  "query": "Miami, Estados Unidos",
+                  "refinementPaths": [
+                    "/experiences"
+                  ],
+                  "resetFilters": false,
+                  "resetKeys": [
+                    "parent_city_place_id",
+                    "place_id",
+                    "query",
+                    "location",
+                    "location_search",
+                    "ne_lat",
+                    "ne_lng",
+                    "sw_lat",
+                    "sw_lng",
+                    "search_by_map"
+                  ]
+                },
+                "subtitle": "Por lugares de interés como este: Bayside Marketplace",
+                "subtitleA11yText": null,
+                "title": "Miami, Estados Unidos",
+                "description": null
+              },
+              {
+                "__typename": "LocationSuggestionItem",
+                "iconUrl": "https://a0.muscache.com/im/pictures/airbnb-platform-assets/AirbnbPlatformAssets-hawaii-autosuggest-destination-icons-1/original/ebb968b2-3fb6-45d3-b675-7765e487f7b9.png",
+                "itemId": "4580a86a-587f-4ff7-8453-c890aca4a37e",
+                "location": null,
+                "searchParams": {
+                  "__typename": "ExploreSearchParams",
+                  "locationSearch": null,
+                  "params": [],
+                  "placeId": "ChIJ21P2rgUrTI8Ris1fYjy3Ms4",
+                  "query": "Cancún, México",
+                  "refinementPaths": [
+                    "/experiences"
+                  ],
+                  "resetFilters": false,
+                  "resetKeys": [
+                    "parent_city_place_id",
+                    "place_id",
+                    "query",
+                    "location",
+                    "location_search",
+                    "ne_lat",
+                    "ne_lng",
+                    "sw_lat",
+                    "sw_lng",
+                    "search_by_map"
+                  ]
+                },
+                "subtitle": "Por su animada vida nocturna",
+                "subtitleA11yText": null,
+                "title": "Cancún, México",
+                "description": null
+              },
+              {
+                "__typename": "LocationSuggestionItem",
+                "iconUrl": "https://a0.muscache.com/im/pictures/airbnb-platform-assets/AirbnbPlatformAssets-hawaii-autosuggest-destination-icons-2/original/eb63c43e-fd0e-48f2-8cab-ef156da3bc0c.png",
+                "itemId": "5890e497-0ba1-4ade-86c7-55a374b6e0fe",
+                "location": null,
+                "searchParams": {
+                  "__typename": "ExploreSearchParams",
+                  "locationSearch": null,
+                  "params": [],
+                  "placeId": "ChIJD7fiBh9u5kcRYJSMaMOCCwQ",
+                  "query": "París, Francia",
+                  "refinementPaths": [
+                    "/experiences"
+                  ],
+                  "resetFilters": false,
+                  "resetKeys": [
+                    "parent_city_place_id",
+                    "place_id",
+                    "query",
+                    "location",
+                    "location_search",
+                    "ne_lat",
+                    "ne_lng",
+                    "sw_lat",
+                    "sw_lng",
+                    "search_by_map"
+                  ]
+                },
+                "subtitle": "Por su arquitectura impresionante",
+                "subtitleA11yText": null,
+                "title": "París, Francia",
+                "description": null
+              }
+            ],
+            "title": "Sugerencias de destinos"
+          }
+        ],
+        "servicesAutoSuggestionResults": [
+          {
+            "__typename": "ReservationResult",
+            "items": [],
+            "title": null
+          }
+        ],
+        "loggingMetadata": {
+          "__typename": "AutoSuggestionsLoggingMetadata",
+          "requestId": "7a50125e-6682-4bb4-9fc0-626f86f2c7a5",
+          "experimentDataList": []
+        },
+        "aiSearchAutoSuggestionResults": [
+          "Spacious place with bunk beds and board games",
+          "A pool, outdoor dining area, hammocks, and a fire pit"
+        ]
+      }
+    }
+  },
+  "extensions": {
+    "traceId": "il06ZgfXAJbF0W8fbslEeA=="
+  }
+}

@@ -1,0 +1,295 @@
+{
+  "data": {
+    "node": {
+      "__typename": "DemandStayListing",
+      "pdpPresentation": {
+        "__typename": "DemandStayListingPdpPresentationContainer",
+        "similarListings": [
+          {
+            "__typename": "StaysPdpSimilarListing",
+            "price": "$259 USD",
+            "listing": {
+              "__typename": "DemandStayListing",
+              "id": "RGVtYW5kU3RheUxpc3Rpbmc6OTgyODQyNTgzMTMwNjExNTUx",
+              "pdpPresentation": {
+                "__typename": "DemandStayListingPdpPresentationContainer",
+                "quality": {
+                  "__typename": "StaysPdpPresentationQuality",
+                  "listingRatingStats": {
+                    "__typename": "DemandEntityRatingStats",
+                    "overallRatingStats": {
+                      "__typename": "DemandReviewRatingStats",
+                      "ratingAverage": 4.74
+                    }
+                  }
+                },
+                "title": {
+                  "__typename": "PdpUGCText",
+                  "content": {
+                    "__typename": "UGCText",
+                    "localizedStringWithTranslationPreference": "Luminoso y amplio departamento.",
+                    "localizedString": "Luminoso y amplio departamento.",
+                    "source": "Luminoso y amplio departamento."
+                  }
+                },
+                "sharingConfig": {
+                  "__typename": "DemandStayListingPdpPresentationSharingConfig",
+                  "imageUrl": "https://a0.muscache.com/im/pictures/hosting/Hosting-982842583130611551/original/c00fef7f-2e9c-4017-b53a-8f89e58858e1.jpeg",
+                  "url": "https://www.airbnb.com.ar/rooms/982842583130611551"
+                }
+              }
+            }
+          },
+          {
+            "__typename": "StaysPdpSimilarListing",
+            "price": "$417 USD",
+            "listing": {
+              "__typename": "DemandStayListing",
+              "id": "RGVtYW5kU3RheUxpc3Rpbmc6MTUwMzg4MTIyNTc0MzE3MDI4OQ==",
+              "pdpPresentation": {
+                "__typename": "DemandStayListingPdpPresentationContainer",
+                "quality": {
+                  "__typename": "StaysPdpPresentationQuality",
+                  "listingRatingStats": {
+                    "__typename": "DemandEntityRatingStats",
+                    "overallRatingStats": {
+                      "__typename": "DemandReviewRatingStats",
+                      "ratingAverage": 4.9
+                    }
+                  }
+                },
+                "title": {
+                  "__typename": "PdpUGCText",
+                  "content": {
+                    "__typename": "UGCText",
+                    "localizedStringWithTranslationPreference": "NUEVO Premium Apartment en Palermo by Magno",
+                    "localizedString": "NUEVO Premium Apartment en Palermo by Magno",
+                    "source": "NUEVO Premium Apartment en Palermo by Magno"
+                  }
+                },
+                "sharingConfig": {
+                  "__typename": "DemandStayListingPdpPresentationSharingConfig",
+                  "imageUrl": "https://a0.muscache.com/im/pictures/prohost-api/Hosting-1503881225743170289/original/177a8a31-67a4-4d8f-baab-e199db7444c3.jpeg",
+                  "url": "https://www.airbnb.com.ar/rooms/1503881225743170289"
+                }
+              }
+            }
+          },
+          {
+            "__typename": "StaysPdpSimilarListing",
+            "price": "$245 USD",
+            "listing": {
+              "__typename": "DemandStayListing",
+              "id": "RGVtYW5kU3RheUxpc3Rpbmc6OTkwNjMwNzIyOTQ4NDc5NDc5",
+              "pdpPresentation": {
+                "__typename": "DemandStayListingPdpPresentationContainer",
+                "quality": {
+                  "__typename": "StaysPdpPresentationQuality",
+                  "listingRatingStats": {
+                    "__typename": "DemandEntityRatingStats",
+                    "overallRatingStats": {
+                      "__typename": "DemandReviewRatingStats",
+                      "ratingAverage": 4.91
+                    }
+                  }
+                },
+                "title": {
+                  "__typename": "PdpUGCText",
+                  "content": {
+                    "__typename": "UGCText",
+                    "localizedStringWithTranslationPreference": "Apartamento de lujo a estrenar",
+                    "localizedString": "Apartamento de lujo a estrenar",
+                    "source": "Apartamento de lujo a estrenar"
+                  }
+                },
+                "sharingConfig": {
+                  "__typename": "DemandStayListingPdpPresentationSharingConfig",
+                  "imageUrl": "https://a0.muscache.com/im/pictures/hosting/Hosting-990630722948479479/original/7c6748b2-ddca-4977-a1cd-9b0ca2215fea.jpeg",
+                  "url": "https://www.airbnb.com.ar/rooms/990630722948479479"
+                }
+              }
+            }
+          },
+          {
+            "__typename": "StaysPdpSimilarListing",
+            "price": "$269 USD",
+            "listing": {
+              "__typename": "DemandStayListing",
+              "id": "RGVtYW5kU3RheUxpc3Rpbmc6MTY4MDQ2ODI3NzEzNDgyNjUyOQ==",
+              "pdpPresentation": {
+                "__typename": "DemandStayListingPdpPresentationContainer",
+                "quality": {
+                  "__typename": "StaysPdpPresentationQuality",
+                  "listingRatingStats": {
+                    "__typename": "DemandEntityRatingStats",
+                    "overallRatingStats": {
+                      "__typename": "DemandReviewRatingStats",
+                      "ratingAverage": 0.0
+                    }
+                  }
+                },
+                "title": {
+                  "__typename": "PdpUGCText",
+                  "content": {
+                    "__typename": "UGCText",
+                    "localizedStringWithTranslationPreference": "Departamento en Villa Crespo con balcón, pileta y gimnasio",
+                    "localizedString": "Departamento en Villa Crespo con balcón, pileta y gimnasio",
+                    "source": "Villa Crespo Apartment with Balcon Pool & Gym"
+                  }
+                },
+                "sharingConfig": {
+                  "__typename": "DemandStayListingPdpPresentationSharingConfig",
+                  "imageUrl": "https://a0.muscache.com/im/pictures/hosting/Hosting-1680468277134826529/original/bd86d815-0c80-4146-b197-ec991fbee746.jpeg",
+                  "url": "https://www.airbnb.com.ar/rooms/1680468277134826529"
+                }
+              }
+            }
+          },
+          {
+            "__typename": "StaysPdpSimilarListing",
+            "price": "$297 USD",
+            "listing": {
+              "__typename": "DemandStayListing",
+              "id": "RGVtYW5kU3RheUxpc3Rpbmc6OTI5MjMwNzg5NTgwMzEwNDU1",
+              "pdpPresentation": {
+                "__typename": "DemandStayListingPdpPresentationContainer",
+                "quality": {
+                  "__typename": "StaysPdpPresentationQuality",
+                  "listingRatingStats": {
+                    "__typename": "DemandEntityRatingStats",
+                    "overallRatingStats": {
+                      "__typename": "DemandReviewRatingStats",
+                      "ratingAverage": 4.79
+                    }
+                  }
+                },
+                "title": {
+                  "__typename": "PdpUGCText",
+                  "content": {
+                    "__typename": "UGCText",
+                    "localizedStringWithTranslationPreference": "150- Moderno Estudio con Piscina en Caballito BA",
+                    "localizedString": "150- Moderno Estudio con Piscina en Caballito BA",
+                    "source": "150- Moderno Estudio con Piscina en Caballito BA"
+                  }
+                },
+                "sharingConfig": {
+                  "__typename": "DemandStayListingPdpPresentationSharingConfig",
+                  "imageUrl": "https://a0.muscache.com/im/pictures/miso/Hosting-929230789580310455/original/0e6114d2-1864-4488-ac25-fa1e8ae1c36e.jpeg",
+                  "url": "https://www.airbnb.com.ar/rooms/929230789580310455"
+                }
+              }
+            }
+          },
+          {
+            "__typename": "StaysPdpSimilarListing",
+            "price": "$273 USD",
+            "listing": {
+              "__typename": "DemandStayListing",
+              "id": "RGVtYW5kU3RheUxpc3Rpbmc6MTYyNTU3MDMyNTE1NzUzMzU0NA==",
+              "pdpPresentation": {
+                "__typename": "DemandStayListingPdpPresentationContainer",
+                "quality": {
+                  "__typename": "StaysPdpPresentationQuality",
+                  "listingRatingStats": {
+                    "__typename": "DemandEntityRatingStats",
+                    "overallRatingStats": {
+                      "__typename": "DemandReviewRatingStats",
+                      "ratingAverage": 5.0
+                    }
+                  }
+                },
+                "title": {
+                  "__typename": "PdpUGCText",
+                  "content": {
+                    "__typename": "UGCText",
+                    "localizedStringWithTranslationPreference": "Hermoso Estudio en Núñez para 4 con balcón.2A",
+                    "localizedString": "Hermoso Estudio en Núñez para 4 con balcón.2A",
+                    "source": "Hermoso Estudio en Núñez para 4 con balcón.2A"
+                  }
+                },
+                "sharingConfig": {
+                  "__typename": "DemandStayListingPdpPresentationSharingConfig",
+                  "imageUrl": "https://a0.muscache.com/im/pictures/hosting/Hosting-1625570325157533544/original/b5d0e935-67db-47e5-a0e8-3bd77a1e77f2.jpeg",
+                  "url": "https://www.airbnb.com.ar/rooms/1625570325157533544"
+                }
+              }
+            }
+          },
+          {
+            "__typename": "StaysPdpSimilarListing",
+            "price": "$237 USD",
+            "listing": {
+              "__typename": "DemandStayListing",
+              "id": "RGVtYW5kU3RheUxpc3Rpbmc6MTYyOTI2NTM3Mzc2MjMzMzc1Mg==",
+              "pdpPresentation": {
+                "__typename": "DemandStayListingPdpPresentationContainer",
+                "quality": {
+                  "__typename": "StaysPdpPresentationQuality",
+                  "listingRatingStats": {
+                    "__typename": "DemandEntityRatingStats",
+                    "overallRatingStats": {
+                      "__typename": "DemandReviewRatingStats",
+                      "ratingAverage": 5.0
+                    }
+                  }
+                },
+                "title": {
+                  "__typename": "PdpUGCText",
+                  "content": {
+                    "__typename": "UGCText",
+                    "localizedStringWithTranslationPreference": "Estudio en el  corazón  de Buenos Aires.",
+                    "localizedString": "Estudio en el  corazón  de Buenos Aires.",
+                    "source": "Estudio en el  corazón  de Buenos Aires."
+                  }
+                },
+                "sharingConfig": {
+                  "__typename": "DemandStayListingPdpPresentationSharingConfig",
+                  "imageUrl": "https://a0.muscache.com/im/pictures/hosting/Hosting-1629265373762333752/original/bd629a98-ca0d-4866-a4a0-20aab1dc3372.jpeg",
+                  "url": "https://www.airbnb.com.ar/rooms/1629265373762333752"
+                }
+              }
+            }
+          },
+          {
+            "__typename": "StaysPdpSimilarListing",
+            "price": "$336 USD",
+            "listing": {
+              "__typename": "DemandStayListing",
+              "id": "RGVtYW5kU3RheUxpc3Rpbmc6MTY2MDgxNzQ2MzYyMjg4NTgwNQ==",
+              "pdpPresentation": {
+                "__typename": "DemandStayListingPdpPresentationContainer",
+                "quality": {
+                  "__typename": "StaysPdpPresentationQuality",
+                  "listingRatingStats": {
+                    "__typename": "DemandEntityRatingStats",
+                    "overallRatingStats": {
+                      "__typename": "DemandReviewRatingStats",
+                      "ratingAverage": 5.0
+                    }
+                  }
+                },
+                "title": {
+                  "__typename": "PdpUGCText",
+                  "content": {
+                    "__typename": "UGCText",
+                    "localizedStringWithTranslationPreference": "Monoambiente Premium con balcón y Vista verde",
+                    "localizedString": "Monoambiente Premium con balcón y Vista verde",
+                    "source": "Monoambiente Premium con balcón y Vista verde"
+                  }
+                },
+                "sharingConfig": {
+                  "__typename": "DemandStayListingPdpPresentationSharingConfig",
+                  "imageUrl": "https://a0.muscache.com/im/pictures/hosting/Hosting-1660817463622885805/original/5baddf93-6e88-4d38-bd57-b55d2521fae1.png",
+                  "url": "https://www.airbnb.com.ar/rooms/1660817463622885805"
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "extensions": {
+    "traceId": "b_Q8sFLhegCn0JrUV_8l6g=="
+  }
+}

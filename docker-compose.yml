@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  timescaledb:
+    image: timescale/timescaledb-ha:pg16
+    container_name: airbnb_timescaledb
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=tesis_econometria_2026
+      - POSTGRES_DB=mercado_inmobiliario
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/home/postgres/pgdata/data
+      - ./sql_init:/docker-entrypoint-initdb.d
+    restart: always
+
+volumes:
+  pg_data:

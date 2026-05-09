@@ -1,0 +1,10 @@
+{
+  "data": {
+    "node": {
+      "__typename": "DemandStayListing"
+    }
+  },
+  "extensions": {
+    "traceId": "fq-3nYfSSsUuLGk9zE0Uww=="
+  }
+}
