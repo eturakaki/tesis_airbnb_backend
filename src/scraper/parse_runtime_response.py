@@ -208,6 +208,7 @@ def parse_runtime_response(data: Any) -> dict:
     section_with_price = _find_first_section_with_price(sections_list)
     if section_with_price is None:
         logger.warning("Ninguna section contiene structuredDisplayPrice no-nulo")
+        result["parse_status"] = STATUS_PARTIAL   # <--- AGREGÁ ESTA LÍNEA AQUÍ
         return result
 
     # 5. Extraer el dict crudo + el raw text forense

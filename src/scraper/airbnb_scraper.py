@@ -45,9 +45,15 @@ from enum import Enum
 from pathlib import Path
 from typing import Any, Callable, Optional, Protocol
 
-# === ESTO ES LO NUEVO QUE AGREGÁS AHORA ===
 from contextlib import ExitStack
 from typing import TYPE_CHECKING
+from decimal import Decimal
+
+from src.scraper._ssr_extractor import extract_ssr_payload, SSRExtractionError
+from src.scraper.parse_payload import parse_payload
+from src.scraper.parse_runtime_response import parse_runtime_response
+from src.scraper.url_builder import build_pdp_url
+from src.db.db_client import DBClient
 
 if TYPE_CHECKING:
     # Type-only imports para evitar dependencia hard de Playwright en
@@ -753,3 +759,434 @@ class FakeBrowserSession:
             raise BrowserSessionError("restart() called before __enter__")
         self.restart_count += 1
         # No actual cooldown sleep en el fake — los tests no esperan 30-90s.
+
+# ===========================================================================
+# == y class AirbnbScraper:
+
+# =============================================================================
+# AirbnbScraper — Capa 3: orquestador end-to-end
+# =============================================================================
+
+class AirbnbScraper:
+    """
+    End-to-end scrape orchestrator.
+
+    Lifecycle (delegates to browser, per bitácora):
+        with AirbnbScraper(browser, db, logger) as scraper:
+            for listing_id in listings:
+                result = scraper.scrape_listing(listing_id)
+
+    Phase awareness:
+        price_extractor=None  → Phase 2.3 (no insert_precio; runtime payloads
+                                are archived for corpus building).
+        price_extractor=...   → Phase 3 (TX-B active).
+    """
+
+    def __init__(
+        self,
+        browser,                              # BrowserSession Protocol
+        db: DBClient,
+        logger: JSONLLogger,
+        *,
+        price_extractor: Optional[Callable[[dict[str, Any]], dict[str, Any]]] = None,
+        rate_limit_rng: Optional[random.Random] = None,
+        now_fn: Optional[Callable[[], datetime]] = None,
+        sleep_fn: Optional[Callable[[float], None]] = None,
+        archive_dir: Path = RAW_PAYLOADS_DIR,
+        fuente_scraper: str = DEFAULT_FUENTE_SCRAPER,
+    ) -> None:
+        self._browser = browser
+        self._db = db
+        self._logger = logger
+        self._price_extractor = price_extractor
+        self._rng = rate_limit_rng or random.Random()
+        self._now_fn = now_fn or (lambda: datetime.now(timezone.utc))
+        self._sleep_fn = sleep_fn or time.sleep
+        self._archive_dir = archive_dir
+        self._fuente_scraper = fuente_scraper
+
+        # Per-batch mutable state
+        self._consecutive_shape_drifts: int = 0
+        self._listings_since_restart: int = 0
+
+    # ----------------- lifecycle (delegates to browser) --------------------
+
+    def __enter__(self) -> "AirbnbScraper":
+        self._browser.__enter__()
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        return self._browser.__exit__(exc_type, exc_val, exc_tb)
+
+    # ----------------- public API ------------------------------------------
+
+    def scrape_listing(self, listing_id: str) -> ScrapeResult:
+        """
+        Scrape one listing end-to-end. Always logs one JSONL event before
+        returning, success or failure.
+
+        Flow:
+          1. Dedup check                       → SKIPPED (no network, no MEP)
+          2. Build URL                         → ERROR if invalid
+          3. Browser cycle (D27) every 50      → ERROR on restart failure
+          4. Navigate                          → ERROR (network)
+          5. Cloudflare check (HTML + status)  → CLOUDFLARE
+          6. SSR extract + parse               → SHAPE_DRIFT (counts D29)
+          7. Runtime intercept + parse (D30)   → SHAPE_DRIFT | 5c (5c does NOT)
+          8. Hash + atomic archive
+          9. fetch_or_refresh_mep (D24, soft)  → missing_fields if it fails
+         10. TX-A: write_metadata              → ERROR
+         11. Decide 5c vs SUCCESS
+         12. TX-B: write_price (gated)         → ERROR
+         13. Reset SHAPE_DRIFT counter on success
+         14. Rate-limit sleep (truncated lognormal)
+         15. Build + log + return ScrapeResult
+
+        Sleep policy: only after we touched the network (success, 5c,
+        SHAPE_DRIFT, post-navigate ERROR). NOT for SKIPPED, CLOUDFLARE,
+        or pre-navigate ERROR.
+
+        Raises:
+            BatchAbortError: if MAX_CONSECUTIVE_SHAPE_DRIFT reached (D29).
+        """
+        started = self._now_fn()
+        url: Optional[str] = None
+        ssr_parse_status: Optional[str] = None
+        runtime_parse_status: Optional[str] = None
+        inmueble_id: Optional[int] = None
+        raw_hash: Optional[str] = None
+        mep_rate: Optional[Decimal] = None
+        missing: list[str] = []
+
+        # ---- 1. Dedup ----
+        try:
+            if self._db.was_scraped_recently(listing_id):
+                return self._finalize(
+                    listing_id=listing_id,
+                    outcome=ScrapeOutcome.SKIPPED,
+                    started=started,
+                    sleep_after=False,
+                )
+        except Exception as exc:
+            return self._finalize(
+                listing_id=listing_id,
+                outcome=ScrapeOutcome.ERROR,
+                started=started,
+                error_class=type(exc).__name__,
+                sleep_after=False,
+            )
+
+        # ---- 2. Build URL ----
+        try:
+            url = build_pdp_url(listing_id)
+        except Exception as exc:
+            return self._finalize(
+                listing_id=listing_id,
+                outcome=ScrapeOutcome.ERROR,
+                started=started,
+                error_class=type(exc).__name__,
+                sleep_after=False,
+            )
+
+        # ---- 3. Browser cycle (proactive, D27) ----
+        # Increment FIRST: this listing counts toward the cycle whether it
+        # succeeds or fails post-navigate.
+        self._listings_since_restart += 1
+        if self._listings_since_restart > BROWSER_CYCLE_EVERY_N_LISTINGS:
+            try:
+                self._browser.restart()
+            except Exception as exc:
+                return self._finalize(
+                    listing_id=listing_id,
+                    outcome=ScrapeOutcome.ERROR,
+                    started=started,
+                    url=url,
+                    error_class=type(exc).__name__,
+                    sleep_after=False,
+                )
+            self._listings_since_restart = 1  # this listing is post-restart
+
+        # ---- 4. Navigate ----
+        try:
+            self._browser.navigate(url)
+        except BrowserSessionError as exc:
+            return self._finalize(
+                listing_id=listing_id,
+                outcome=ScrapeOutcome.ERROR,
+                started=started,
+                url=url,
+                error_class=type(exc).__name__,
+                sleep_after=True,
+            )
+        
+        # ---- 5. Cloudflare check (layered: HTML body + HTTP status) ----
+        try:
+            cf_html = self._browser.detect_cloudflare()
+        except Exception:
+            cf_html = False
+        cf_status = _is_cloudflare_status(self._browser.get_last_response_status())
+        if cf_html or cf_status:
+            return self._finalize(
+                listing_id=listing_id,
+                outcome=ScrapeOutcome.CLOUDFLARE,
+                started=started,
+                url=url,
+                cloudflare_detected=True,
+                sleep_after=False,
+            )
+
+        # ---- 6. SSR extract + parse ----
+        try:
+            html = self._browser.get_html()
+            ssr_dict = extract_ssr_payload(html)
+        except SSRExtractionError as exc:
+            self._consecutive_shape_drifts += 1
+            self._check_abort_threshold()
+            return self._finalize(
+                listing_id=listing_id,
+                outcome=ScrapeOutcome.SHAPE_DRIFT,
+                started=started,
+                url=url,
+                error_class=type(exc).__name__,
+                sleep_after=True,
+            )
+        except Exception as exc:
+            return self._finalize(
+                listing_id=listing_id,
+                outcome=ScrapeOutcome.ERROR,
+                started=started,
+                url=url,
+                error_class=type(exc).__name__,
+                sleep_after=True,
+            )
+
+        ssr_parsed = parse_payload(ssr_dict)
+        ssr_parse_status = ssr_parsed.get("parse_status")
+        if ssr_parse_status == "SHAPE_DRIFT":
+            self._consecutive_shape_drifts += 1
+            self._check_abort_threshold()
+            return self._finalize(
+                listing_id=listing_id,
+                outcome=ScrapeOutcome.SHAPE_DRIFT,
+                started=started,
+                url=url,
+                ssr_parse_status=ssr_parse_status,
+                missing_fields=list(ssr_parsed.get("missing_fields") or []),
+                sleep_after=True,
+            )
+
+        # ---- 7. Runtime (D30 doble buffer) ----
+        runtime_dict = self._browser.get_intercepted_runtime_response()
+        runtime_raw_body = self._browser.get_last_runtime_raw_body()
+        runtime_parsed: Optional[dict[str, Any]] = None
+
+        if runtime_dict is not None:
+            runtime_parsed = parse_runtime_response(runtime_dict)
+            runtime_parse_status = runtime_parsed.get("parse_status")
+            if runtime_parse_status == "SHAPE_DRIFT":
+                self._consecutive_shape_drifts += 1
+                self._check_abort_threshold()
+                return self._finalize(
+                    listing_id=listing_id,
+                    outcome=ScrapeOutcome.SHAPE_DRIFT,
+                    started=started,
+                    url=url,
+                    ssr_parse_status=ssr_parse_status,
+                    runtime_parse_status=runtime_parse_status,
+                    sleep_after=True,
+                )
+        elif runtime_raw_body is not None:
+            # D30: response present but unparseable JSON → SHAPE_DRIFT runtime.
+            # Distinct from "both None" (política 5c).
+            self._consecutive_shape_drifts += 1
+            self._check_abort_threshold()
+            return self._finalize(
+                listing_id=listing_id,
+                outcome=ScrapeOutcome.SHAPE_DRIFT,
+                started=started,
+                url=url,
+                ssr_parse_status=ssr_parse_status,
+                runtime_parse_status="SHAPE_DRIFT_RAW_BODY",
+                sleep_after=True,
+            )
+        # else: both None → política 5c. NO incrementa SHAPE_DRIFT counter.
+
+        # ---- 8. Hash + atomic archive ----
+        raw_hash = _hash_payloads(ssr_dict, runtime_dict)
+        try:
+            _archive_payload(
+                archive_dir=self._archive_dir,
+                listing_id=listing_id,
+                scraped_at=started,
+                url=url,
+                ssr_dict=ssr_dict,
+                runtime_dict=runtime_dict,
+                raw_hash=raw_hash,
+                fuente_scraper=self._fuente_scraper,
+            )
+        except Exception:
+            # Archive failure is non-fatal; data is still in-memory and
+            # will be persisted via TX-A. Surface it via missing_fields.
+            missing.append("archive_payload")
+
+        # ---- 9. MEP (D24) — soft-fail ----
+        try:
+            mep_rate = self._db.fetch_or_refresh_mep()
+        except Exception:
+            mep_rate = None
+            missing.append("mep_rate")
+
+        # ---- 10. TX-A: write_metadata ----
+        try:
+            inmueble_id = self._db.write_metadata(ssr_parsed)
+        except Exception as exc:
+            return self._finalize(
+                listing_id=listing_id,
+                outcome=ScrapeOutcome.ERROR,
+                started=started,
+                url=url,
+                ssr_parse_status=ssr_parse_status,
+                runtime_parse_status=runtime_parse_status,
+                raw_hash=raw_hash,
+                mep_rate=mep_rate,
+                error_class=type(exc).__name__,
+                missing_fields=missing,
+                sleep_after=True,
+            )
+
+        # ---- 11. Política 5c decision ----
+        has_runtime_price = (
+            runtime_parsed is not None
+            and runtime_parsed.get("parse_status") == "OK"
+            and runtime_parsed.get("structured_display_price") is not None
+        )
+
+        # ---- 12. TX-B: write_price (gated by Phase 3 + runtime OK + MEP OK) ----
+        if (
+            self._price_extractor is not None
+            and has_runtime_price
+            and mep_rate is not None
+        ):
+            try:
+                self._db.write_price(
+                    inmueble_id=inmueble_id,
+                    runtime_parsed=runtime_parsed,
+                    mep_rate=mep_rate,
+                    scraped_at=started,
+                )
+            except Exception as exc:
+                # Metadata persisted, price failed → ERROR with partial state.
+                return self._finalize(
+                    listing_id=listing_id,
+                    outcome=ScrapeOutcome.ERROR,
+                    started=started,
+                    url=url,
+                    ssr_parse_status=ssr_parse_status,
+                    runtime_parse_status=runtime_parse_status,
+                    inmueble_id=inmueble_id,
+                    raw_hash=raw_hash,
+                    mep_rate=mep_rate,
+                    error_class=type(exc).__name__,
+                    missing_fields=missing,
+                    sleep_after=True,
+                )
+
+        # ---- 13. Reset SHAPE_DRIFT counter on successful scrape ----
+        self._consecutive_shape_drifts = 0
+
+        # ---- 14. Outcome decision ----
+        outcome = (
+            ScrapeOutcome.SUCCESS if has_runtime_price else ScrapeOutcome.METADATA_ONLY
+        )
+
+        return self._finalize(
+            listing_id=listing_id,
+            outcome=outcome,
+            started=started,
+            url=url,
+            ssr_parse_status=ssr_parse_status,
+            runtime_parse_status=runtime_parse_status,
+            inmueble_id=inmueble_id,
+            raw_hash=raw_hash,
+            mep_rate=mep_rate,
+            missing_fields=missing,
+            sleep_after=True,
+        )
+
+    # ----------------- private helpers -------------------------------------
+
+    def _check_abort_threshold(self) -> None:
+        """D29 circuit breaker: 5 consecutive SHAPE_DRIFTs → abort batch."""
+        if self._consecutive_shape_drifts >= MAX_CONSECUTIVE_SHAPE_DRIFT:
+            raise BatchAbortError(
+                f"Aborting batch: {self._consecutive_shape_drifts} consecutive "
+                f"SHAPE_DRIFTs reached threshold MAX_CONSECUTIVE_SHAPE_DRIFT="
+                f"{MAX_CONSECUTIVE_SHAPE_DRIFT}. Likely Airbnb payload mutation "
+                f"— manual review of recent payloads required."
+            )
+
+    def _finalize(
+        self,
+        *,
+        listing_id: str,
+        outcome: ScrapeOutcome,
+        started: datetime,
+        url: Optional[str] = None,
+        ssr_parse_status: Optional[str] = None,
+        runtime_parse_status: Optional[str] = None,
+        inmueble_id: Optional[int] = None,
+        raw_hash: Optional[str] = None,
+        mep_rate: Optional[Decimal] = None,
+        cloudflare_detected: bool = False,
+        error_class: Optional[str] = None,
+        missing_fields: Optional[list[str]] = None,
+        sleep_after: bool = False,
+    ) -> ScrapeResult:
+        """Build ScrapeResult, log JSONL event, optional rate-limit sleep."""
+        ended = self._now_fn()
+        duration_ms = int((ended - started).total_seconds() * 1000)
+
+        result = ScrapeResult(
+            listing_id=listing_id,
+            outcome=outcome,
+            duration_ms=duration_ms,
+            url=url,
+            ssr_parse_status=ssr_parse_status,
+            runtime_parse_status=runtime_parse_status,
+            inmueble_id=inmueble_id,
+            raw_payload_hash=raw_hash,
+            mep_rate=str(mep_rate) if mep_rate is not None else None,
+            cloudflare_detected=cloudflare_detected,
+            error_class=error_class,
+            missing_fields=list(missing_fields or []),
+        )
+
+        event = {
+            "ts": ended.isoformat(),
+            "listing_id": listing_id,
+            "url": url,
+            "outcome": outcome.value,
+            "ssr_parse_status": ssr_parse_status,
+            "runtime_parse_status": runtime_parse_status,
+            "decision_5c": outcome == ScrapeOutcome.METADATA_ONLY,
+            "mep_rate": str(mep_rate) if mep_rate is not None else None,
+            "raw_payload_hash": raw_hash,
+            "duration_ms": duration_ms,
+            "cloudflare_detected": cloudflare_detected,
+            "error_class": error_class,
+            "missing_fields": list(missing_fields or []),
+        }
+        try:
+            self._logger.log(event)
+        except Exception:
+            # Logging must never mask the scrape result.
+            pass
+
+        if sleep_after:
+            try:
+                seconds = _sample_rate_limit_sleep(self._rng)
+                self._sleep_fn(seconds)
+            except Exception:
+                pass
+
+        return result
