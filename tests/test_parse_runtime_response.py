@@ -6,11 +6,13 @@ from pathlib import Path
 import pytest
 
 from src.scraper.parse_runtime_response import (
+    BOOK_IT_SECTION_IDS,
     REQUIRED_FIELDS,
     STATUS_OK,
     STATUS_PARTIAL,
     STATUS_SHAPE_DRIFT,
     _extract_raw_text,
+    _find_book_it_section,
     _find_first_section_with_price,
     _safe_get,
     parse_runtime_response,
@@ -80,7 +82,7 @@ def test_synthetic_happy_path(synthetic_runtime_payload, synthetic_sdp):
 
 # ─── DUPLICADO EN MÚLTIPLES SECTIONS: TOMAR EL PRIMERO ──────────────────
 def test_takes_first_section_with_price(synthetic_sdp):
-    """Si el precio aparece en múltiples sections, devuelve el primero."""
+    """Si BOOK_IT_SIDEBAR aparece, se devuelve su SDP (prioridad sobre FOOTER)."""
     second_sdp = {**synthetic_sdp, "primaryLine": {"accessibilityLabel": "$999 USD"}}
     payload = {
         "data": {
@@ -89,14 +91,12 @@ def test_takes_first_section_with_price(synthetic_sdp):
                     "sections": {
                         "sections": [
                             {
-                                "section": {
-                                    "structuredDisplayPrice": synthetic_sdp,
-                                }
+                                "sectionId": "BOOK_IT_SIDEBAR",
+                                "section": {"structuredDisplayPrice": synthetic_sdp},
                             },
                             {
-                                "section": {
-                                    "structuredDisplayPrice": second_sdp,
-                                }
+                                "sectionId": "BOOK_IT_FLOATING_FOOTER",
+                                "section": {"structuredDisplayPrice": second_sdp},
                             },
                         ]
                     }
@@ -110,19 +110,23 @@ def test_takes_first_section_with_price(synthetic_sdp):
     assert r["structured_display_price"] == synthetic_sdp
     assert r["price_raw_text"] == "$637 USD por 7 noches"
 
-
 # ─── SECTIONS INTERCALADAS SIN PRECIO ───────────────────────────────────
 def test_skips_sections_without_price(synthetic_sdp):
-    """Sections con structuredDisplayPrice = None se saltean."""
+    """Sections con structuredDisplayPrice = None se saltean si la BOOK_IT con SDP existe."""
     payload = {
         "data": {
             "presentation": {
                 "stayProductDetailPage": {
                     "sections": {
                         "sections": [
-                            {"section": {"structuredDisplayPrice": None}},
-                            {"section": {"otherKey": "noise"}},
-                            {"section": {"structuredDisplayPrice": synthetic_sdp}},
+                            {
+                                "sectionId": "DESCRIPTION_DEFAULT",
+                                "section": {"otherKey": "noise"},
+                            },
+                            {
+                                "sectionId": "BOOK_IT_SIDEBAR",
+                                "section": {"structuredDisplayPrice": synthetic_sdp},
+                            },
                         ]
                     }
                 }
@@ -133,6 +137,7 @@ def test_skips_sections_without_price(synthetic_sdp):
     r = parse_runtime_response(payload)
     assert r["parse_status"] == STATUS_OK
     assert r["structured_display_price"] == synthetic_sdp
+
 
 
 # ─── NODO VACÍO (LISTING SIN DISPONIBILIDAD) ────────────────────────────
@@ -163,7 +168,7 @@ def test_raw_text_falls_back_to_price_when_no_label():
             "presentation": {
                 "stayProductDetailPage": {
                     "sections": {
-                        "sections": [{"section": {"structuredDisplayPrice": sdp}}]
+                        "sections": [{"sectionId": "BOOK_IT_SIDEBAR", "section": {"structuredDisplayPrice": sdp}}]
                     }
                 }
             },
@@ -183,7 +188,7 @@ def test_raw_text_none_if_neither_label_nor_price():
             "presentation": {
                 "stayProductDetailPage": {
                     "sections": {
-                        "sections": [{"section": {"structuredDisplayPrice": sdp}}]
+                        "sections": [{"sectionId": "BOOK_IT_SIDEBAR", "section": {"structuredDisplayPrice": sdp}}]
                     }
                 }
             },
@@ -195,7 +200,6 @@ def test_raw_text_none_if_neither_label_nor_price():
     assert r["parse_status"] == STATUS_PARTIAL
     assert r["structured_display_price"] == sdp
     assert r["price_raw_text"] is None
-
 
 # ─── DEFENSIVE PARSING ──────────────────────────────────────────────────
 def test_empty_dict_returns_shape_drift():
@@ -284,6 +288,217 @@ def test_extract_raw_text_priority():
 def test_extract_raw_text_strips_whitespace():
     sdp = {"primaryLine": {"accessibilityLabel": "  $100 USD  "}}
     assert _extract_raw_text(sdp) == "$100 USD"
+
+
+# ─── D35: Discriminación PARTIAL vs SHAPE_DRIFT por sectionId ────────────
+
+class TestD35Discrimination:
+    """
+    D35 — Bajo regla estricta:
+    - BOOK_IT_* presente con SDP=None  → PARTIAL  (señal económica: 5c)
+    - BOOK_IT_* presente con SDP=dict  → OK
+    - Ninguna BOOK_IT_* en sections    → SHAPE_DRIFT (mutación payload)
+    """
+
+    def test_book_it_sidebar_with_null_sdp_yields_partial_not_shape_drift(self):
+        """
+        Caso A (5c): BOOK_IT_SIDEBAR existe pero structuredDisplayPrice=None.
+        Interpretación económica: listing existe, no disponible en la ventana.
+        El orquestador upserts metadata sin precio (política 5c).
+        """
+        payload = {
+            "data": {
+                "presentation": {
+                    "stayProductDetailPage": {
+                        "sections": {
+                            "sections": [
+                                {
+                                    "sectionId": "BOOK_IT_SIDEBAR",
+                                    "section": {
+                                        "__typename": "BookItSection",
+                                        "structuredDisplayPrice": None,
+                                    },
+                                },
+                                {
+                                    "sectionId": "DESCRIPTION_DEFAULT",
+                                    "section": {"otherKey": "noise"},
+                                },
+                            ]
+                        }
+                    }
+                },
+                "node": {"__typename": "DemandStayListing", "id": "abc"},
+            }
+        }
+        r = parse_runtime_response(payload)
+        assert r["parse_status"] == STATUS_PARTIAL
+        assert r["structured_display_price"] is None
+        assert r["price_raw_text"] is None
+
+    def test_no_book_it_section_yields_shape_drift(self):
+        """
+        Caso B: hay sections, pero NINGUNA es BOOK_IT_*.
+        Sin la sección esperada no podemos afirmar no-disponibilidad.
+        D35 dictamina SHAPE_DRIFT como alarma temprana de mutación.
+        """
+        payload = {
+            "data": {
+                "presentation": {
+                    "stayProductDetailPage": {
+                        "sections": {
+                            "sections": [
+                                {
+                                    "sectionId": "DESCRIPTION_DEFAULT",
+                                    "section": {"text": "Hermoso depto"},
+                                },
+                                {
+                                    "sectionId": "AMENITIES_DEFAULT",
+                                    "section": {"items": []},
+                                },
+                            ]
+                        }
+                    }
+                },
+                "node": {"__typename": "DemandStayListing", "id": "abc"},
+            }
+        }
+        r = parse_runtime_response(payload)
+        assert r["parse_status"] == STATUS_SHAPE_DRIFT
+        assert r["structured_display_price"] is None
+        assert set(r["missing_fields"]) == set(REQUIRED_FIELDS)
+
+    def test_only_unrelated_sections_yields_shape_drift(self):
+        """
+        Caso C: una sola sección no relacionada con precio.
+        Mismo veredicto que Caso B — sin BOOK_IT_*, no hay señal económica
+        defendible. SHAPE_DRIFT.
+        """
+        payload = {
+            "data": {
+                "presentation": {
+                    "stayProductDetailPage": {
+                        "sections": {
+                            "sections": [
+                                {
+                                    "sectionId": "DESCRIPTION_DEFAULT",
+                                    "section": {"text": "Solo descripción"},
+                                },
+                            ]
+                        }
+                    }
+                },
+                "node": {"__typename": "DemandStayListing", "id": "abc"},
+            }
+        }
+        r = parse_runtime_response(payload)
+        assert r["parse_status"] == STATUS_SHAPE_DRIFT
+
+    def test_floating_footer_used_when_sidebar_absent(self, synthetic_sdp):
+        """
+        BOOK_IT_FLOATING_FOOTER es fallback válido si SIDEBAR no aparece.
+        Payload mobile típico: solo footer, no sidebar.
+        """
+        payload = {
+            "data": {
+                "presentation": {
+                    "stayProductDetailPage": {
+                        "sections": {
+                            "sections": [
+                                {
+                                    "sectionId": "BOOK_IT_FLOATING_FOOTER",
+                                    "section": {"structuredDisplayPrice": synthetic_sdp},
+                                },
+                            ]
+                        }
+                    }
+                },
+                "node": {"__typename": "X", "id": "y"},
+            }
+        }
+        r = parse_runtime_response(payload)
+        assert r["parse_status"] == STATUS_OK
+        assert r["structured_display_price"] == synthetic_sdp
+
+    def test_sidebar_with_corrupt_inner_section_yields_partial(self):
+        """
+        Edge case: BOOK_IT_SIDEBAR existe pero `section` no es dict (Airbnb
+        a veces devuelve null transitoriamente). Tratamos como "sección
+        presente pero ilegible" → PARTIAL, no SHAPE_DRIFT.
+        """
+        payload = {
+            "data": {
+                "presentation": {
+                    "stayProductDetailPage": {
+                        "sections": {
+                            "sections": [
+                                {"sectionId": "BOOK_IT_SIDEBAR", "section": None},
+                            ]
+                        }
+                    }
+                },
+                "node": {"__typename": "X", "id": "y"},
+            }
+        }
+        r = parse_runtime_response(payload)
+        assert r["parse_status"] == STATUS_PARTIAL
+
+
+class TestFindBookItSection:
+    """Unit tests del helper _find_book_it_section."""
+
+    def test_returns_none_false_when_no_book_it(self):
+        sections = [
+            {"sectionId": "DESCRIPTION_DEFAULT", "section": {}},
+            {"sectionId": "AMENITIES_DEFAULT", "section": {}},
+        ]
+        result = _find_book_it_section(sections)
+        assert result == (None, False)
+
+    def test_returns_section_true_when_sidebar_present(self):
+        target_section = {"structuredDisplayPrice": {"x": 1}}
+        sections = [
+            {"sectionId": "DESCRIPTION_DEFAULT", "section": {}},
+            {"sectionId": "BOOK_IT_SIDEBAR", "section": target_section},
+        ]
+        section_inner, found = _find_book_it_section(sections)
+        assert found is True
+        assert section_inner == target_section
+
+    def test_sidebar_priority_over_footer(self):
+        sidebar_section = {"structuredDisplayPrice": {"id": "sidebar"}}
+        footer_section = {"structuredDisplayPrice": {"id": "footer"}}
+        sections = [
+            {"sectionId": "BOOK_IT_FLOATING_FOOTER", "section": footer_section},
+            {"sectionId": "BOOK_IT_SIDEBAR", "section": sidebar_section},
+        ]
+        section_inner, found = _find_book_it_section(sections)
+        assert found is True
+        assert section_inner == sidebar_section
+
+    def test_footer_used_when_sidebar_absent(self):
+        footer_section = {"structuredDisplayPrice": {"id": "footer"}}
+        sections = [
+            {"sectionId": "BOOK_IT_FLOATING_FOOTER", "section": footer_section},
+        ]
+        section_inner, found = _find_book_it_section(sections)
+        assert found is True
+        assert section_inner == footer_section
+
+    def test_book_it_with_corrupt_section_returns_none_true(self):
+        """BOOK_IT existe pero section no es dict → (None, True)."""
+        sections = [{"sectionId": "BOOK_IT_SIDEBAR", "section": "not a dict"}]
+        result = _find_book_it_section(sections)
+        assert result == (None, True)
+
+    def test_handles_non_list_input(self):
+        assert _find_book_it_section(None) == (None, False)
+        assert _find_book_it_section("string") == (None, False)
+        assert _find_book_it_section({}) == (None, False)
+
+    def test_constant_order_matches_expectation(self):
+        """SIDEBAR antes que FOOTER (decisión metodológica D35)."""
+        assert BOOK_IT_SECTION_IDS[0] == "BOOK_IT_SIDEBAR"
+        assert BOOK_IT_SECTION_IDS[1] == "BOOK_IT_FLOATING_FOOTER"
 
 
 # ─── PAYLOAD REAL (validación de regresión) ─────────────────────────────

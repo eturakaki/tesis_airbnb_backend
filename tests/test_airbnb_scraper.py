@@ -123,44 +123,34 @@ def _make_synthetic_ssr_dict(*, listing_id: str = "1234") -> dict:
     }
 
 def _make_synthetic_runtime_dict(*, with_price: bool = True) -> dict:
-    """Builds a synthetic runtime GraphQL response that the parser accepts as OK."""
-    if with_price:
-        sections = [
-            {
-                "sectionId": "DETAILED_PRICE_BREAKDOWN",
-                "section": {
-                    "structuredDisplayPrice": {
-                        "primaryLine": {
-                            "accessibilityLabel": "$ 100 por noche",
-                            "price": "$ 100"
-                        }
-                    }
-                }
-            }
-        ]
-    else:
-        # Para la Política 5c (sin precio): mandamos una sección que NO tenga el precio.
-        # El parser devolverá status OK pero structured_display_price será None.
-        sections = [
-            {
-                "sectionId": "DESCRIPTION_DEFAULT", 
-                "section": {"title": "Hermoso dpto"}
-            }
-        ]
-    
+    """Builds a synthetic runtime GraphQL response that the parser accepts."""
+    sdp = (
+        {
+            "primaryLine": {
+                "accessibilityLabel": "$637 USD por 7 noches",
+                "price": "$637",
+            },
+        }
+        if with_price
+        else None
+    )
     return {
         "data": {
             "presentation": {
                 "stayProductDetailPage": {
                     "sections": {
-                        "sections": sections
+                        "sections": [
+                            {
+                                "sectionId": "BOOK_IT_SIDEBAR",
+                                "section": {"structuredDisplayPrice": sdp},
+                            }
+                        ]
                     }
                 }
-            }
+            },
+            "node": {"__typename": "DemandStayListing", "id": "abc"},
         }
-        # IMPORTANTE: NO ponemos "parse_status" acá porque lo genera el parser real.
     }
-
 def _frozen_now():
     return FROZEN_TS
 

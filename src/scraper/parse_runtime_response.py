@@ -59,6 +59,18 @@ KEY_PRIMARY_LINE = "primaryLine"
 KEY_ACCESSIBILITY_LABEL = "accessibilityLabel"
 KEY_PRICE_TEXT = "price"
 
+# ─── D35: Discriminación PARTIAL vs SHAPE_DRIFT por sectionId ────────────
+# Sections que ESPERAMOS que contengan structuredDisplayPrice. Si existen
+# pero su SDP es None/vacío → PARTIAL (señal económica: 5c, no disponibilidad).
+# Si NINGUNA aparece en la lista → SHAPE_DRIFT (mutación de payload).
+#
+# Orden = prioridad de búsqueda. SIDEBAR primero (placement principal en
+# desktop), FLOATING_FOOTER como fallback (mobile/scroll).
+BOOK_IT_SECTION_IDS: tuple = (
+    "BOOK_IT_SIDEBAR",
+    "BOOK_IT_FLOATING_FOOTER",
+)
+
 # Estados de parseo (mismo enum que parse_payload.py por consistencia)
 STATUS_OK = "OK"
 STATUS_PARTIAL = "PARTIAL"
@@ -112,6 +124,44 @@ def _find_first_section_with_price(sections_list: Any) -> dict | None:
             return section_inner
     return None
 
+def _find_book_it_section(sections_list: Any) -> tuple[dict | None, bool]:
+    """
+    D35 — Búsqueda discriminante por sectionId.
+
+    Returns:
+        (section_inner, book_it_found):
+        - (section_inner, True): existe BOOK_IT_* y su `section` es accesible.
+                                 `section_inner` puede tener SDP no-vacío (caso OK)
+                                 o SDP None/vacío (caso 5c — no-disponibilidad).
+        - (None, True):          existe BOOK_IT_* pero su `section` no es dict
+                                 parseable (anomalía intermedia → tratamos como
+                                 sección presente pero corrupta).
+        - (None, False):         NINGUNA BOOK_IT_* en la lista. Esto es
+                                 SHAPE_DRIFT por D35: sin la sección esperada
+                                 no podemos distinguir 'no-disponibilidad' de
+                                 'mutación de payload'.
+
+    Iteración determinística por orden de BOOK_IT_SECTION_IDS (sidebar antes
+    que footer). Una sola pasada O(n·k) con k=2.
+    """
+    if not isinstance(sections_list, list):
+        return (None, False)
+
+    for target_id in BOOK_IT_SECTION_IDS:
+        for sec in sections_list:
+            if not isinstance(sec, dict):
+                continue
+            if sec.get("sectionId") != target_id:
+                continue
+            section_inner = sec.get("section")
+            if isinstance(section_inner, dict):
+                return (section_inner, True)
+            # BOOK_IT existe pero `section` corrupto: la sección está, no la
+            # podemos leer. Lo reportamos como "presente" para que caiga en
+            # PARTIAL (no SHAPE_DRIFT) — Airbnb a veces manda section=null
+            # transitoriamente.
+            return (None, True)
+    return (None, False)
 
 def _extract_raw_text(structured_display_price: dict) -> str | None:
     """
@@ -200,31 +250,45 @@ def parse_runtime_response(data: Any) -> dict:
 
     # 3. Navegar hasta sections
     sections_list = _safe_get(data, SECTIONS_PATH)
-    if not isinstance(sections_list, list):
-        logger.warning("sections_list no es lista en path %s", SECTIONS_PATH)
+    if not isinstance(sections_list, list) or not sections_list:
+        logger.warning("sections_list inválido o vacío en path %s", SECTIONS_PATH)
+        # SHAPE_DRIFT: estructura básica del runtime no parseable.
         return result
 
-    # 4. Encontrar la primera section con structuredDisplayPrice
-    section_with_price = _find_first_section_with_price(sections_list)
-    if section_with_price is None:
-        logger.warning("Ninguna section contiene structuredDisplayPrice no-nulo")
-        result["parse_status"] = STATUS_PARTIAL   # <--- AGREGÁ ESTA LÍNEA AQUÍ
+    # 4. D35 — Búsqueda discriminante por sectionId.
+    section_inner, book_it_found = _find_book_it_section(sections_list)
+
+    if not book_it_found:
+        # Caso B/C de D35: ninguna sección BOOK_IT_* en la lista.
+        # Sin la sección esperada NO podemos afirmar 'no-disponibilidad';
+        # podría ser una mutación del payload. SHAPE_DRIFT como alarma.
+        logger.warning(
+            "Ninguna sección BOOK_IT_* presente (esperadas: %s). SHAPE_DRIFT.",
+            BOOK_IT_SECTION_IDS,
+        )
+        # result ya tiene parse_status=SHAPE_DRIFT y missing_fields completo.
         return result
 
-    # 5. Extraer el dict crudo + el raw text forense
-    sdp = section_with_price.get(KEY_SDP)
-    if isinstance(sdp, dict) and sdp:
-        result["structured_display_price"] = sdp
-        result["price_raw_text"] = _extract_raw_text(sdp)
+    # 5. BOOK_IT presente. Extraer SDP si tiene.
+    if section_inner is not None:
+        sdp = section_inner.get(KEY_SDP)
+        if isinstance(sdp, dict) and sdp:
+            result["structured_display_price"] = sdp
+            result["price_raw_text"] = _extract_raw_text(sdp)
 
-    # 6. Calcular parse_status
+    # 6. Calcular parse_status final.
+    #    - Ambos campos presentes  → OK
+    #    - Sólo SDP, sin raw_text  → PARTIAL (sub-shape interno parcial)
+    #    - SDP=None pero BOOK_IT estaba → PARTIAL (caso 5c: no-disponibilidad)
     missing = [f for f in REQUIRED_FIELDS if result.get(f) is None]
     result["missing_fields"] = missing
     if not missing:
         result["parse_status"] = STATUS_OK
-    elif len(missing) < len(REQUIRED_FIELDS):
-        result["parse_status"] = STATUS_PARTIAL
     else:
-        result["parse_status"] = STATUS_SHAPE_DRIFT
+        # BOOK_IT existe pero algo falta → PARTIAL (no SHAPE_DRIFT).
+        # Esto cubre tanto 5c (SDP=None) como sub-shape parcial
+        # (SDP presente pero sin raw_text). Ambos son señales económicamente
+        # válidas, no mutaciones del payload.
+        result["parse_status"] = STATUS_PARTIAL
 
     return result
