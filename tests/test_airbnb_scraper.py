@@ -671,72 +671,156 @@ class TestIntegrationRealPayloads:
 
 
 class TestPR2EventSchemaAndTimings:
-    """CIF PR-2 — schema_version, timings_ms granularity, error capture."""
+    """CIF PR-2 — schema_version, timings_ms granularity, error capture.
 
-    def test_event_has_schema_version_2(self, make_scraper):
-        scraper, captured_events = make_scraper()
-        scraper.scrape_listing("1234")
+    Uses the canonical helpers from this module (_make_synthetic_ssr_dict,
+    _make_synthetic_runtime_dict, _wrap_ssr_in_html) — same pattern as
+    TestSuccess::test_full_happy_path.
+    """
 
-        assert captured_events[0]["schema_version"] == 2
+    @staticmethod
+    def _read_events(tmp_logger):
+        import json
+        if not tmp_logger.path.exists():
+            return []
+        return [
+            json.loads(line)
+            for line in tmp_logger.path.read_text(encoding="utf-8").splitlines()
+            if line.strip()
+        ]
 
-    def test_success_event_has_all_8_step_timings(self, make_scraper):
-        scraper, captured_events = make_scraper()
-        scraper.scrape_listing("1234")
+    def test_event_has_schema_version_2(
+        self, make_scraper, fake_browser, fake_db, tmp_logger,
+    ):
+        ssr = _make_synthetic_ssr_dict()
+        runtime = _make_synthetic_runtime_dict(with_price=True)
+        fake_browser.queue_navigation(
+            html=_wrap_ssr_in_html(ssr),
+            runtime_response=runtime,
+            response_status=200,
+        )
+        with make_scraper() as scraper:
+            scraper.scrape_listing("1234")
 
-        timings = captured_events[0]["timings_ms"]
+        events = self._read_events(tmp_logger)
+        assert len(events) == 1
+        assert events[0]["schema_version"] == 2
+
+    def test_success_event_has_all_step_timings(
+        self, make_scraper, fake_browser, fake_db, tmp_logger,
+    ):
+        ssr = _make_synthetic_ssr_dict()
+        runtime = _make_synthetic_runtime_dict(with_price=True)
+        fake_browser.queue_navigation(
+            html=_wrap_ssr_in_html(ssr),
+            runtime_response=runtime,
+            response_status=200,
+        )
+        with make_scraper() as scraper:
+            result = scraper.scrape_listing("1234")
+
+        assert result.outcome == ScrapeOutcome.SUCCESS
+        events = self._read_events(tmp_logger)
+        timings = events[0]["timings_ms"]
+
+        # All 8 instrumented steps + total must be present in a SUCCESS path
         expected_steps = {
-            "total", "dedup_check", "navigate",
-            "extract_ssr", "parse_ssr", "parse_runtime",
-            "write_metadata", "fetch_mep", "archive",
+            "total", "dedup_check", "navigate", "extract_ssr", "parse_ssr",
+            "parse_runtime", "write_metadata", "fetch_mep", "archive",
         }
-        assert expected_steps.issubset(timings.keys())
+        missing = expected_steps - set(timings.keys())
+        assert not missing, f"Missing steps in timings_ms: {missing}. Got: {timings}"
 
-    def test_skipped_event_has_only_dedup_and_total_timings(self, make_scraper_for_skipped):
-        scraper, captured_events = make_scraper_for_skipped()
-        scraper.scrape_listing("1234")
+    def test_skipped_event_has_only_dedup_and_total_timings(
+        self, make_scraper, fake_db, tmp_logger, monkeypatch,
+    ):
+        # Force dedup to return True via monkeypatch (API-agnostic)
+        monkeypatch.setattr(fake_db, "was_scraped_recently", lambda listing_id: True)
+        with make_scraper() as scraper:
+            result = scraper.scrape_listing("1234")
 
-        timings = captured_events[0]["timings_ms"]
-        # SKIPPED short-circuits after dedup — nothing else runs
+        assert result.outcome == ScrapeOutcome.SKIPPED
+        events = self._read_events(tmp_logger)
+        timings = events[0]["timings_ms"]
+        # SKIPPED short-circuits after dedup → only dedup_check + total recorded
         assert set(timings.keys()) == {"dedup_check", "total"}
 
-    def test_metadata_only_event_lacks_parse_runtime_when_runtime_absent(
-        self, make_scraper_for_metadata_only_no_runtime
+    def test_metadata_only_event_lacks_parse_runtime_timing(
+        self, make_scraper, fake_browser, fake_db, tmp_logger,
     ):
-        scraper, captured_events = make_scraper_for_metadata_only_no_runtime()
-        scraper.scrape_listing("1234")
+        # SSR OK + no runtime → política 5c → METADATA_ONLY
+        ssr = _make_synthetic_ssr_dict()
+        fake_browser.queue_navigation(
+            html=_wrap_ssr_in_html(ssr),
+            runtime_response=None,
+            response_status=200,
+        )
+        with make_scraper() as scraper:
+            result = scraper.scrape_listing("1234")
 
-        timings = captured_events[0]["timings_ms"]
-        # No runtime body → parse_runtime never executes
+        assert result.outcome == ScrapeOutcome.METADATA_ONLY
+        events = self._read_events(tmp_logger)
+        timings = events[0]["timings_ms"]
+        # parse_runtime didn't run (no runtime body to parse)
         assert "parse_runtime" not in timings
-        # But metadata still written
+        # But metadata path did run
         assert "write_metadata" in timings
+        assert "total" in timings
 
-    def test_all_timings_are_non_negative_integers(self, make_scraper):
-        scraper, captured_events = make_scraper()
-        scraper.scrape_listing("1234")
+    def test_all_timings_are_non_negative_integers(
+        self, make_scraper, fake_browser, fake_db, tmp_logger,
+    ):
+        ssr = _make_synthetic_ssr_dict()
+        runtime = _make_synthetic_runtime_dict(with_price=True)
+        fake_browser.queue_navigation(
+            html=_wrap_ssr_in_html(ssr),
+            runtime_response=runtime,
+            response_status=200,
+        )
+        with make_scraper() as scraper:
+            scraper.scrape_listing("1234")
 
-        for step_key, value in captured_events[0]["timings_ms"].items():
-            assert isinstance(value, int), f"{step_key} timing must be int, got {type(value)}"
-            assert value >= 0, f"{step_key} timing must be non-negative, got {value}"
+        events = self._read_events(tmp_logger)
+        for step_key, value in events[0]["timings_ms"].items():
+            assert isinstance(value, int), (
+                f"timing for '{step_key}' must be int, got {type(value).__name__}"
+            )
+            assert value >= 0, f"timing for '{step_key}' must be ≥0, got {value}"
 
-    def test_error_event_has_error_class_and_traceback(self, make_scraper_for_navigate_failure):
-        scraper, captured_events = make_scraper_for_navigate_failure()
-        scraper.scrape_listing("1234")
+    def test_error_event_has_error_class_and_traceback(
+        self, make_scraper, fake_db, tmp_logger, monkeypatch,
+    ):
+        # Force dedup to raise → triggers pre-navigate ERROR with exception
+        def boom(listing_id):
+            raise RuntimeError("simulated db failure")
+        monkeypatch.setattr(fake_db, "was_scraped_recently", boom)
 
-        event = captured_events[0]
-        assert event["outcome"] == "ERROR"
-        assert "error_class" in event
-        assert isinstance(event["error_class"], str)
-        assert len(event["error_class"]) > 0
-        assert "error_traceback" in event
-        assert isinstance(event["error_traceback"], str)
-        # Traceback must contain stack frames (rough heuristic)
-        assert "Traceback" in event["error_traceback"] or "File " in event["error_traceback"]
+        with make_scraper() as scraper:
+            result = scraper.scrape_listing("1234")
 
-    def test_success_event_lacks_error_fields(self, make_scraper):
-        scraper, captured_events = make_scraper()
-        scraper.scrape_listing("1234")
+        assert result.outcome == ScrapeOutcome.ERROR
+        events = self._read_events(tmp_logger)
+        event = events[0]
+        # CIF PR-2 — both error fields must be present and well-formed
+        assert event["error_class"] == "RuntimeError"
+        assert "Traceback" in event["error_traceback"]
+        assert "simulated db failure" in event["error_traceback"]
 
-        event = captured_events[0]
-        assert "error_class" not in event
-        assert "error_traceback" not in event
+    def test_success_event_lacks_error_fields(
+        self, make_scraper, fake_browser, fake_db, tmp_logger,
+    ):
+        ssr = _make_synthetic_ssr_dict()
+        runtime = _make_synthetic_runtime_dict(with_price=True)
+        fake_browser.queue_navigation(
+            html=_wrap_ssr_in_html(ssr),
+            runtime_response=runtime,
+            response_status=200,
+        )
+        with make_scraper() as scraper:
+            result = scraper.scrape_listing("1234")
+
+        assert result.outcome == ScrapeOutcome.SUCCESS
+        events = self._read_events(tmp_logger)
+        # CIF PR-2 — these keys must be ABSENT (not present as None) on success
+        assert "error_class" not in events[0]
+        assert "error_traceback" not in events[0]

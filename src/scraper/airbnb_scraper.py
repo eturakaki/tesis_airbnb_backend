@@ -924,9 +924,8 @@ class AirbnbScraper:
          14. Rate-limit sleep (truncated lognormal)
          15. Build + log + return ScrapeResult
 
-        Sleep policy: only after we touched the network (success, 5c,
-        SHAPE_DRIFT, post-navigate ERROR). NOT for SKIPPED, CLOUDFLARE,
-        or pre-navigate ERROR.
+        Sleep policy: only after we touched the network. NOT for SKIPPED,
+        CLOUDFLARE, or pre-navigate ERROR.
 
         Raises:
             BatchAbortError: if MAX_CONSECUTIVE_SHAPE_DRIFT reached (D29).
@@ -934,19 +933,20 @@ class AirbnbScraper:
         timer = TimerCollector(monotonic_fn=self._monotonic_fn)
         self._current_timer = timer
 
-        with timer.step("total"):
-            started = self._now_fn()
-            url: Optional[str] = None
-            ssr_parse_status: Optional[str] = None
-            runtime_parse_status: Optional[str] = None
-            inmueble_id: Optional[int] = None
-            raw_hash: Optional[str] = None
-            mep_rate: Optional[Decimal] = None
-            missing: list[str] = []
+        started = self._now_fn()
+        url: Optional[str] = None
+        ssr_parse_status: Optional[str] = None
+        runtime_parse_status: Optional[str] = None            
+        inmueble_id: Optional[int] = None
+        raw_hash: Optional[str] = None
+        mep_rate: Optional[Decimal] = None
+        missing: list[str] = []
 
         # ---- 1. Dedup ----
         try:
-            if self._db.was_scraped_recently(listing_id):
+            with timer.step("dedup_check"):
+                skip = self._db.was_scraped_recently(listing_id)
+            if skip:
                 return self._finalize(
                     listing_id=listing_id,
                     outcome=ScrapeOutcome.SKIPPED,
@@ -958,7 +958,7 @@ class AirbnbScraper:
                 listing_id=listing_id,
                 outcome=ScrapeOutcome.ERROR,
                 started=started,
-                error_class=type(exc).__name__,
+                error=exc,
                 sleep_after=False,
             )
 
@@ -970,13 +970,11 @@ class AirbnbScraper:
                 listing_id=listing_id,
                 outcome=ScrapeOutcome.ERROR,
                 started=started,
-                error_class=type(exc).__name__,
+                error=exc,
                 sleep_after=False,
             )
 
-        # ---- 3. Browser cycle (proactive, D27) ----
-        # Increment FIRST: this listing counts toward the cycle whether it
-        # succeeds or fails post-navigate.
+        # ---- 3. Browser cycle (D27) ----
         self._listings_since_restart += 1
         if self._listings_since_restart > BROWSER_CYCLE_EVERY_N_LISTINGS:
             try:
@@ -987,25 +985,26 @@ class AirbnbScraper:
                     outcome=ScrapeOutcome.ERROR,
                     started=started,
                     url=url,
-                    error_class=type(exc).__name__,
+                    error=exc,
                     sleep_after=False,
                 )
-            self._listings_since_restart = 1  # this listing is post-restart
+            self._listings_since_restart = 1
 
         # ---- 4. Navigate ----
         try:
-            self._browser.navigate(url)
+            with timer.step("navigate"):
+                self._browser.navigate(url)
         except BrowserSessionError as exc:
             return self._finalize(
                 listing_id=listing_id,
                 outcome=ScrapeOutcome.ERROR,
                 started=started,
                 url=url,
-                error_class=type(exc).__name__,
+                error=exc,
                 sleep_after=True,
             )
-        
-        # ---- 5. Cloudflare check (layered: HTML body + HTTP status) ----
+
+        # ---- 5. Cloudflare check ----
         try:
             cf_html = self._browser.detect_cloudflare()
         except Exception:
@@ -1024,7 +1023,8 @@ class AirbnbScraper:
         # ---- 6. SSR extract + parse ----
         try:
             html = self._browser.get_html()
-            ssr_dict = extract_ssr_payload(html)
+            with timer.step("extract_ssr"):
+                ssr_dict = extract_ssr_payload(html)
         except SSRExtractionError as exc:
             self._consecutive_shape_drifts += 1
             self._check_abort_threshold()
@@ -1033,7 +1033,7 @@ class AirbnbScraper:
                 outcome=ScrapeOutcome.SHAPE_DRIFT,
                 started=started,
                 url=url,
-                error_class=type(exc).__name__,
+                error=exc,
                 sleep_after=True,
             )
         except Exception as exc:
@@ -1042,11 +1042,12 @@ class AirbnbScraper:
                 outcome=ScrapeOutcome.ERROR,
                 started=started,
                 url=url,
-                error_class=type(exc).__name__,
+                error=exc,
                 sleep_after=True,
             )
 
-        ssr_parsed = parse_payload(ssr_dict)
+        with timer.step("parse_ssr"):
+            ssr_parsed = parse_payload(ssr_dict)
         ssr_parse_status = ssr_parsed.get("parse_status")
         if ssr_parse_status == "SHAPE_DRIFT":
             self._consecutive_shape_drifts += 1
@@ -1067,7 +1068,8 @@ class AirbnbScraper:
         runtime_parsed: Optional[dict[str, Any]] = None
 
         if runtime_dict is not None:
-            runtime_parsed = parse_runtime_response(runtime_dict)
+            with timer.step("parse_runtime"):
+                runtime_parsed = parse_runtime_response(runtime_dict)
             runtime_parse_status = runtime_parsed.get("parse_status")
             if runtime_parse_status == "SHAPE_DRIFT":
                 self._consecutive_shape_drifts += 1
@@ -1082,8 +1084,6 @@ class AirbnbScraper:
                     sleep_after=True,
                 )
         elif runtime_raw_body is not None:
-            # D30: response present but unparseable JSON → SHAPE_DRIFT runtime.
-            # Distinct from "both None" (política 5c).
             self._consecutive_shape_drifts += 1
             self._check_abort_threshold()
             return self._finalize(
@@ -1100,31 +1100,32 @@ class AirbnbScraper:
         # ---- 8. Hash + atomic archive ----
         raw_hash = _hash_payloads(ssr_dict, runtime_dict)
         try:
-            _archive_payload(
-                archive_dir=self._archive_dir,
-                listing_id=listing_id,
-                scraped_at=started,
-                url=url,
-                ssr_dict=ssr_dict,
-                runtime_dict=runtime_dict,
-                raw_hash=raw_hash,
-                fuente_scraper=self._fuente_scraper,
-            )
+            with timer.step("archive"):
+                _archive_payload(
+                    archive_dir=self._archive_dir,
+                    listing_id=listing_id,
+                    scraped_at=started,
+                    url=url,
+                    ssr_dict=ssr_dict,
+                    runtime_dict=runtime_dict,
+                    raw_hash=raw_hash,
+                    fuente_scraper=self._fuente_scraper,
+                )
         except Exception:
-            # Archive failure is non-fatal; data is still in-memory and
-            # will be persisted via TX-A. Surface it via missing_fields.
             missing.append("archive_payload")
 
         # ---- 9. MEP (D24) — soft-fail ----
         try:
-            mep_rate = self._db.fetch_or_refresh_mep()
+            with timer.step("fetch_mep"):
+                mep_rate = self._db.fetch_or_refresh_mep()
         except Exception:
             mep_rate = None
             missing.append("mep_rate")
 
         # ---- 10. TX-A: write_metadata ----
         try:
-            inmueble_id = self._db.write_metadata(ssr_parsed)
+            with timer.step("write_metadata"):
+                inmueble_id = self._db.write_metadata(ssr_parsed)
         except Exception as exc:
             return self._finalize(
                 listing_id=listing_id,
@@ -1135,7 +1136,7 @@ class AirbnbScraper:
                 runtime_parse_status=runtime_parse_status,
                 raw_hash=raw_hash,
                 mep_rate=mep_rate,
-                error_class=type(exc).__name__,
+                error=exc,
                 missing_fields=missing,
                 sleep_after=True,
             )
@@ -1147,7 +1148,7 @@ class AirbnbScraper:
             and runtime_parsed.get("structured_display_price") is not None
         )
 
-        # ---- 12. TX-B: write_price (gated by Phase 3 + runtime OK + MEP OK) ----
+        # ---- 12. TX-B: write_price (gated) ----
         if (
             self._price_extractor is not None
             and has_runtime_price
@@ -1161,7 +1162,6 @@ class AirbnbScraper:
                     scraped_at=started,
                 )
             except Exception as exc:
-                # Metadata persisted, price failed → ERROR with partial state.
                 return self._finalize(
                     listing_id=listing_id,
                     outcome=ScrapeOutcome.ERROR,
@@ -1172,12 +1172,12 @@ class AirbnbScraper:
                     inmueble_id=inmueble_id,
                     raw_hash=raw_hash,
                     mep_rate=mep_rate,
-                    error_class=type(exc).__name__,
+                    error=exc,
                     missing_fields=missing,
                     sleep_after=True,
                 )
 
-        # ---- 13. Reset SHAPE_DRIFT counter on successful scrape ----
+        # ---- 13. Reset SHAPE_DRIFT counter on success ----
         self._consecutive_shape_drifts = 0
 
         # ---- 14. Outcome decision ----
@@ -1198,7 +1198,7 @@ class AirbnbScraper:
             missing_fields=missing,
             sleep_after=True,
         )
-
+    
     # ----------------- private helpers -------------------------------------
 
     def _check_abort_threshold(self) -> None:
@@ -1224,14 +1224,22 @@ class AirbnbScraper:
         raw_hash: Optional[str] = None,
         mep_rate: Optional[Decimal] = None,
         cloudflare_detected: bool = False,
-        error_class: Optional[str] = None,
         missing_fields: Optional[list[str]] = None,
         sleep_after: bool = False,
-        error: Optional[Exception] = None,  # <--- NUEVO PARÁMETRO
+        error: Optional[Exception] = None,
     ) -> ScrapeResult:
-        """Build ScrapeResult, log JSONL event, optional rate-limit sleep."""
+        """Build ScrapeResult, log JSONL event, optional rate-limit sleep.
+
+        CIF PR-2 — Unified error handling: `error` (Exception) is the single
+        source of truth for ERROR/SHAPE_DRIFT outcomes. The legacy string
+        parameter `error_class` was eliminated in favor of deriving both
+        `error_class` (str) and `error_traceback` (str) from `error`.
+        """
         ended = self._now_fn()
         duration_ms = int((ended - started).total_seconds() * 1000)
+
+        # Derive error metadata from the exception (single source of truth)
+        error_class = type(error).__name__ if error is not None else None
 
         result = ScrapeResult(
             listing_id=listing_id,
@@ -1248,7 +1256,9 @@ class AirbnbScraper:
             missing_fields=list(missing_fields or []),
         )
 
-        event = {
+        # Build event dict — keys that are CONDITIONAL (error_class,
+        # error_traceback) are inserted only when relevant, never with None.
+        event: dict[str, Any] = {
             "ts": ended.isoformat(),
             "listing_id": listing_id,
             "url": url,
@@ -1260,16 +1270,19 @@ class AirbnbScraper:
             "raw_payload_hash": raw_hash,
             "duration_ms": duration_ms,
             "cloudflare_detected": cloudflare_detected,
-            "error_class": error_class,
             "missing_fields": list(missing_fields or []),
         }
 
-        # CIF PR-2 — granular timings
-        event["timings_ms"] = self._current_timer.to_dict() if hasattr(self, '_current_timer') and self._current_timer else {}
+        # CIF PR-2 — granular timings (grabamos el total a mano)
+        if getattr(self, "_current_timer", None) is not None:
+            self._current_timer.record("total", duration_ms)
+            event["timings_ms"] = self._current_timer.to_dict()
+        else:
+            event["timings_ms"] = {}
 
-        # CIF PR-2 — error capture (sin truncamiento)
+        # CIF PR-2 — error capture (Solo se agrega si REALMENTE hay error)
         if error is not None:
-            event["error_class"] = type(error).__name__
+            event["error_class"] = error_class
             event["error_traceback"] = "".join(
                 traceback.format_exception(type(error), error, error.__traceback__)
             )
@@ -1277,10 +1290,9 @@ class AirbnbScraper:
         try:
             self._logger.log(event)
         except Exception:
-            # Logging must never mask the scrape result.
             pass
 
-        # Limpiamos el timer para que no contamine el próximo scraping
+        # Clear the timer so a later scrape doesn't inherit it
         self._current_timer = None
 
         if sleep_after:

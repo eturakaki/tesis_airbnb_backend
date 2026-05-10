@@ -50,6 +50,12 @@ class TimerCollector:
     def to_dict(self) -> dict[str, int]:
         """Return a defensive copy of the timings dict."""
         return dict(self._timings_ms)
+    
+    def record(self, key: str, elapsed_ms: int) -> None:
+        """Record an elapsed time for `key` directly, without a context manager."""
+        if elapsed_ms < 0:
+            raise ValueError(f"elapsed_ms must be ≥0, got {elapsed_ms}")
+        self._timings_ms[key] = self._timings_ms.get(key, 0) + elapsed_ms
 
     def has(self, key: str) -> bool:
         return key in self._timings_ms

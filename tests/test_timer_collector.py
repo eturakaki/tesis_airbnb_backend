@@ -109,3 +109,22 @@ class TestTimerCollectorDefaults:
         assert "real_clock" in result
         # Lax: anywhere from 5ms to 500ms is acceptable on any CI machine
         assert 5 <= result["real_clock"] <= 500
+
+class TestTimerCollectorRecord:
+    def test_record_stores_value(self):
+        timer = TimerCollector(monotonic_fn=_make_monotonic_fn([]))
+        timer.record("total", 1234)
+        assert timer.to_dict() == {"total": 1234}
+
+    def test_record_accumulates_with_step(self):
+        clock = _make_monotonic_fn([0.0, 0.100])
+        timer = TimerCollector(monotonic_fn=clock)
+        with timer.step("foo"):
+            pass
+        timer.record("foo", 50)
+        assert timer.to_dict() == {"foo": 150}
+
+    def test_record_rejects_negative(self):
+        timer = TimerCollector(monotonic_fn=_make_monotonic_fn([]))
+        with pytest.raises(ValueError, match="≥0"):
+            timer.record("x", -1)
