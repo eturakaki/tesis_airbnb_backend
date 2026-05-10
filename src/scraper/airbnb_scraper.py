@@ -31,39 +31,41 @@ Phase 2.3 vs Phase 3:
 D24 — obtener_mep() se llama en TODOS los scrapes exitosos (incluso Phase 2.3)
 para poblar fx_diaria día a día. Vital para backfill posterior.
 """
+
 from __future__ import annotations
 
+import traceback
+from src.scraper._timer_collector import TimerCollector
 import hashlib
 import json
 import math
 import os
 import random
 import time
+from contextlib import ExitStack
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
+from decimal import Decimal
 from enum import Enum
 from pathlib import Path
-from typing import Any, Callable, Optional, Protocol
+from typing import Any, Callable, Optional, Protocol, TYPE_CHECKING
 
-from contextlib import ExitStack
-from typing import TYPE_CHECKING
-from decimal import Decimal
+from playwright.sync_api import Error as PlaywrightError
 
+from src.db.db_client import DBClient
 from src.scraper._ssr_extractor import extract_ssr_payload, SSRExtractionError
 from src.scraper.parse_payload import parse_payload
 from src.scraper.parse_runtime_response import parse_runtime_response
 from src.scraper.url_builder import build_pdp_url
-from src.db.db_client import DBClient
 
 if TYPE_CHECKING:
     # Type-only imports para evitar dependencia hard de Playwright en
     # entornos donde solo se usa FakeBrowserSession (CI rápida, etc).
     from playwright.sync_api import BrowserContext, Page, Response
-# ==========================================
+
 # =============================================================================
 # Constantes
 # =============================================================================
-
 # Browser cycle (D27 — proactive)
 BROWSER_CYCLE_EVERY_N_LISTINGS: int = 50
 BROWSER_RESTART_COOLDOWN_SEC_RANGE: tuple[float, float] = (30.0, 90.0)
@@ -205,7 +207,7 @@ class JSONLLogger:
         "missing_fields": list[str]
       }
     """
-
+    SCHEMA_VERSION = 2
     def __init__(
         self,
         log_dir: Path = LOGS_DIR,
@@ -227,7 +229,12 @@ class JSONLLogger:
 
     def log(self, event: dict[str, Any]) -> None:
         """Append one event as a single JSON line. Atomic at the line level via O_APPEND."""
+        # CIF PR-2 — schema version stamped automatically on every event
+        event = {"schema_version": self.SCHEMA_VERSION, **event}
+        
         line = json.dumps(event, ensure_ascii=False, separators=(",", ":"))
+        
+        
         with self._path.open("a", encoding="utf-8") as f:
             f.write(line + "\n")
 
@@ -619,6 +626,48 @@ class PlaywrightBrowserSession:
             # El orquestador verá None+None y aplicará política 5c.
             pass
 
+    def take_screenshot(self, path: Path) -> bool:
+            """Capture a full-page screenshot of the current page to `path`.
+
+            Soft-fail by contract: returns True on success, False on any capture
+            failure (closed page, filesystem error, Playwright internal error).
+            Implementations MUST create parent directories defensively
+            (parents=True, exist_ok=True) — callers should not pre-mkdir.
+
+            Forensic capture must NEVER downgrade a SUCCESS outcome to ERROR;
+            the orchestrator treats False as a missing artifact, not an exception.
+            """
+            ...
+
+    def get_page_html(self, ) -> str | None:
+        """Return the current rendered DOM as an HTML string.
+
+        Soft-fail by contract: returns the HTML on success, None on any
+        capture failure (closed page, Playwright internal error).
+        Used for SHAPE_DRIFT / ERROR forensics — see CIF matrix.
+        """
+        ...
+    def take_screenshot(self, path: Path) -> bool:
+        if self._page is None:
+            return False
+        try:
+            path.parent.mkdir(parents=True, exist_ok=True)
+            self._page.screenshot(path=str(path), full_page=True)
+            return True
+        except PlaywrightError:
+            # Closed page, navigation race, screenshot timeout, etc.
+            return False
+        except OSError:
+            # mkdir or filesystem write failure (disk full, permissions, etc.)
+            return False
+
+    def get_page_html(self) -> str | None:
+        if self._page is None:
+            return None
+        try:
+            return self._page.content()
+        except PlaywrightError:
+            return None
 
 # =============================================================================
 # FakeBrowserSession (test double — usable en tests del orquestador en Entrega 3)
@@ -658,6 +707,11 @@ class FakeBrowserSession:
         # Telemetry (for test assertions)
         self.navigate_calls: list[str] = []
         self.restart_count: int = 0
+        # CIF PR-1 — forensic capture telemetry & failure injection
+        self.screenshot_calls: list[Path] = []
+        self.html_calls: int = 0
+        self._screenshot_failure_queued: bool = False
+        self._html_failure_queued: bool = False
 
     # -------------------------------------------------------------------------
     # Test setup API (NOT part of BrowserSession Protocol)
@@ -693,6 +747,32 @@ class FakeBrowserSession:
     def queue_navigation_failure(self, exc: Exception) -> None:
         """Queue an exception to be raised by the next navigate() call."""
         self._queued.append({"_raise": exc})
+
+    def queue_screenshot_failure(self) -> None:
+        """One-shot: cause the NEXT take_screenshot call to soft-fail (return False)."""
+        self._screenshot_failure_queued = True
+
+    def queue_html_failure(self) -> None:
+        """One-shot: cause the NEXT get_page_html call to soft-fail (return None)."""
+        self._html_failure_queued = True
+
+    def take_screenshot(self, path: Path) -> bool:
+        # Telemetry records the ATTEMPT, regardless of success/failure
+        self.screenshot_calls.append(path)
+        if self._screenshot_failure_queued:
+            self._screenshot_failure_queued = False
+            return False
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_bytes(b"\x00")  # 1-byte dummy PNG — enough for path.exists() assertions
+        return True
+
+    def get_page_html(self) -> str | None:
+        # Telemetry records the ATTEMPT, regardless of success/failure
+        self.html_calls += 1
+        if self._html_failure_queued:
+            self._html_failure_queued = False
+            return None
+        return "<html>fake</html>"
 
     # -------------------------------------------------------------------------
     # BrowserSession Protocol implementation
@@ -791,6 +871,7 @@ class AirbnbScraper:
         price_extractor: Optional[Callable[[dict[str, Any]], dict[str, Any]]] = None,
         rate_limit_rng: Optional[random.Random] = None,
         now_fn: Optional[Callable[[], datetime]] = None,
+        monotonic_fn: Callable[[], float] = time.perf_counter,
         sleep_fn: Optional[Callable[[float], None]] = None,
         archive_dir: Path = RAW_PAYLOADS_DIR,
         fuente_scraper: str = DEFAULT_FUENTE_SCRAPER,
@@ -804,6 +885,7 @@ class AirbnbScraper:
         self._sleep_fn = sleep_fn or time.sleep
         self._archive_dir = archive_dir
         self._fuente_scraper = fuente_scraper
+        self._monotonic_fn = monotonic_fn
 
         # Per-batch mutable state
         self._consecutive_shape_drifts: int = 0
@@ -849,14 +931,18 @@ class AirbnbScraper:
         Raises:
             BatchAbortError: if MAX_CONSECUTIVE_SHAPE_DRIFT reached (D29).
         """
-        started = self._now_fn()
-        url: Optional[str] = None
-        ssr_parse_status: Optional[str] = None
-        runtime_parse_status: Optional[str] = None
-        inmueble_id: Optional[int] = None
-        raw_hash: Optional[str] = None
-        mep_rate: Optional[Decimal] = None
-        missing: list[str] = []
+        timer = TimerCollector(monotonic_fn=self._monotonic_fn)
+        self._current_timer = timer
+
+        with timer.step("total"):
+            started = self._now_fn()
+            url: Optional[str] = None
+            ssr_parse_status: Optional[str] = None
+            runtime_parse_status: Optional[str] = None
+            inmueble_id: Optional[int] = None
+            raw_hash: Optional[str] = None
+            mep_rate: Optional[Decimal] = None
+            missing: list[str] = []
 
         # ---- 1. Dedup ----
         try:
@@ -1141,6 +1227,7 @@ class AirbnbScraper:
         error_class: Optional[str] = None,
         missing_fields: Optional[list[str]] = None,
         sleep_after: bool = False,
+        error: Optional[Exception] = None,  # <--- NUEVO PARÁMETRO
     ) -> ScrapeResult:
         """Build ScrapeResult, log JSONL event, optional rate-limit sleep."""
         ended = self._now_fn()
@@ -1176,11 +1263,25 @@ class AirbnbScraper:
             "error_class": error_class,
             "missing_fields": list(missing_fields or []),
         }
+
+        # CIF PR-2 — granular timings
+        event["timings_ms"] = self._current_timer.to_dict() if hasattr(self, '_current_timer') and self._current_timer else {}
+
+        # CIF PR-2 — error capture (sin truncamiento)
+        if error is not None:
+            event["error_class"] = type(error).__name__
+            event["error_traceback"] = "".join(
+                traceback.format_exception(type(error), error, error.__traceback__)
+            )
+
         try:
             self._logger.log(event)
         except Exception:
             # Logging must never mask the scrape result.
             pass
+
+        # Limpiamos el timer para que no contamine el próximo scraping
+        self._current_timer = None
 
         if sleep_after:
             try:

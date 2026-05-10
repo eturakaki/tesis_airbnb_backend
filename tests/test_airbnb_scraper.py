@@ -668,3 +668,75 @@ class TestIntegrationRealPayloads:
             real_ssr = json.load(f)
         result = parse_payload(real_ssr)
         assert result.get("parse_status") == "OK"
+
+
+class TestPR2EventSchemaAndTimings:
+    """CIF PR-2 — schema_version, timings_ms granularity, error capture."""
+
+    def test_event_has_schema_version_2(self, make_scraper):
+        scraper, captured_events = make_scraper()
+        scraper.scrape_listing("1234")
+
+        assert captured_events[0]["schema_version"] == 2
+
+    def test_success_event_has_all_8_step_timings(self, make_scraper):
+        scraper, captured_events = make_scraper()
+        scraper.scrape_listing("1234")
+
+        timings = captured_events[0]["timings_ms"]
+        expected_steps = {
+            "total", "dedup_check", "navigate",
+            "extract_ssr", "parse_ssr", "parse_runtime",
+            "write_metadata", "fetch_mep", "archive",
+        }
+        assert expected_steps.issubset(timings.keys())
+
+    def test_skipped_event_has_only_dedup_and_total_timings(self, make_scraper_for_skipped):
+        scraper, captured_events = make_scraper_for_skipped()
+        scraper.scrape_listing("1234")
+
+        timings = captured_events[0]["timings_ms"]
+        # SKIPPED short-circuits after dedup — nothing else runs
+        assert set(timings.keys()) == {"dedup_check", "total"}
+
+    def test_metadata_only_event_lacks_parse_runtime_when_runtime_absent(
+        self, make_scraper_for_metadata_only_no_runtime
+    ):
+        scraper, captured_events = make_scraper_for_metadata_only_no_runtime()
+        scraper.scrape_listing("1234")
+
+        timings = captured_events[0]["timings_ms"]
+        # No runtime body → parse_runtime never executes
+        assert "parse_runtime" not in timings
+        # But metadata still written
+        assert "write_metadata" in timings
+
+    def test_all_timings_are_non_negative_integers(self, make_scraper):
+        scraper, captured_events = make_scraper()
+        scraper.scrape_listing("1234")
+
+        for step_key, value in captured_events[0]["timings_ms"].items():
+            assert isinstance(value, int), f"{step_key} timing must be int, got {type(value)}"
+            assert value >= 0, f"{step_key} timing must be non-negative, got {value}"
+
+    def test_error_event_has_error_class_and_traceback(self, make_scraper_for_navigate_failure):
+        scraper, captured_events = make_scraper_for_navigate_failure()
+        scraper.scrape_listing("1234")
+
+        event = captured_events[0]
+        assert event["outcome"] == "ERROR"
+        assert "error_class" in event
+        assert isinstance(event["error_class"], str)
+        assert len(event["error_class"]) > 0
+        assert "error_traceback" in event
+        assert isinstance(event["error_traceback"], str)
+        # Traceback must contain stack frames (rough heuristic)
+        assert "Traceback" in event["error_traceback"] or "File " in event["error_traceback"]
+
+    def test_success_event_lacks_error_fields(self, make_scraper):
+        scraper, captured_events = make_scraper()
+        scraper.scrape_listing("1234")
+
+        event = captured_events[0]
+        assert "error_class" not in event
+        assert "error_traceback" not in event

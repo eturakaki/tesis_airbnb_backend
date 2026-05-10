@@ -438,7 +438,14 @@ class TestJSONLLogger:
         logger = JSONLLogger(log_dir=tmp_path, run_date=run_date)
         logger.log({"listing_id": "1", "outcome": "SUCCESS"})
         lines = logger.path.read_text(encoding="utf-8").splitlines()
-        assert lines == ['{"listing_id":"1","outcome":"SUCCESS"}']
+
+        # CIF PR-2: events are auto-stamped with schema_version, so test
+        # by parsing + key-by-key inspection (not literal-string equality).
+        assert len(lines) == 1
+        parsed = json.loads(lines[0])
+        assert parsed["listing_id"] == "1"
+        assert parsed["outcome"] == "SUCCESS"
+        assert parsed["schema_version"] == 2
 
     def test_multiple_logs_appended(self, tmp_path: Path):
         run_date = datetime(2026, 5, 9, tzinfo=timezone.utc)
@@ -446,9 +453,12 @@ class TestJSONLLogger:
         for i in range(5):
             logger.log({"i": i})
         lines = logger.path.read_text(encoding="utf-8").splitlines()
+
         assert len(lines) == 5
         for i, line in enumerate(lines):
-            assert json.loads(line) == {"i": i}
+            parsed = json.loads(line)
+            assert parsed["i"] == i
+            assert parsed["schema_version"] == 2  # CIF PR-2
 
     def test_unicode_preserved(self, tmp_path: Path):
         run_date = datetime(2026, 5, 9, tzinfo=timezone.utc)

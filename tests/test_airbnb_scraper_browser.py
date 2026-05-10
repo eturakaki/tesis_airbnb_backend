@@ -346,3 +346,65 @@ class TestPlaywrightConfig:
         """No raise — defensive."""
         s = PlaywrightBrowserSession()
         assert s.detect_cloudflare() is False
+
+
+class TestForensicCaptureExtensions:
+    """D31 extension — take_screenshot + get_page_html (CIF PR-1).
+
+    Validates the soft-fail contract and telemetry semantics of the
+    forensic-capture methods. Capa 3 integration is exercised in PR-3.
+    """
+
+    def test_take_screenshot_happy_path_creates_file_and_parent_dirs(self, tmp_path):
+        browser = FakeBrowserSession()
+        target = tmp_path / "nested" / "subdir" / "shot.png"
+        # Pre-condition: parent dir does NOT exist — method must mkdir defensively
+        assert not target.parent.exists()
+
+        result = browser.take_screenshot(target)
+
+        assert result is True
+        assert target.exists()
+        assert target.read_bytes() == b"\x00"
+        assert browser.screenshot_calls == [target]
+
+    def test_take_screenshot_soft_fails_when_failure_queued(self, tmp_path):
+        browser = FakeBrowserSession()
+        target = tmp_path / "shot.png"
+        browser.queue_screenshot_failure()
+
+        result = browser.take_screenshot(target)
+
+        assert result is False
+        assert not target.exists(), "soft-fail must not write the file"
+        # Telemetry still records the ATTEMPT (deliberate — see Bloque D rationale)
+        assert browser.screenshot_calls == [target]
+
+        # One-shot semantics: next call succeeds
+        target2 = tmp_path / "shot2.png"
+        assert browser.take_screenshot(target2) is True
+        assert target2.exists()
+        assert browser.screenshot_calls == [target, target2]
+
+    def test_get_page_html_happy_path_returns_dummy_and_increments_counter(self):
+        browser = FakeBrowserSession()
+
+        html1 = browser.get_page_html()
+        html2 = browser.get_page_html()
+
+        assert html1 == "<html>fake</html>"
+        assert html2 == "<html>fake</html>"
+        assert browser.html_calls == 2
+
+    def test_get_page_html_soft_fails_when_failure_queued(self):
+        browser = FakeBrowserSession()
+        browser.queue_html_failure()
+
+        result = browser.get_page_html()
+
+        assert result is None
+        assert browser.html_calls == 1, "counter increments even on soft-fail"
+
+        # One-shot semantics: next call succeeds
+        assert browser.get_page_html() == "<html>fake</html>"
+        assert browser.html_calls == 2
