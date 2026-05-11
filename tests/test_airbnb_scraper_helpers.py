@@ -9,7 +9,13 @@ from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
 import pytest
-
+from src.scraper.airbnb_scraper import _check_abort_threshold
+from src.scraper._exceptions import (
+    BatchAbortError,
+    CloudflareDetectedError,
+    BrowserSessionError,
+    ScraperError,
+)
 from src.scraper.airbnb_scraper import (
     # Constants
     BROWSER_CYCLE_EVERY_N_LISTINGS,

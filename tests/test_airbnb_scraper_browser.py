@@ -16,7 +16,8 @@ from src.scraper.airbnb_scraper import (
     PlaywrightBrowserSession,
     RUNTIME_RESPONSE_URL_PATTERN,
 )
-
+from src.scraper.airbnb_scraper import PlaywrightBrowserSession
+from src.scraper._exceptions import BrowserSessionError
 
 # =============================================================================
 # Structural typing — both classes satisfy the Protocol

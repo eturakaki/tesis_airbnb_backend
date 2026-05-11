@@ -53,6 +53,12 @@ from typing import Any, Callable, Optional, Protocol, TYPE_CHECKING
 from playwright.sync_api import Error as PlaywrightError
 
 from src.db.db_client import DBClient
+from src.scraper._exceptions import (
+    BatchAbortError,
+    BrowserSessionError,
+    CloudflareDetectedError,
+    ScraperError,
+)
 from src.scraper._ssr_extractor import extract_ssr_payload, SSRExtractionError
 from src.scraper.parse_payload import parse_payload
 from src.scraper.parse_runtime_response import parse_runtime_response
@@ -90,7 +96,15 @@ RATE_LIMIT_MAX_RESAMPLE_ATTEMPTS: int = 100
 
 # SHAPE_DRIFT abort threshold (D29)
 MAX_CONSECUTIVE_SHAPE_DRIFT: int = 5
-
+def _check_abort_threshold(consecutive_drifts: int) -> None:
+    """D29 circuit breaker — helper puro de módulo."""
+    if consecutive_drifts >= MAX_CONSECUTIVE_SHAPE_DRIFT:
+        raise BatchAbortError(
+            f"Aborting batch: {consecutive_drifts} consecutive "
+            f"SHAPE_DRIFTs reached threshold MAX_CONSECUTIVE_SHAPE_DRIFT="
+            f"{MAX_CONSECUTIVE_SHAPE_DRIFT}. Likely Airbnb payload mutation "
+            f"\u2014 manual review of recent payloads required."
+        )
 # Network
 RUNTIME_RESPONSE_URL_PATTERN: str = "/api/v3/StaysPdpSections"
 NAVIGATION_TIMEOUT_MS: int = 30_000
@@ -120,26 +134,6 @@ DEFAULT_FUENTE_SCRAPER: str = "airbnb_scraper_v1"
 DEFAULT_PLATAFORMA: str = "airbnb"
 DEFAULT_PAIS: str = "Argentina"
 DEFAULT_CIUDAD: str = "CABA"
-
-
-# =============================================================================
-# Custom exceptions
-# =============================================================================
-
-class ScraperError(Exception):
-    """Base exception for orchestrator failures."""
-
-
-class BatchAbortError(ScraperError):
-    """Raised when MAX_CONSECUTIVE_SHAPE_DRIFT is reached (D29 circuit breaker)."""
-
-
-class CloudflareDetectedError(ScraperError):
-    """Raised when CF challenge is detected on a PDP navigation."""
-
-
-class BrowserSessionError(ScraperError):
-    """Raised on unrecoverable browser-level failures."""
 
 
 # =============================================================================
@@ -627,27 +621,15 @@ class PlaywrightBrowserSession:
             pass
 
     def take_screenshot(self, path: Path) -> bool:
-            """Capture a full-page screenshot of the current page to `path`.
+        """Capture a full-page screenshot of the current page to `path`.
 
-            Soft-fail by contract: returns True on success, False on any capture
-            failure (closed page, filesystem error, Playwright internal error).
-            Implementations MUST create parent directories defensively
-            (parents=True, exist_ok=True) — callers should not pre-mkdir.
+        Soft-fail by contract: returns True on success, False on any capture
+        failure (closed page, filesystem error, Playwright internal error).
+        Creates parent directories defensively (callers should not pre-mkdir).
 
-            Forensic capture must NEVER downgrade a SUCCESS outcome to ERROR;
-            the orchestrator treats False as a missing artifact, not an exception.
-            """
-            ...
-
-    def get_page_html(self, ) -> str | None:
-        """Return the current rendered DOM as an HTML string.
-
-        Soft-fail by contract: returns the HTML on success, None on any
-        capture failure (closed page, Playwright internal error).
-        Used for SHAPE_DRIFT / ERROR forensics — see CIF matrix.
+        Forensic capture must NEVER downgrade a SUCCESS outcome to ERROR;
+        the orchestrator treats False as a missing artifact, not an exception.
         """
-        ...
-    def take_screenshot(self, path: Path) -> bool:
         if self._page is None:
             return False
         try:
@@ -661,7 +643,13 @@ class PlaywrightBrowserSession:
             # mkdir or filesystem write failure (disk full, permissions, etc.)
             return False
 
-    def get_page_html(self) -> str | None:
+    def get_page_html(self) -> Optional[str]:
+        """Return the current rendered DOM as an HTML string.
+
+        Soft-fail by contract: returns the HTML on success, None on any
+        capture failure (closed page, Playwright internal error).
+        Used for SHAPE_DRIFT / ERROR forensics — see CIF matrix.
+        """
         if self._page is None:
             return None
         try:
@@ -713,6 +701,13 @@ class FakeBrowserSession:
         self._screenshot_failure_queued: bool = False
         self._html_failure_queued: bool = False
 
+         # CIF — forensic page-state telemetry & failure injection
+        self.url_calls: int = 0
+        self.title_calls: int = 0
+        self._title_failure_queued: bool = False
+        self.current_url: Optional[str] = None
+        self.page_title: Optional[str] = None
+
     # -------------------------------------------------------------------------
     # Test setup API (NOT part of BrowserSession Protocol)
     # -------------------------------------------------------------------------
@@ -747,7 +742,20 @@ class FakeBrowserSession:
     def queue_navigation_failure(self, exc: Exception) -> None:
         """Queue an exception to be raised by the next navigate() call."""
         self._queued.append({"_raise": exc})
+    def queue_title_failure(self) -> None:
+        """One-shot: cause the NEXT get_page_title call to soft-fail (return None)."""
+        self._title_failure_queued = True
 
+    def get_current_url(self) -> Optional[str]:
+        self.url_calls += 1
+        return self.current_url
+
+    def get_page_title(self) -> Optional[str]:
+        self.title_calls += 1
+        if self._title_failure_queued:
+            self._title_failure_queued = False
+            return None
+        return self.page_title
     def queue_screenshot_failure(self) -> None:
         """One-shot: cause the NEXT take_screenshot call to soft-fail (return False)."""
         self._screenshot_failure_queued = True
@@ -1202,15 +1210,9 @@ class AirbnbScraper:
     # ----------------- private helpers -------------------------------------
 
     def _check_abort_threshold(self) -> None:
-        """D29 circuit breaker: 5 consecutive SHAPE_DRIFTs → abort batch."""
-        if self._consecutive_shape_drifts >= MAX_CONSECUTIVE_SHAPE_DRIFT:
-            raise BatchAbortError(
-                f"Aborting batch: {self._consecutive_shape_drifts} consecutive "
-                f"SHAPE_DRIFTs reached threshold MAX_CONSECUTIVE_SHAPE_DRIFT="
-                f"{MAX_CONSECUTIVE_SHAPE_DRIFT}. Likely Airbnb payload mutation "
-                f"— manual review of recent payloads required."
-            )
-
+        """D29 circuit breaker: delega al helper puro de módulo."""
+        _check_abort_threshold(self._consecutive_shape_drifts)
+        
     def _finalize(
         self,
         *,
